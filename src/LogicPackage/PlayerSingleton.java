@@ -2,7 +2,7 @@ package LogicPackage;
 
 public class PlayerSingleton {
     private static PlayerSingleton instance;
-    private String difficultyLevel;
+
 
     private PlayerSingleton() {
     }
@@ -11,9 +11,9 @@ public class PlayerSingleton {
             instance = new PlayerSingleton();
         return instance;
     }
-    //TODO : Set difficulty
 
     public void setDifficultyLevel(String difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
+        //TODO : Set difficulty
+
     }
 }
