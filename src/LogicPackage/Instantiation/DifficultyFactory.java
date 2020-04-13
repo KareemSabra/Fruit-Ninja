@@ -1,6 +1,7 @@
-package LogicPackage;
+package LogicPackage.Instantiation;
 
 public class DifficultyFactory {
+
     public Difficulty getDifficultyLevel(String level){
         if(level==null)
         { return null;}

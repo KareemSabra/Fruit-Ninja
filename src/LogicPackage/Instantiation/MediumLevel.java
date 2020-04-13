@@ -1,4 +1,4 @@
-package LogicPackage;
+package LogicPackage.Instantiation;
 
 public class MediumLevel implements Difficulty {
     @Override

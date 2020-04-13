@@ -1,7 +1,8 @@
-package LogicPackage;
+package LogicPackage.Instantiation;
 
 public class PlayerSingleton {
     private static PlayerSingleton instance;
+
 
 
     private PlayerSingleton() {
@@ -13,7 +14,9 @@ public class PlayerSingleton {
     }
 
     public void setDifficultyLevel(String difficultyLevel) {
-        //TODO : Set difficulty
+        Difficulty difficulty = new DifficultyFactory().getDifficultyLevel(difficultyLevel);
+        difficulty.level();
+
 
     }
 }
