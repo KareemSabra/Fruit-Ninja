@@ -22,7 +22,8 @@ public class WelcomeScreen {
     public void prepareScene(Stage stage) {
 
         StackPane stackPane = new StackPane();
-        Button newGame = new Button();
+        stackPane.setPrefSize(1280,720);
+        Button newGameButton = new Button();
         Button continueButton = new Button("Continue last Game");
 
         try{
@@ -33,19 +34,20 @@ public class WelcomeScreen {
             stackPane.getChildren().add(backGroundImage);
             BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("NewGameButton.png") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newGameBackground = new Background(newGameBackgroundImage);
-            newGame.setBackground(newGameBackground);
-            Duration duration = Duration.millis(6000);
+            newGameButton.setBackground(newGameBackground);
+            newGameButton.setPrefSize(500,300);
 
-            RotateTransition rotateTransition = new RotateTransition(duration,newGame);
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(6000),newGameButton);
             rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
             rotateTransition.setByAngle(360);
             rotateTransition.play();
         }catch (Exception e){
             System.out.println("Images error");
+            newGameButton.setText("New Game");
         }
-        newGame.setPrefSize(500,300);
 
-        newGame.setOnAction(new EventHandler<ActionEvent>() {
+
+        newGameButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
                GameMode gameMode = new GameMode();
@@ -53,7 +55,7 @@ public class WelcomeScreen {
            }
        });
 
-       HBox buttonsBox = new HBox(continueButton, newGame);
+        HBox buttonsBox = new HBox(continueButton, newGameButton);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         buttonsBox.setSpacing(20);
         stackPane.getChildren().add(buttonsBox);

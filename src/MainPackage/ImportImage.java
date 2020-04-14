@@ -8,17 +8,12 @@ import java.io.FileNotFoundException;
 
 public class ImportImage {
 
-
-    public ImportImage() {
-
-    }
-
     public Image getImage(String fileName) {
 
         try{
             FileInputStream fileInputStream = new FileInputStream(fileName);
-            Image image = new Image(fileInputStream);
-            return image;
+
+            return new Image(fileInputStream);
         }
         catch (FileNotFoundException e)
         {
