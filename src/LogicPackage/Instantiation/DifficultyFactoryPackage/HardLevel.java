@@ -1,4 +1,4 @@
-package LogicPackage.Instantiation.DifficultyFactory;
+package LogicPackage.Instantiation.DifficultyFactoryPackage;
 
 public class HardLevel implements Difficulty {
     @Override

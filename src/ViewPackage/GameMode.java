@@ -1,6 +1,7 @@
 package ViewPackage;
 
 
+import LogicPackage.Instantiation.PlayerSingleton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -20,6 +21,9 @@ public class GameMode {
         arcade.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
+                playerSingleton.setGameMode("Arcade");
                 Difficulties diff = new Difficulties();
                 diff.prepareScene(stage);
             }
@@ -27,6 +31,9 @@ public class GameMode {
         classic.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
+                playerSingleton.setGameMode("Classic");
                 Difficulties diff = new Difficulties();
                 diff.prepareScene(stage);
             }

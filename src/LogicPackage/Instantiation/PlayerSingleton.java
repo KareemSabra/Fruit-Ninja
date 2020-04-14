@@ -1,7 +1,9 @@
 package LogicPackage.Instantiation;
 
-import LogicPackage.Instantiation.DifficultyFactory.Difficulty;
-import LogicPackage.Instantiation.DifficultyFactory.DifficultyFactory;
+import LogicPackage.Instantiation.DifficultyFactoryPackage.Difficulty;
+import LogicPackage.Instantiation.DifficultyFactoryPackage.DifficultyFactory;
+import LogicPackage.Instantiation.GameModeFactoryPackage.GameModeFactory;
+import LogicPackage.Instantiation.GameModeFactoryPackage.Mode;
 
 public class PlayerSingleton {
     private static PlayerSingleton instance;
@@ -15,7 +17,10 @@ public class PlayerSingleton {
     }
 
     public void setDifficultyLevel(String difficultyLevel) {
-        Difficulty difficulty = new DifficultyFactory().getDifficultyLevel(difficultyLevel);
-        difficulty.level();
-    }
+    Difficulty difficulty = new DifficultyFactory().getDifficultyLevel(difficultyLevel);
+    difficulty.level();}
+
+    public void setGameMode(String modeChoice) {
+        Mode gameMode = new GameModeFactory().getMode(modeChoice);
+        gameMode.gameMode();}
 }
