@@ -11,16 +11,7 @@ import javafx.stage.Stage;
 
 public class Difficulties {
 
-    Stage stage;
-    Scene scene;
-    GameMode gameMode;
-
-    public Difficulties(Stage stage)
-    {
-        this.stage = stage;
-    }
-
-    public void prepareScene()
+    public void prepareScene(Stage stage)
     {
         Button beginnerDifficulty = new Button("Beginner");
         Button intermediateDifficulty = new Button("Intermediate");
@@ -53,18 +44,13 @@ public class Difficulties {
         HBox box = new HBox(beginnerDifficulty, intermediateDifficulty, expertDifficulty);
         box.setAlignment(Pos.CENTER);
         box.setSpacing(40);
-        scene = new Scene(box, 1280,720);
-
-
+        Scene scene = new Scene(box, 1280,720);
         stage.setScene(scene);
         stage.show();
     }
 
 
-    public void setGameMode(GameMode gameMode)
-    {
-        this.gameMode = gameMode;
-    }
+
 
 
 }

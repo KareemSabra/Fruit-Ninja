@@ -12,15 +12,7 @@ import javafx.stage.Stage;
 
 public class GameMode {
 
-    Stage stage;
-    Scene scene;
-    WelcomeScreen welcome;
-    Difficulties diff;
-    public GameMode (Stage stage){
-        this.stage = stage;
-    }
-
-    public void prepareScene(){
+    public void prepareScene(Stage stage){
 
         Button arcade = new Button("Arcade");
         Button classic = new Button("Classic");
@@ -28,17 +20,15 @@ public class GameMode {
         arcade.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Difficulties diff = new Difficulties(stage);
-                diff.prepareScene();
-
+                Difficulties diff = new Difficulties();
+                diff.prepareScene(stage);
             }
         });
-
         classic.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Difficulties diff = new Difficulties(stage);
-                diff.prepareScene();
+                Difficulties diff = new Difficulties();
+                diff.prepareScene(stage);
             }
         });
 
@@ -47,23 +37,9 @@ public class GameMode {
         box.setSpacing(40);
         box.setAlignment(Pos.CENTER);
 
-        scene = new Scene(box,1280,720);
+        Scene scene = new Scene(box,1280,720);
 
         stage.setScene(scene);
         stage.show();
     }
-
-    public Scene getScene()
-    {
-        return scene;
-    }
-    public void setWelcomeScreen(WelcomeScreen welcome)
-    {
-        this.welcome = welcome;
-    }
-    public void setDifficulties(Difficulties diff)
-    {
-        this.diff = diff;
-    }
-
 }

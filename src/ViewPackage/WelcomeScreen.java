@@ -14,18 +14,7 @@ import javafx.stage.Stage;
 
 public class WelcomeScreen {
 
-    Stage stage;
-    Scene scene;
-
-
-    public WelcomeScreen(Stage stage)
-    {
-        this.stage = stage;
-    }
-
-
-
-    public void prepareScene() {
+    public void prepareScene(Stage stage) {
         Label title = new Label("Fruit Ninja");
         Button newGame = new Button("New game");
         Button cont = new Button("Continue");
@@ -33,9 +22,8 @@ public class WelcomeScreen {
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                GameMode gameMode = new GameMode(stage);
-                gameMode.prepareScene();
-                stage.setScene(gameMode.getScene());
+                GameMode gameMode = new GameMode();
+                gameMode.prepareScene(stage);
             }
         });
 
@@ -52,10 +40,7 @@ public class WelcomeScreen {
     }
 
 
-    public Scene getScene()
-    {
-        return scene;
-    }
+
 
 
 
