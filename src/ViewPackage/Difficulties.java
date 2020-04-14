@@ -25,7 +25,6 @@ public class Difficulties {
             backGroundImage.setFitWidth(1280);
             backGroundImage.setFitHeight(720);
             stackPane.getChildren().add(backGroundImage);
-
         }catch (Exception e){
             System.out.println("Images error");
         }
