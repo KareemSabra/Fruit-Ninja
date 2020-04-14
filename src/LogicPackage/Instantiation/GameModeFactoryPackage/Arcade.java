@@ -5,6 +5,6 @@ public class Arcade implements Mode {
     @Override
     public void gameMode()
     {
-        System.out.println("Arcade mood");
+        System.out.println("Arcade mode");
     }
 }
