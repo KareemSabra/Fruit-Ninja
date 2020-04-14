@@ -14,10 +14,8 @@ public class Main extends Application {
         primaryStage.setTitle("Fruit Ninja");
         WelcomeScreen welcome = new WelcomeScreen(primaryStage);
         welcome.prepareScene();
-        GameMode mode = new GameMode(primaryStage);
-        welcome.setGameMode(mode);
-        Difficulties diff = new Difficulties(primaryStage);
-        mode.setDifficulties(diff);
+
+
 
     }
 

@@ -28,18 +28,17 @@ public class GameMode {
         arcade.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Difficulties diff = new Difficulties(stage);
                 diff.prepareScene();
-                stage.setScene(diff.getScene());
+
             }
         });
 
         classic.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Difficulties diff = new Difficulties(stage);
                 diff.prepareScene();
-                stage.setScene(diff.getScene());
             }
         });
 

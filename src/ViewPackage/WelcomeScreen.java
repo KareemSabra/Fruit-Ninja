@@ -16,7 +16,7 @@ public class WelcomeScreen {
 
     Stage stage;
     Scene scene;
-    GameMode gameMode;
+
 
     public WelcomeScreen(Stage stage)
     {
@@ -33,7 +33,7 @@ public class WelcomeScreen {
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                GameMode gameMode = new GameMode(stage);
                 gameMode.prepareScene();
                 stage.setScene(gameMode.getScene());
             }
@@ -57,10 +57,6 @@ public class WelcomeScreen {
         return scene;
     }
 
-    public void setGameMode(GameMode gameMode)
-    {
-        this.gameMode = gameMode;
-    }
 
 
 
