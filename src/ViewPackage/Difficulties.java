@@ -38,6 +38,8 @@ public class Difficulties {
             public void handle(ActionEvent event) {
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 playerSingleton.setDifficultyLevel("Easy");
+                GameMode gameMode = new GameMode();
+                gameMode.prepareScene(stage);
             }
         });
 
@@ -46,6 +48,9 @@ public class Difficulties {
             public void handle(ActionEvent event) {
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 playerSingleton.setDifficultyLevel("Medium");
+                GameMode gameMode = new GameMode();
+                gameMode.prepareScene(stage);
+
             }
         });
 
@@ -54,6 +59,8 @@ public class Difficulties {
             public void handle(ActionEvent event) {
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 playerSingleton.setDifficultyLevel("Hard");
+                GameMode gameMode = new GameMode();
+                gameMode.prepareScene(stage);
             }
         });
 

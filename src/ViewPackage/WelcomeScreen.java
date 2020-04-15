@@ -50,8 +50,8 @@ public class WelcomeScreen {
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               GameMode gameMode = new GameMode();
-               gameMode.prepareScene(stage);
+               Difficulties difficulties = new Difficulties();
+               difficulties.prepareScene(stage);
            }
        });
 

@@ -1,6 +1,7 @@
 package ViewPackage;
 
 
+import LogicPackage.Instantiation.PlayerSingleton;
 import MainPackage.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -37,20 +38,26 @@ public class GameMode {
         Button arcade = new Button("Arcade");
         Button classic = new Button("Classic");
 
-        arcade.setOnAction(new EventHandler<ActionEvent>() {
+        classic.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Difficulties diff = new Difficulties();
-                diff.prepareScene(stage);
+
+                PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
+                playerSingleton.setGameMode("Classic");
+                ClassicScreen classicScreen = new ClassicScreen();
+                classicScreen.prepareScene(stage);
 
             }
         });
 
-        classic.setOnAction(new EventHandler<ActionEvent>() {
+        arcade.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Difficulties diff = new Difficulties();
-                diff.prepareScene(stage);
+
+                PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
+                playerSingleton.setGameMode("Arcade");
+                ArcadeScreen arcadeScreen = new ArcadeScreen();
+                arcadeScreen.prepareScene(stage);
             }
         });
 
