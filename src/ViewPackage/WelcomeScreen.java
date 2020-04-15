@@ -43,6 +43,11 @@ public class WelcomeScreen {
             rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
             rotateTransition.setByAngle(360);
             rotateTransition.play();
+
+            BackgroundImage newSettingsImage = new BackgroundImage(new ImportImage().getImage("settingsPic.jpg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background newSettings = new Background(newSettingsImage);
+            settingsButton.setBackground(newSettings);
+            settingsButton.setPrefSize(28,32);
         }catch (Exception e){
             System.out.println("Images error");
             newGameButton.setText("New Game");
