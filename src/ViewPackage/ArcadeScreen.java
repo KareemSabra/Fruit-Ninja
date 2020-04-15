@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ArcadeScreen {
+public class ArcadeScreen extends GameScreen {
 
     public void prepareScene(Stage stage)
     {
