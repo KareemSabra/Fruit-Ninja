@@ -51,6 +51,8 @@ public class WelcomeScreen {
         settingsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                SettingsScreen settingsScreen = new SettingsScreen();
+                settingsScreen.getsSettingsScreen();
 
             }
         });
@@ -59,8 +61,7 @@ public class WelcomeScreen {
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               Difficulties difficulties = new Difficulties();
-               difficulties.prepareScene(stage);
+               new Difficulties().prepareScene(stage);
            }
        });
         HBox box2 = new HBox(settingsButton);

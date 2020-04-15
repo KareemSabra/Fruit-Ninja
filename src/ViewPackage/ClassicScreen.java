@@ -29,7 +29,6 @@ public class ClassicScreen {
         VBox box2 = new VBox(livesLabel);
         box2.setAlignment(Pos.TOP_RIGHT);
 
-
         try {
             ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
             backGroundImage.setPreserveRatio(true);

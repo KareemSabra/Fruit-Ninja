@@ -1,4 +1,4 @@
-package LogicPackage.Instantiation.GameModeFactoryPackage;
+package LogicPackage.Instantiation.GameModeFactory;
 
 
 public class GameModeFactory {
