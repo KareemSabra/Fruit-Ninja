@@ -11,6 +11,7 @@ public class PlayerSingleton {
     private static PlayerSingleton instance;
 
     private PlayerSingleton() {
+        setDifficultyLevel();
     }
     public static PlayerSingleton getInstance(){
         if (instance == null)
