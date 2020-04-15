@@ -4,6 +4,7 @@ import LogicPackage.Instantiation.DifficultyFactory.Difficulty;
 import LogicPackage.Instantiation.DifficultyFactory.DifficultyFactory;
 import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
 import LogicPackage.Instantiation.GameModeFactory.Mode;
+import ViewPackage.SettingsScreen;
 
 
 public class PlayerSingleton {
@@ -17,7 +18,8 @@ public class PlayerSingleton {
         return instance;
     }
 
-    public void setDifficultyLevel(String difficultyLevel) {
+    public void setDifficultyLevel() {
+        String difficultyLevel = SettingsScreen.getInstance().getDifficulty();
         Difficulty difficulty = new DifficultyFactory().getDifficultyLevel(difficultyLevel);
         difficulty.level();
     }

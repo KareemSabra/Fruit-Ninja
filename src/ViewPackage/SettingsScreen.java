@@ -1,6 +1,7 @@
 package ViewPackage;
 
 
+import LogicPackage.Instantiation.PlayerSingleton;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -9,7 +10,21 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class SettingsScreen {
-    private String Difficulty;
+    private ChoiceBox<String> choiceBox;
+    private static SettingsScreen instance;
+
+    public static SettingsScreen getInstance(){
+        if (instance == null)
+            instance = new SettingsScreen();
+        return instance;
+    }
+
+    private SettingsScreen() {
+    }
+
+    public String getDifficulty(){
+        return this.choiceBox.getValue();
+    }
 
     public void getsSettingsScreen(){
         Stage settingsStage = new Stage();
@@ -29,9 +44,6 @@ public class SettingsScreen {
         Scene scene = new Scene(difficultyBox,600,700);
         settingsStage.setScene(scene);
         settingsStage.show();
-
-
-
 
 
     }
