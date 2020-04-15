@@ -11,9 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         stage.setTitle("Fruit Ninja");
-        WelcomeScreen welcome = new WelcomeScreen();
-        welcome.prepareScene(stage);
-
+        new WelcomeScreen().prepareScene(stage);
 
 
     }

@@ -1,9 +1,9 @@
 package LogicPackage.Instantiation;
 
-import LogicPackage.Instantiation.DifficultyFactoryPackage.Difficulty;
-import LogicPackage.Instantiation.DifficultyFactoryPackage.DifficultyFactory;
-import LogicPackage.Instantiation.GameModeFactoryPackage.GameModeFactory;
-import LogicPackage.Instantiation.GameModeFactoryPackage.Mode;
+import LogicPackage.Instantiation.DifficultyFactory.Difficulty;
+import LogicPackage.Instantiation.DifficultyFactory.DifficultyFactory;
+import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
+import LogicPackage.Instantiation.GameModeFactory.Mode;
 
 
 public class PlayerSingleton {
