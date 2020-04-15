@@ -1,8 +1,7 @@
 package ViewPackage;
 
 
-import LogicPackage.Instantiation.PlayerSingleton;
-import javafx.collections.FXCollections;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -41,18 +40,15 @@ public class SettingsScreen {
         choiceBox.getItems().add("Medium");
         choiceBox.getItems().add("Hard");
         choiceBox.setValue("Easy");
-
-
-        Button but = new Button();
-        but.setOnAction(new EventHandler<ActionEvent>() {
+        choiceBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 difficulty = choiceBox.getValue();
+
             }
         });
 
-
-        HBox difficultyBox = new HBox(20,difficultyLabel,choiceBox,but);
+        HBox difficultyBox = new HBox(20,difficultyLabel,choiceBox);
         Scene scene = new Scene(difficultyBox,600,700);
         settingsStage.setScene(scene);
         settingsStage.show();
