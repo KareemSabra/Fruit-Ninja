@@ -9,6 +9,7 @@ import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
@@ -25,6 +26,7 @@ public class WelcomeScreen {
         stackPane.setPrefSize(1280,720);
         Button newGameButton = new Button();
         Button continueButton = new Button("Continue last Game");
+        Button settingsButton = new Button("Settings");
 
         try{
             ImageView backGroundImage = new ImageView(new ImportImage().getImage("MenuBackground.jpg"));
@@ -46,6 +48,13 @@ public class WelcomeScreen {
             newGameButton.setText("New Game");
         }
 
+        settingsButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
+
 
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -53,13 +62,16 @@ public class WelcomeScreen {
                new Difficulties().prepareScene(stage);
            }
        });
+        HBox box2 = new HBox(settingsButton);
+        box2.setAlignment(Pos.BOTTOM_RIGHT);
 
-        HBox buttonsBox = new HBox(continueButton, newGameButton);
+        HBox buttonsBox = new HBox(box2, continueButton, newGameButton);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         buttonsBox.setSpacing(20);
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);
         stage.setScene(scene);
         stage.show();
+
     }
 }
