@@ -1,7 +1,5 @@
 package MainPackage;
 
-import ViewPackage.Difficulties;
-import ViewPackage.GameMode;
 import ViewPackage.WelcomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
