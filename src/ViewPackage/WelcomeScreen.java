@@ -26,7 +26,7 @@ public class WelcomeScreen {
         stackPane.setPrefSize(1280,720);
         Button newGameButton = new Button();
         Button continueButton = new Button("Continue last Game");
-        Button settingsButton = new Button("Settings");
+        Button settingsButton = new Button();
 
         try{
             ImageView backGroundImage = new ImageView(new ImportImage().getImage("MenuBackground.jpg"));
@@ -43,6 +43,11 @@ public class WelcomeScreen {
             rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
             rotateTransition.setByAngle(360);
             rotateTransition.play();
+
+            BackgroundImage newSettingsImage = new BackgroundImage(new ImportImage().getImage("settingPic.jpg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background newSettings = new Background(newSettingsImage);
+            settingsButton.setBackground(newSettings);
+            settingsButton.setPrefSize(30,30);
         }catch (Exception e){
             System.out.println("Images error");
             newGameButton.setText("New Game");
