@@ -51,6 +51,8 @@ public class WelcomeScreen {
         settingsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                SettingsScreen settingsScreen = new SettingsScreen();
+                settingsScreen.getsSettingsScreen();
 
             }
         });
