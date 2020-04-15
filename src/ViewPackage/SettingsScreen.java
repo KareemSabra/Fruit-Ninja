@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 public class SettingsScreen {
     private ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private static SettingsScreen instance;
+    private String difficulty = "Easy";
 
     public static SettingsScreen getInstance(){
         if (instance == null)
@@ -26,11 +27,7 @@ public class SettingsScreen {
     }
 
     public String getDifficulty(){
-        choiceBox.getItems().add("Easy");
-        choiceBox.getItems().add("Intermediate");
-        choiceBox.getItems().add("Expert");
-        choiceBox.setValue("Easy");
-         return this.choiceBox.getValue();
+        return this.difficulty;
     }
 
     public void getsSettingsScreen(){
@@ -40,16 +37,17 @@ public class SettingsScreen {
         Label difficultyLabel = new Label("Difficulty");
         difficultyLabel.setStyle("-fx-background-color: TRANSPARENT");
 
-        getDifficulty();
-
-
+        choiceBox.getItems().add("Easy");
+        choiceBox.getItems().add("Medium");
+        choiceBox.getItems().add("Hard");
+        choiceBox.setValue("Easy");
 
 
         Button but = new Button();
         but.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(choiceBox.getValue());
+                difficulty = choiceBox.getValue();
             }
         });
 
