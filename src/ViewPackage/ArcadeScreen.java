@@ -16,7 +16,7 @@ public class ArcadeScreen extends GameScreen {
 
     public void prepareScene(Stage stage)
     {
-        super.prepareScene(stage);
+        super.prepareScene();
         Label timerLabel = new Label("1:00");
         timerLabel.setTextFill(Color.WHITE);
         VBox box2 = new VBox(timerLabel);

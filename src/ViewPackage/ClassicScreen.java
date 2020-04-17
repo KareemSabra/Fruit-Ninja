@@ -16,7 +16,7 @@ public class ClassicScreen extends GameScreen{
 
     public void prepareScene(Stage stage)
     {
-        super.prepareScene(stage);
+        super.prepareScene();
         Label livesLabel = new Label("X X X");
         livesLabel.setTextFill(Color.WHITE);
         VBox box2 = new VBox(livesLabel);
