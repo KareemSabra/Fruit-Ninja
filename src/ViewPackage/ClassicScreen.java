@@ -1,6 +1,8 @@
 package ViewPackage;
 
+import LogicPackage.Instantiation.GameModeFactory.Classic;
 import MainPackage.ImportImage;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -11,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class ClassicScreen extends GameScreen{
 
