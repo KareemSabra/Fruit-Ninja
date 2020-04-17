@@ -1,6 +1,8 @@
 package ViewPackage;
 
 import MainPackage.ImportImage;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -42,6 +44,13 @@ public class ClassicScreen extends GameScreen{
         } catch(Exception e){
             System.out.println("Error");
         }
+
+        pauseButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                new OptionsScreen().prepareScene(stage);
+            }
+        });
 
         VBox box3 = new VBox(pauseButton);
         box3.setAlignment(Pos.BOTTOM_LEFT);
