@@ -4,6 +4,6 @@ public class Pineapple implements Fruit {
 
     @Override
     public void fruitType() {
-        System.out.println("Easy Level");
+        System.out.println("Pinapple");
     }
 }
