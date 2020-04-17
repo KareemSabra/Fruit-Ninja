@@ -35,13 +35,18 @@ public abstract class GameScreen {
             backGroundImage.setPreserveRatio(true);
             backGroundImage.setFitWidth(1280);
             backGroundImage.setFitHeight(720);
+
             pane2.getChildren().addAll(backGroundImage, pane);
+
             BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("NewPausePic.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newGameBackground = new Background(newGameBackgroundImage);
+
             pauseButton.setBackground(newGameBackground);
+
             pauseButton.setPrefSize(32, 27);
+
         } catch (Exception e) {
-            System.out.println("Error");
+            System.out.println("Images not found!");
         }
         //--------------------------------------------------------------------------------------------------------------
         //Pause Button Action ------------------------------------------------------------------------------------------
