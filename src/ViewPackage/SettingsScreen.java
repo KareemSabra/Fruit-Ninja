@@ -1,7 +1,5 @@
 package ViewPackage;
 
-
-
 import MainPackage.ImportImage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -67,10 +65,8 @@ public class SettingsScreen {
             @Override
             public void handle(ActionEvent event) {
                 difficulty = choiceBox.getValue();
-
             }
         });
-
         try
         {
             ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));

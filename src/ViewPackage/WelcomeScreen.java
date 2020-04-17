@@ -5,6 +5,7 @@ import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -74,12 +75,13 @@ public class WelcomeScreen {
             }
         });
 
-        newGameButton.setOnAction(new EventHandler<ActionEvent>() {
+       newGameButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
                new GameMode().prepareScene(stage);
            }
        });
+
 
         continueButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -91,7 +93,6 @@ public class WelcomeScreen {
 
         HBox settingsBox = new HBox(settingsButton);
         settingsBox.setAlignment(Pos.BOTTOM_RIGHT);
-
         //Transparent Label to adjust spacing --------------------------------------------------------------------------
         Label transparentLabel = new Label();
         transparentLabel.setPrefWidth(100);
@@ -102,6 +103,10 @@ public class WelcomeScreen {
 
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);
+
+
+        stage.setMaxWidth(1280);
+        stage.setMaxHeight(720);
         stage.setScene(scene);
         stage.show();
 
