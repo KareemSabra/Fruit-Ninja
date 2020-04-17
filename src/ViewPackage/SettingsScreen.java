@@ -39,7 +39,11 @@ public class SettingsScreen {
     public void getsSettingsScreen(){
         Stage settingsStage = new Stage();
         settingsStage.setTitle("Settings");
-
+        try {
+            settingsStage.getIcons().add(new ImportImage().getImage("settingsPic.jpg"));
+        }catch (Exception e){
+            System.out.println("Icon cannot be found");
+        }
         VBox box = new VBox();
         box.setSpacing(20);
 
@@ -78,12 +82,8 @@ public class SettingsScreen {
             System.out.println("Error");
         }
 
-
         Scene scene = new Scene(pane2,300,200);
         settingsStage.setScene(scene);
         settingsStage.show();
-
-
     }
-
 }

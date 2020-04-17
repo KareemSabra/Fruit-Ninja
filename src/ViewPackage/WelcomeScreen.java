@@ -44,7 +44,7 @@ public class WelcomeScreen {
             rotateTransition.setByAngle(360);
             rotateTransition.play();
 
-            BackgroundImage newSettingsImage = new BackgroundImage(new ImportImage().getImage("settingsPic.jpeg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            BackgroundImage newSettingsImage = new BackgroundImage(new ImportImage().getImage("settingsPic.jpg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newSettings = new Background(newSettingsImage);
             settingsButton.setBackground(newSettings);
             settingsButton.setPrefSize(28,32);
