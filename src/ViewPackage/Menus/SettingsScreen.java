@@ -1,4 +1,4 @@
-package ViewPackage;
+package ViewPackage.Menus;
 
 import MainPackage.ImportImage;
 import javafx.event.ActionEvent;

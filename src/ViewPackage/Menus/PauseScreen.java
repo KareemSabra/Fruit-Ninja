@@ -1,4 +1,4 @@
-package ViewPackage;
+package ViewPackage.Menus;
 
 import MainPackage.ImportImage;
 import javafx.event.ActionEvent;
@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class OptionsScreen {
+public class PauseScreen {
 
     public void prepareScene(Stage stage)
     {

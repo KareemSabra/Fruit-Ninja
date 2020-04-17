@@ -1,6 +1,7 @@
 package ViewPackage;
 
 import MainPackage.ImportImage;
+import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -35,7 +36,7 @@ public abstract class GameScreen {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("OKKK");
-                new OptionsScreen().prepareScene(stage);
+                new PauseScreen().prepareScene(stage);
             }
         });
         //--------------------------------------------------------------------------------------------------------------

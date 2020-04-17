@@ -1,20 +1,14 @@
-package ViewPackage;
+package ViewPackage.Menus;
 
 import MainPackage.ImportImage;
 import javafx.animation.RotateTransition;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -25,6 +19,7 @@ public class WelcomeScreen {
 
         StackPane stackPane = new StackPane();
         stackPane.setPrefSize(1280,720);
+
         Button newGameButton = new Button();
         Button continueButton = new Button();
         Button settingsButton = new Button("Settings");
@@ -82,14 +77,12 @@ public class WelcomeScreen {
            }
        });
 
-
         continueButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)  {
                 new GameMode().prepareScene(stage);
             }
         });
-
 
         HBox settingsBox = new HBox(settingsButton);
         settingsBox.setAlignment(Pos.BOTTOM_RIGHT);
@@ -99,7 +92,7 @@ public class WelcomeScreen {
         transparentLabel.setPrefWidth(100);
         //--------------------------------------------------------------------------------------------------------------
 
-        HBox buttonsBox = new HBox(50,box2, continueButton, newGameButton,transparentLabel);
+        HBox buttonsBox = new HBox(50,settingsBox, continueButton, newGameButton,transparentLabel);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);

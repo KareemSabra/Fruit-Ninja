@@ -1,8 +1,7 @@
 package MainPackage;
 
-import ViewPackage.WelcomeScreen;
+import ViewPackage.Menus.WelcomeScreen;
 import javafx.application.Application;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {

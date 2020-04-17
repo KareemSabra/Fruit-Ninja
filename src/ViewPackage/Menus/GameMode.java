@@ -1,4 +1,4 @@
-package ViewPackage;
+package ViewPackage.Menus;
 
 
 import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
