@@ -12,7 +12,9 @@ public class GameModeFactory {
         if(mode.equalsIgnoreCase("Arcade")) {
             Arcade arcade = new Arcade();
         arcade.setStage(stage);
-        return arcade;}
+        arcade.gameMode();
+        return arcade;
+        }
         else if (mode.equalsIgnoreCase("Classic")){ return new Classic();}
         return null;
     }
