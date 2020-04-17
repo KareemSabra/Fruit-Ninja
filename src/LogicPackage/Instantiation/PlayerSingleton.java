@@ -13,7 +13,8 @@ public class PlayerSingleton {
     private PlayerSingleton() {
         setDifficultyLevel();
     }
-    public static PlayerSingleton getInstance(){
+
+    public static PlayerSingleton getInstance() {
         if (instance == null)
             instance = new PlayerSingleton();
         return instance;
@@ -24,9 +25,5 @@ public class PlayerSingleton {
         Difficulty difficulty = new DifficultyFactory().getDifficultyLevel(difficultyLevel);
         difficulty.level();
     }
-
-    public void setGameMode(String modeChoice) {
-        Mode gameMode = new GameModeFactory().getMode(modeChoice);
-        gameMode.gameMode();}
 
 }

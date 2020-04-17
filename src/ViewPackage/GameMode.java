@@ -1,6 +1,7 @@
 package ViewPackage;
 
 
+import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
 import MainPackage.ImportImage;
 import javafx.animation.RotateTransition;
@@ -43,9 +44,7 @@ public class GameMode {
             public void handle(ActionEvent event) {
 
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
-                playerSingleton.setGameMode("Classic");
-                ClassicScreen classicScreen = new ClassicScreen();
-                classicScreen.prepareScene(stage);
+                new GameModeFactory().getMode("Classic",stage);
 
             }
         });
@@ -55,9 +54,7 @@ public class GameMode {
             public void handle(ActionEvent event) {
 
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
-                playerSingleton.setGameMode("Arcade");
-                ArcadeScreen arcadeScreen = new ArcadeScreen();
-                arcadeScreen.prepareScene(stage);
+                new GameModeFactory().getMode("Arcade",stage);
             }
         });
 
