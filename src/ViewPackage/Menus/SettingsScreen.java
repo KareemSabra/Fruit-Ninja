@@ -19,7 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class SettingsScreen {
-    private ChoiceBox<String> choiceBox = new ChoiceBox<>();
+    private  ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private static SettingsScreen instance;
     private String difficulty = "Easy";
 
@@ -30,10 +30,17 @@ public class SettingsScreen {
     }
 
     private SettingsScreen() {
+        setChoicBox();
     }
 
     public String getDifficulty(){
         return this.difficulty;
+    }
+    private  void setChoicBox(){
+        choiceBox.getItems().add("Easy");
+        choiceBox.getItems().add("Medium");
+        choiceBox.getItems().add("Hard");
+        choiceBox.setValue("Easy");
     }
 
     public void getsSettingsScreen(Stage settingsStage){
@@ -58,10 +65,6 @@ public class SettingsScreen {
         box.getChildren().addAll(settingsLabel,difficultyBox);
         difficultyBox.setAlignment(Pos.BASELINE_LEFT);
 
-        choiceBox.getItems().add("Easy");
-        choiceBox.getItems().add("Medium");
-        choiceBox.getItems().add("Hard");
-        choiceBox.setValue("Easy");
         choiceBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
