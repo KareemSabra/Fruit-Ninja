@@ -27,6 +27,15 @@ public abstract class GameScreen {
         bestScoreLabel.setTextFill(Color.WHITE);
 
         Button pauseButton = new Button();
+        //Pause Button Action ------------------------------------------------------------------------------------------
+        pauseButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Okkk");
+                new OptionsScreen().prepareScene(stage);
+            }
+        });
+        //--------------------------------------------------------------------------------------------------------------
 
         VBox superBox = new VBox(10,currentScoreLabel, bestScoreLabel);
         superBox.setAlignment(Pos.TOP_LEFT);
@@ -53,19 +62,12 @@ public abstract class GameScreen {
             System.out.println("Images not found!");
         }
         //--------------------------------------------------------------------------------------------------------------
-        //Pause Button Action ------------------------------------------------------------------------------------------
-        pauseButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                new OptionsScreen().prepareScene(stage);
-            }
-        });
-        //--------------------------------------------------------------------------------------------------------------
         //Pause Button Box----------------------------------------------------------------------------------------------
         VBox pauseButtonBox = new VBox(10,pauseButton);
         pauseButtonBox.setAlignment(Pos.BOTTOM_LEFT);
         pane.getChildren().add(pauseButtonBox);
         //--------------------------------------------------------------------------------------------------------------
+
     }
     //------------------------------------------------------------------------------------------------------------------
 
