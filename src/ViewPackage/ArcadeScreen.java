@@ -22,7 +22,9 @@ public class ArcadeScreen extends GameScreen {
         VBox box2 = new VBox(timerLabel);
         box2.setAlignment(Pos.TOP_RIGHT);
 
-        Scene scene = new Scene(box2,1280,720);
+        super.mainPane.getChildren().add(box2);
+
+        Scene scene = new Scene(super.mainPane,1280,720);
         stage.setScene(scene);
         stage.show();
 
