@@ -89,16 +89,17 @@ public class WelcomeScreen {
         });
 
 
-        HBox box2 = new HBox(settingsButton);
-        box2.setAlignment(Pos.BOTTOM_RIGHT);
+        HBox settingsBox = new HBox(settingsButton);
+        settingsBox.setAlignment(Pos.BOTTOM_RIGHT);
 
         //Transparent Label to adjust spacing --------------------------------------------------------------------------
         Label transparentLabel = new Label();
         transparentLabel.setPrefWidth(100);
         //--------------------------------------------------------------------------------------------------------------
 
-        HBox buttonsBox = new HBox(50,box2, continueButton, newGameButton,transparentLabel);
+        HBox buttonsBox = new HBox(50,settingsBox, continueButton, newGameButton,transparentLabel);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
+
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);
         stage.setScene(scene);
