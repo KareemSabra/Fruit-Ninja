@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 
 public class GameModeFactory {
 
+    char gam;
+
     public Mode getMode(String mode, Stage stage)
     {
         if(mode==null)
@@ -23,6 +25,14 @@ public class GameModeFactory {
             classic.gameMode();
             return classic;
         }
+
         return null;
+    }
+    public char getGam() {
+        return gam;
+    }
+
+    public void setGam(char gam) {
+        this.gam = gam;
     }
 }

@@ -13,6 +13,9 @@ public class Classic implements Mode {
     @Override
     public void gameMode()
     {
+        GameModeFactory g = new GameModeFactory();
+        g.setGam('C');
+
         System.out.println("Classic mode");
         new ClassicScreen().prepareScene(stage);
     }
