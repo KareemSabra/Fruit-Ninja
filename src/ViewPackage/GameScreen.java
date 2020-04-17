@@ -2,12 +2,15 @@ package ViewPackage;
 
 import MainPackage.ImportImage;
 import ViewPackage.Menus.PauseScreen;
+import ViewPackage.Menus.WelcomeScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -35,7 +38,6 @@ public abstract class GameScreen {
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("OKKK");
                 new PauseScreen().prepareScene(stage);
             }
         });
@@ -67,6 +69,15 @@ public abstract class GameScreen {
         pauseButtonBox.setAlignment(Pos.BOTTOM_LEFT);
         //--------------------------------------------------------------------------------------------------------------
 
+        mainPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode()== KeyCode.ESCAPE){
+                    new PauseScreen().prepareScene(stage);
+                }
+
+            }
+        });
         mainPane.getChildren().add(superBox);
     }
     //------------------------------------------------------------------------------------------------------------------

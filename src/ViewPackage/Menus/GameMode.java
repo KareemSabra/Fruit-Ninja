@@ -60,26 +60,19 @@ public class GameMode {
             classicButton.setText("Classic Mode");
             arcadeButton.setText("Arcade Mode");
 
-
-
         }
-
-
 
         classicButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 new GameModeFactory().getMode("Classic",stage);
-
             }
         });
 
         arcadeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 new GameModeFactory().getMode("Arcade",stage);
             }
@@ -87,7 +80,6 @@ public class GameMode {
 
         Label transparentLabel = new Label();
         transparentLabel.setPrefWidth(100);
-
 
         HBox buttonsBox = new HBox();
         buttonsBox.getChildren().addAll(arcadeButton,classicButton,transparentLabel);

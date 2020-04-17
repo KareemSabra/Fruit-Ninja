@@ -10,7 +10,6 @@ public class Classic implements Mode {
         this.stage = stage;
     }
 
-
     @Override
     public void gameMode()
     {
