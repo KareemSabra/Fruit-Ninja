@@ -12,11 +12,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public abstract class GameScreen {
+    protected StackPane mainPane;
+
     // Creating Main Game View------------------------------------------------------------------------------------------
     public void prepareScene(Stage stage) {
         // Initializing Containers -------------------------------------------------------------------------------------
         StackPane pane = new StackPane();
-        StackPane pane2 = new StackPane();
+         mainPane = new StackPane();
         //--------------------------------------------------------------------------------------------------------------
         // Initializing Nodes ------------------------------------------------------------------------------------------
         Label currentScoreLabel = new Label("0");
@@ -29,6 +31,8 @@ public abstract class GameScreen {
         VBox superBox = new VBox(10,currentScoreLabel, bestScoreLabel);
         superBox.setAlignment(Pos.TOP_LEFT);
 
+        pane.getChildren().add(superBox);
+
         // Importing needed Images -------------------------------------------------------------------------------------
         try {
             ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
@@ -36,14 +40,14 @@ public abstract class GameScreen {
             backGroundImage.setFitWidth(1280);
             backGroundImage.setFitHeight(720);
 
-            pane2.getChildren().addAll(backGroundImage, pane);
+            mainPane.getChildren().addAll(backGroundImage, pane);
 
             BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("NewPausePic.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newGameBackground = new Background(newGameBackgroundImage);
 
             pauseButton.setBackground(newGameBackground);
-
             pauseButton.setPrefSize(32, 27);
+
 
         } catch (Exception e) {
             System.out.println("Images not found!");
@@ -56,6 +60,11 @@ public abstract class GameScreen {
                 new OptionsScreen().prepareScene(stage);
             }
         });
+        //--------------------------------------------------------------------------------------------------------------
+        //Pause Button Box----------------------------------------------------------------------------------------------
+        VBox pauseButtonBox = new VBox(10,pauseButton);
+        pauseButtonBox.setAlignment(Pos.BOTTOM_LEFT);
+        pane.getChildren().add(pauseButtonBox);
         //--------------------------------------------------------------------------------------------------------------
     }
     //------------------------------------------------------------------------------------------------------------------
