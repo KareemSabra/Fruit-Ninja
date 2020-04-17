@@ -1,6 +1,4 @@
-package ViewPackage;
-
-
+package ViewPackage.Menus;
 
 import MainPackage.ImportImage;
 import javafx.event.ActionEvent;
@@ -10,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -36,10 +36,13 @@ public class SettingsScreen {
         return this.difficulty;
     }
 
-    public void getsSettingsScreen(){
-        Stage settingsStage = new Stage();
+    public void getsSettingsScreen(Stage settingsStage){
         settingsStage.setTitle("Settings");
-
+        try {
+            settingsStage.getIcons().add(new ImportImage().getImage("settingsPic.jpg"));
+        }catch (Exception e){
+            System.out.println("Icon cannot be found");
+        }
         VBox box = new VBox();
         box.setSpacing(20);
 
@@ -63,10 +66,8 @@ public class SettingsScreen {
             @Override
             public void handle(ActionEvent event) {
                 difficulty = choiceBox.getValue();
-
             }
         });
-
         try
         {
             ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
@@ -78,12 +79,18 @@ public class SettingsScreen {
             System.out.println("Error");
         }
 
-
         Scene scene = new Scene(pane2,300,200);
+        //Closing stage on Esc------------------------------------------------------------------------------------------
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.ESCAPE)){
+                    settingsStage.close();
+                }
+            }
+        });
+        //--------------------------------------------------------------------------------------------------------------
         settingsStage.setScene(scene);
         settingsStage.show();
-
-
     }
-
 }

@@ -1,4 +1,4 @@
-package ViewPackage;
+package ViewPackage.Menus;
 
 import MainPackage.ImportImage;
 import javafx.event.ActionEvent;
@@ -7,10 +7,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class OptionsScreen {
+public class PauseScreen {
 
     public void prepareScene(Stage stage)
     {
@@ -19,9 +21,11 @@ public class OptionsScreen {
 
         StackPane pane2 = new StackPane();
         HBox optionsBox = new HBox();
+
         Button homeButton = new Button();
         Button restartButton = new Button();
         Button resumeButton = new Button();
+
         optionsBox.setSpacing(20);
         optionsBox.setAlignment(Pos.CENTER);
 
@@ -56,13 +60,29 @@ public class OptionsScreen {
         homeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new WelcomeScreen().prepareScene(stage);
+                 WelcomeScreen.getInstance().prepareScene(stage);
                 optionsStage.close();
-
             }
         });
 
         Scene scene = new Scene(pane2,400,200);
+        //Keyboard inputs ----------------------------------------------------------------------------------------------
+        //Escape go to main menu----------------------------------------------------------------------------------------
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode()== KeyCode.ESCAPE){
+                    //TODO: Confirm going back message
+                     WelcomeScreen.getInstance().prepareScene(stage);
+                    optionsStage.close();
+                }
+                else if(event.getCode()==KeyCode.ENTER){
+                    optionsStage.close();
+                }
+            }
+        });
+        //--------------------------------------------------------------------------------------------------------------
+
         optionsStage.setScene(scene);
         optionsStage.show();
     }

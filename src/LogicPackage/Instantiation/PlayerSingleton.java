@@ -2,9 +2,8 @@ package LogicPackage.Instantiation;
 
 import LogicPackage.Instantiation.DifficultyFactory.Difficulty;
 import LogicPackage.Instantiation.DifficultyFactory.DifficultyFactory;
-import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
-import LogicPackage.Instantiation.GameModeFactory.Mode;
-import ViewPackage.SettingsScreen;
+
+import ViewPackage.Menus.SettingsScreen;
 
 
 public class PlayerSingleton {
