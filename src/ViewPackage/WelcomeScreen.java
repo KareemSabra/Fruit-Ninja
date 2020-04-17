@@ -35,23 +35,23 @@ public class WelcomeScreen {
             backGroundImage.setFitHeight(720);
             stackPane.getChildren().add(backGroundImage);
 
-            BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("New") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("NewGameButton.png") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newGameBackground = new Background(newGameBackgroundImage);
             newGameButton.setBackground(newGameBackground);
-            newGameButton.setPrefSize(500,300);
+            newGameButton.setPrefSize(162,159);
 
             BackgroundImage continueGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("ContinueGameButton.png") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background continueGameBackground = new Background(continueGameBackgroundImage);
             continueButton.setBackground(continueGameBackground);
-            continueButton.setPrefSize(800,500);
+            continueButton.setPrefSize(162,156);
 
 
-            RotateTransition rotateTransition = new RotateTransition(Duration.millis(6000),newGameButton);
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(8000),newGameButton);
             rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
             rotateTransition.setByAngle(360);
             rotateTransition.play();
 
-            RotateTransition rotateTransition1 = new RotateTransition(Duration.millis(6000),continueButton);
+            RotateTransition rotateTransition1 = new RotateTransition(Duration.millis(8000),continueButton);
             rotateTransition1.setCycleCount(RotateTransition.INDEFINITE);
             rotateTransition1.setByAngle(360);
             rotateTransition1.play();
@@ -91,12 +91,14 @@ public class WelcomeScreen {
 
         HBox box2 = new HBox(settingsButton);
         box2.setAlignment(Pos.BOTTOM_RIGHT);
-        HBox continueButtonBox = new HBox(continueButton);
-        continueButtonBox.setAlignment(Pos.CENTER_RIGHT);
-        continueButtonBox.setPrefWidth(430);
-        HBox buttonsBox = new HBox(box2, continueButtonBox, newGameButton);
+
+        //Transparent Label to adjust spacing --------------------------------------------------------------------------
+        Label transparentLabel = new Label();
+        transparentLabel.setPrefWidth(100);
+        //--------------------------------------------------------------------------------------------------------------
+
+        HBox buttonsBox = new HBox(50,box2, continueButton, newGameButton,transparentLabel);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
-        buttonsBox.setSpacing(10);
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);
         stage.setScene(scene);
