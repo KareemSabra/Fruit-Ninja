@@ -25,7 +25,7 @@ public class WelcomeScreen {
         StackPane stackPane = new StackPane();
         stackPane.setPrefSize(1280,720);
         Button newGameButton = new Button();
-        Button continueButton = new Button("Continue last Game");
+        Button continueButton = new Button();
         Button settingsButton = new Button("Settings");
 
         try{
@@ -34,23 +34,37 @@ public class WelcomeScreen {
             backGroundImage.setFitWidth(1280);
             backGroundImage.setFitHeight(720);
             stackPane.getChildren().add(backGroundImage);
-            BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("NewGameButton.png") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+
+            BackgroundImage newGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("New") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newGameBackground = new Background(newGameBackgroundImage);
             newGameButton.setBackground(newGameBackground);
             newGameButton.setPrefSize(500,300);
+
+            BackgroundImage continueGameBackgroundImage = new BackgroundImage(new ImportImage().getImage("ContinueGameButton.png") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background continueGameBackground = new Background(continueGameBackgroundImage);
+            continueButton.setBackground(continueGameBackground);
+            continueButton.setPrefSize(800,500);
+
 
             RotateTransition rotateTransition = new RotateTransition(Duration.millis(6000),newGameButton);
             rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
             rotateTransition.setByAngle(360);
             rotateTransition.play();
 
+            RotateTransition rotateTransition1 = new RotateTransition(Duration.millis(6000),continueButton);
+            rotateTransition1.setCycleCount(RotateTransition.INDEFINITE);
+            rotateTransition1.setByAngle(360);
+            rotateTransition1.play();
+
             BackgroundImage newSettingsImage = new BackgroundImage(new ImportImage().getImage("settingsPic.jpg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background newSettings = new Background(newSettingsImage);
             settingsButton.setBackground(newSettings);
             settingsButton.setPrefSize(28,32);
+
         }catch (Exception e){
             System.out.println("Images error");
             newGameButton.setText("New Game");
+            continueButton.setText("Continue Game");
         }
 
         settingsButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -66,12 +80,23 @@ public class WelcomeScreen {
                new GameMode().prepareScene(stage);
            }
        });
+
+        continueButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event)  {
+                new GameMode().prepareScene(stage);
+            }
+        });
+
+
         HBox box2 = new HBox(settingsButton);
         box2.setAlignment(Pos.BOTTOM_RIGHT);
-
-        HBox buttonsBox = new HBox(box2, continueButton, newGameButton);
+        HBox continueButtonBox = new HBox(continueButton);
+        continueButtonBox.setAlignment(Pos.CENTER_RIGHT);
+        continueButtonBox.setPrefWidth(430);
+        HBox buttonsBox = new HBox(box2, continueButtonBox, newGameButton);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
-        buttonsBox.setSpacing(20);
+        buttonsBox.setSpacing(10);
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);
         stage.setScene(scene);
