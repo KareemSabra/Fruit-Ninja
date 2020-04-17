@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -34,8 +36,7 @@ public class SettingsScreen {
         return this.difficulty;
     }
 
-    public void getsSettingsScreen(){
-        Stage settingsStage = new Stage();
+    public void getsSettingsScreen(Stage settingsStage){
         settingsStage.setTitle("Settings");
         try {
             settingsStage.getIcons().add(new ImportImage().getImage("settingsPic.jpg"));
@@ -79,6 +80,16 @@ public class SettingsScreen {
         }
 
         Scene scene = new Scene(pane2,300,200);
+        //Closing stage on Esc------------------------------------------------------------------------------------------
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.ESCAPE)){
+                    settingsStage.close();
+                }
+            }
+        });
+        //--------------------------------------------------------------------------------------------------------------
         settingsStage.setScene(scene);
         settingsStage.show();
     }

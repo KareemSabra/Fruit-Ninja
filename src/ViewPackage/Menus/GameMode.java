@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -88,6 +90,16 @@ public class GameMode {
         stackPane.getChildren().add(buttonsBox);
 
         Scene scene = new Scene(stackPane,1280,720);
+        //GoBack with Esc ----------------------------------------------------------------------------------------------
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.ESCAPE)){
+                     WelcomeScreen.getInstance().prepareScene(stage);
+                }
+            }
+        });
+        //--------------------------------------------------------------------------------------------------------------
 
         stage.setScene(scene);
         stage.show();

@@ -1,5 +1,6 @@
 package ViewPackage.Menus;
 
+import LogicPackage.Instantiation.PlayerSingleton;
 import MainPackage.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -9,13 +10,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class WelcomeScreen {
+    private static WelcomeScreen instance;
+
+    private WelcomeScreen(){
+    }
+    public static WelcomeScreen getInstance() {
+        if (instance == null)
+            instance = new WelcomeScreen();
+        return instance;
+    }
 
     public void prepareScene(Stage stage) {
+        Stage settingsStage = new Stage();
 
         StackPane stackPane = new StackPane();
         stackPane.setPrefSize(1280,720);
@@ -66,7 +80,7 @@ public class WelcomeScreen {
         settingsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SettingsScreen.getInstance().getsSettingsScreen();
+                SettingsScreen.getInstance().getsSettingsScreen(settingsStage);
             }
         });
 
@@ -97,6 +111,15 @@ public class WelcomeScreen {
         stackPane.getChildren().add(buttonsBox);
         Scene scene = new Scene(stackPane, 1280, 720);
 
+        //Closing settings stage on click ------------------------------------------------------------------------------
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                settingsStage.close();
+            }
+        });
+
+        //--------------------------------------------------------------------------------------------------------------
       //  stage.setMaxWidth(1280);stage.setMaxHeight(720);
         stage.setScene(scene);
         stage.show();

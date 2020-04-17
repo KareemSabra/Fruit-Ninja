@@ -60,7 +60,7 @@ public class PauseScreen {
         homeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new WelcomeScreen().prepareScene(stage);
+                 WelcomeScreen.getInstance().prepareScene(stage);
                 optionsStage.close();
             }
         });
@@ -73,7 +73,7 @@ public class PauseScreen {
             public void handle(KeyEvent event) {
                 if (event.getCode()== KeyCode.ESCAPE){
                     //TODO: Confirm going back message
-                    new WelcomeScreen().prepareScene(stage);
+                     WelcomeScreen.getInstance().prepareScene(stage);
                     optionsStage.close();
                 }
                 else if(event.getCode()==KeyCode.ENTER){

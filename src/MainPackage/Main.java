@@ -15,7 +15,7 @@ public class Main extends Application {
         {
             System.out.println("Icon cannot be Found !");
         }
-        new WelcomeScreen().prepareScene(stage);
+         WelcomeScreen.getInstance().prepareScene(stage);
 
 
     }
