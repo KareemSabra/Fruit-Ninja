@@ -2,7 +2,6 @@ package ViewPackage;
 
 import MainPackage.ImportImage;
 import ViewPackage.Menus.PauseScreen;
-import ViewPackage.Menus.WelcomeScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -38,7 +37,7 @@ public abstract class GameScreen {
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new PauseScreen().prepareScene(stage);
+                 PauseScreen.getInstance().prepareScene(stage);
             }
         });
         //--------------------------------------------------------------------------------------------------------------
@@ -73,7 +72,7 @@ public abstract class GameScreen {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode()== KeyCode.ESCAPE){
-                    new PauseScreen().prepareScene(stage);
+                     PauseScreen.getInstance().prepareScene(stage);
                 }
 
             }
