@@ -9,12 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public abstract class GameScreen {
     protected StackPane mainPane;
+    protected VBox pauseButtonBox;
 
     // Creating Main Game View------------------------------------------------------------------------------------------
-    public void prepareScene() {
+    public void prepareScene(Stage stage) {
         // Initializing Containers -------------------------------------------------------------------------------------
        // StackPane pane = new StackPane();
          mainPane = new StackPane();
@@ -33,6 +35,7 @@ public abstract class GameScreen {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("OKKK");
+                new OptionsScreen().prepareScene(stage);
             }
         });
         //--------------------------------------------------------------------------------------------------------------
@@ -59,9 +62,8 @@ public abstract class GameScreen {
         }
         //--------------------------------------------------------------------------------------------------------------
         //Pause Button Box----------------------------------------------------------------------------------------------
-        VBox pauseButtonBox = new VBox(10,pauseButton);
+        pauseButtonBox = new VBox(10,pauseButton);
         pauseButtonBox.setAlignment(Pos.BOTTOM_LEFT);
-        mainPane.getChildren().add(pauseButton);
         //--------------------------------------------------------------------------------------------------------------
 
         mainPane.getChildren().add(superBox);

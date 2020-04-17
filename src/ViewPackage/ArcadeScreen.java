@@ -16,13 +16,14 @@ public class ArcadeScreen extends GameScreen {
 
     public void prepareScene(Stage stage)
     {
-        super.prepareScene();
+        super.prepareScene(stage);
         Label timerLabel = new Label("1:00");
         timerLabel.setTextFill(Color.WHITE);
         VBox box2 = new VBox(timerLabel);
         box2.setAlignment(Pos.TOP_RIGHT);
 
         super.mainPane.getChildren().add(box2);
+        super.mainPane.getChildren().add(super.pauseButtonBox);
 
         Scene scene = new Scene(super.mainPane,1280,720);
         stage.setScene(scene);

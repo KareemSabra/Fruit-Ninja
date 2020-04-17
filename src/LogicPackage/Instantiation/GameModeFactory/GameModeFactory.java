@@ -9,13 +9,20 @@ public class GameModeFactory {
     {
         if(mode==null)
         { return null;}
-        if(mode.equalsIgnoreCase("Arcade")) {
+        if(mode.equalsIgnoreCase("Arcade"))
+        {
             Arcade arcade = new Arcade();
-        arcade.setStage(stage);
-        arcade.gameMode();
-        return arcade;
+            arcade.setStage(stage);
+            arcade.gameMode();
+            return arcade;
         }
-        else if (mode.equalsIgnoreCase("Classic")){ return new Classic();}
+        else if (mode.equalsIgnoreCase("Classic"))
+        {
+            Classic classic = new Classic();
+            classic.setStage(stage);
+            classic.gameMode();
+            return classic;
+        }
         return null;
     }
 }
