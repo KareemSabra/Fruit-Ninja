@@ -1,4 +1,4 @@
-package MainPackage;
+package LogicPackage.Instantiation.FruitFactory;
 
 import java.awt.image.BufferedImage;
 

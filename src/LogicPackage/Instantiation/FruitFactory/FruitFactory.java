@@ -3,7 +3,7 @@ package LogicPackage.Instantiation.FruitFactory;
 
 public class FruitFactory {
 
-    public Fruit getFruitType(String type){
+    public GameObject getFruitType(String type){
         if(type==null)
             return null;
 
