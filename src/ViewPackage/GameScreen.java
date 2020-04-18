@@ -1,6 +1,6 @@
 package ViewPackage;
 
-import MainPackage.ImportImage;
+import LogicPackage.ImportImage;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

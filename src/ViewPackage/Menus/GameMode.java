@@ -3,7 +3,7 @@ package ViewPackage.Menus;
 
 import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
-import MainPackage.ImportImage;
+import LogicPackage.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
