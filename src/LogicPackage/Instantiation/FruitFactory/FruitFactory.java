@@ -1,6 +1,8 @@
 package LogicPackage.Instantiation.FruitFactory;
 
 
+import LogicPackage.GameObject;
+
 public class FruitFactory {
 
     public GameObject getFruitType(String type){

@@ -1,4 +1,4 @@
-package LogicPackage.Instantiation.FruitFactory;
+package LogicPackage;
 
 import javafx.scene.image.Image;
 

@@ -1,5 +1,6 @@
 package LogicPackage.Instantiation.FruitFactory;
 
+import LogicPackage.GameObject;
 import javafx.scene.image.Image;
 
 public class Pineapple implements GameObject {

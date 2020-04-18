@@ -79,7 +79,7 @@ public class GameMode {
                 @Override
                 public void handle(ActionEvent event) {
                     PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
-                    new GameModeFactory().getMode("Classic", stage);
+                    new GameModeFactory().getMode("Classic", stage).prepareScene(stage);
                 }
             });
 
@@ -87,7 +87,7 @@ public class GameMode {
                 @Override
                 public void handle(ActionEvent event) {
                     PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
-                    new GameModeFactory().getMode("Arcade", stage);
+                    new GameModeFactory().getMode("Arcade", stage).prepareScene(stage);
                 }
             });
 

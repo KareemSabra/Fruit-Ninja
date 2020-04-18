@@ -1,29 +1,26 @@
 package LogicPackage.Instantiation.GameModeFactory;
 
 
+import ViewPackage.GameViewBackgrounds.ArcadeScreen;
+import ViewPackage.GameViewBackgrounds.ClassicScreen;
+import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.stage.Stage;
 
 public class GameModeFactory {
 
     char gam;
 
-    public Mode getMode(String mode, Stage stage)
+    public GameScreen getMode(String mode, Stage stage)
     {
         if(mode==null)
         { return null;}
         if(mode.equalsIgnoreCase("Arcade"))
         {
-            Arcade arcade = new Arcade();
-            arcade.setStage(stage);
-            arcade.gameMode();
-            return arcade;
+            return new ArcadeScreen();
         }
         else if (mode.equalsIgnoreCase("Classic"))
         {
-            Classic classic = new Classic();
-            classic.setStage(stage);
-            classic.gameMode();
-            return classic;
+          return  new ClassicScreen();
         }
 
         return null;
