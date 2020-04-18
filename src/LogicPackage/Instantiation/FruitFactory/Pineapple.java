@@ -1,8 +1,13 @@
 package LogicPackage.Instantiation.FruitFactory;
 
+import javafx.scene.image.Image;
+
 public class Pineapple implements GameObject {
     private boolean movingUp = true;
-    private boolean movedoffScreen = false;
+    private boolean movedOffScreen = false;
+    boolean sliced = false;
+    int x, y;
+
 
     @Override
     public Enum getObjectType() {
@@ -11,47 +16,59 @@ public class Pineapple implements GameObject {
 
     @Override
     public int getXlocation() {
-        return 0;
+
+        return x;
     }
 
     @Override
     public int getYlocation() {
-        return 0;
+
+        return y;
     }
 
     @Override
     public int getMaxHeight() {
-        return 0;
+
+        return 600;
     }
 
     @Override
     public int getInitialVelocity() {
-        return 0;
+
+        return 10;
     }
 
     @Override
     public int getFallingVelocity() {
-        return 0;
+
+        return 50;
     }
 
     @Override
     public Boolean isSliced() {
-        return null;
+
+        return sliced;
     }
 
     @Override
     public Boolean hasMovedOffScreen() {
-        return null;
+
+        return movedOffScreen;
     }
 
     @Override
     public void slice() {
-
+        sliced = true;
     }
 
     @Override
     public void move(double time) {
 
+    }
+
+    @Override
+    public Image[] getImages() {
+        return new Image[0];
     }
 
 }

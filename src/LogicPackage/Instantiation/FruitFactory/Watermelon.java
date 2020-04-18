@@ -1,5 +1,7 @@
 package LogicPackage.Instantiation.FruitFactory;
 
+import javafx.scene.image.Image;
+
 public class Watermelon implements GameObject {
 
     public Watermelon() {
@@ -54,6 +56,11 @@ public class Watermelon implements GameObject {
     @Override
     public void move(double time) {
 
+    }
+
+    @Override
+    public Image[] getImages() {
+        return new Image[0];
     }
 
 }
