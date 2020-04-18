@@ -14,7 +14,11 @@ public class Arcade implements Mode {
     @Override
     public void gameMode()
     {
+        GameModeFactory g = new GameModeFactory();
+        g.setGam('A');
+
         System.out.println("Arcade mode");
-         new ArcadeScreen().prepareScene(this.stage);
+        new ArcadeScreen().prepareScene(this.stage);
     }
+
 }

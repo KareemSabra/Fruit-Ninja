@@ -16,7 +16,6 @@ public class PlayerSingleton {
     public static PlayerSingleton getInstance() {
         if (instance == null)
             instance = new PlayerSingleton();
-        else instance.setDifficultyLevel();
         return instance;
     }
 

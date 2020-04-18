@@ -39,7 +39,9 @@ public class SettingsScreen {
     public String getDifficulty(){
         return this.difficulty;
     }
+    private  void setChoicBox(){
 
+    }
 
     public void getsSettingsScreen(Stage settingsStage){
         if (flag) {
@@ -70,7 +72,12 @@ public class SettingsScreen {
             choiceBox.getItems().add("Hard");
             choiceBox.setValue("Easy");
 
-
+            choiceBox.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    difficulty = choiceBox.getValue();
+                }
+            });
             try {
                 ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
                 backGroundImage.setPreserveRatio(true);
@@ -93,12 +100,6 @@ public class SettingsScreen {
             });
             //--------------------------------------------------------------------------------------------------------------
         }
-        choiceBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                difficulty = choiceBox.getValue();
-            }
-        });
         settingsStage.setScene(scene);
         settingsStage.show();
     }

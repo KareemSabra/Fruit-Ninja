@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class WelcomeScreen {
+
     private static WelcomeScreen instance;
     private  Boolean flag = true ;
     private Scene scene = null;

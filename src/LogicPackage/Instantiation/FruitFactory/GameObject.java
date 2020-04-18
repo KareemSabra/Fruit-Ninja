@@ -1,5 +1,7 @@
 package LogicPackage.Instantiation.FruitFactory;
 
+import javafx.scene.image.Image;
+
 import java.awt.image.BufferedImage;
 
 public interface GameObject {
@@ -23,6 +25,9 @@ public interface GameObject {
     public void slice();
 
     public void move(double time);
+
+    public Image[] getImages();
+
 
 
 }
