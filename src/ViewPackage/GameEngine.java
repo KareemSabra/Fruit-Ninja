@@ -1,7 +1,9 @@
 package ViewPackage;
 
 import LogicPackage.ImportImage;
+import MainPackage.MyTimer;
 import ViewPackage.Menus.PauseScreen;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -12,6 +14,11 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class GameEngine {
+    Timeline arcadeTimeline;
+
+    public void setArcadeTimeline(Timeline arcadeTimeline) {
+        this.arcadeTimeline = arcadeTimeline;
+    }
 
     public Node getGame(Stage stage){
         Group group = new Group();
@@ -35,6 +42,8 @@ public class GameEngine {
             @Override
             public void handle(ActionEvent event) {
                 PauseScreen.getInstance().prepareScene(stage);
+                MyTimer.getInstance().pauseTimer();
+
             }
         });
         //--------------------------------------------------------------------------------------------------------------

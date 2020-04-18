@@ -1,6 +1,7 @@
 package ViewPackage.Menus;
 
 import LogicPackage.ImportImage;
+import MainPackage.MyTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -81,6 +82,8 @@ public class PauseScreen {
                 public void handle(ActionEvent event) {
                     WelcomeScreen.getInstance().prepareScene(stage);
                     optionsStage.close();
+                    MyTimer.getInstance().resetTimer();
+
                 }
             });
 
@@ -93,9 +96,11 @@ public class PauseScreen {
                     if (event.getCode() == KeyCode.ESCAPE) {
                         //TODO: Confirm going back message
                         WelcomeScreen.getInstance().prepareScene(stage);
+                        MyTimer.getInstance().resetTimer();
                         optionsStage.close();
                     } else if (event.getCode() == KeyCode.ENTER) {
                         optionsStage.close();
+                        MyTimer.getInstance().playTimer();
                     }
                 }
             });
