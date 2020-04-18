@@ -4,9 +4,11 @@ import javafx.scene.image.Image;
 
 public class Watermelon implements GameObject {
 
-    public Watermelon() {
-        super();
-    }
+    private boolean movingUp = true;
+    private boolean movedOffScreen = false;
+    boolean sliced = false;
+    int x, y;
+
 
     @Override
     public Enum getObjectType() {
@@ -15,42 +17,49 @@ public class Watermelon implements GameObject {
 
     @Override
     public int getXlocation() {
-        return 0;
+
+        return x;
     }
 
     @Override
     public int getYlocation() {
-        return 0;
+
+        return y;
     }
 
     @Override
     public int getMaxHeight() {
-        return 0;
+
+        return 500;
     }
 
     @Override
     public int getInitialVelocity() {
-        return 0;
+
+        return 7;
     }
 
     @Override
     public int getFallingVelocity() {
-        return 0;
+
+        return 80;
     }
 
     @Override
     public Boolean isSliced() {
-        return null;
+
+        return sliced;
     }
 
     @Override
     public Boolean hasMovedOffScreen() {
-        return null;
+
+        return movedOffScreen;
     }
 
     @Override
     public void slice() {
-
+        sliced = true;
     }
 
     @Override
@@ -62,5 +71,4 @@ public class Watermelon implements GameObject {
     public Image[] getImages() {
         return new Image[0];
     }
-
 }
