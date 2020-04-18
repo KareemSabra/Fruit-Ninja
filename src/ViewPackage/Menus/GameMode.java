@@ -1,6 +1,9 @@
 package ViewPackage.Menus;
 
 
+import LogicPackage.Instantiation.Game.ArcadeGame;
+import LogicPackage.Instantiation.Game.ClassicGame;
+import LogicPackage.Instantiation.Game.Game;
 import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
 import MainPackage.ImportImage;
@@ -69,6 +72,7 @@ public class GameMode {
             public void handle(ActionEvent event) {
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 new GameModeFactory().getMode("Classic",stage);
+                new ClassicGame();
             }
         });
 
@@ -77,6 +81,7 @@ public class GameMode {
             public void handle(ActionEvent event) {
                 PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
                 new GameModeFactory().getMode("Arcade",stage);
+                new ArcadeGame();
             }
         });
 
