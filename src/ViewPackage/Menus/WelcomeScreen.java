@@ -1,7 +1,6 @@
 package ViewPackage.Menus;
 
-import LogicPackage.Instantiation.PlayerSingleton;
-import MainPackage.ImportImage;
+import LogicPackage.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,8 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
