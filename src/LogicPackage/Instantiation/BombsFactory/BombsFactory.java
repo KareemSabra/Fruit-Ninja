@@ -1,9 +1,5 @@
 package LogicPackage.Instantiation.BombsFactory;
 
-import LogicPackage.Instantiation.FruitFactory.Fruit;
-import LogicPackage.Instantiation.FruitFactory.Pineapple;
-import LogicPackage.Instantiation.FruitFactory.Watermelon;
-
 public class BombsFactory {
 
     public Bombs getBombType(String type){
