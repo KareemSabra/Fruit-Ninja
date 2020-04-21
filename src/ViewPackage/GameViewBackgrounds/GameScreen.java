@@ -19,9 +19,8 @@ import javafx.stage.Stage;
 import java.util.Timer;
 
 public abstract class GameScreen {
-    protected StackPane mainPane;
-
-
+    protected BorderPane mainPane;
+    HBox topView = new HBox();
     Font labelFont = new Font("verdana",22);
 
 
@@ -29,10 +28,12 @@ public abstract class GameScreen {
     public void prepareScene(Stage stage) {
         // Initializing Containers -------------------------------------------------------------------------------------
        // StackPane pane = new StackPane();
-         mainPane = new StackPane();
+         mainPane = new BorderPane();
+         mainPane.setPrefSize(1280,720);
         //--------------------------------------------------------------------------------------------------------------
         // Initializing Nodes ------------------------------------------------------------------------------------------
-        Label currentScoreLabel = new Label("0");
+        Label currentScoreLabel = MyTimer.getInstance().getTimeLabel();
+        MyTimer.getInstance().playTimer();
         currentScoreLabel.setTextFill(Color.WHITE);
         currentScoreLabel.setFont(labelFont);
         Label bestScoreLabel = new Label("BEST: 0");
@@ -40,6 +41,8 @@ public abstract class GameScreen {
         bestScoreLabel.setFont(labelFont);
         VBox superBox = new VBox(10,currentScoreLabel, bestScoreLabel);
         superBox.setAlignment(Pos.TOP_LEFT);
+        topView.getChildren().add(superBox);
+        topView.setSpacing(1150);
 
         // Importing needed Images -------------------------------------------------------------------------------------
         try {
@@ -64,7 +67,33 @@ public abstract class GameScreen {
 
             }
         });
-        mainPane.getChildren().add(superBox);
+        mainPane.setTop(topView);
+        //Pause Button -------------------------------------------------------------------------------------------------
+        Button pauseButton = new Button();
+        try{
+            BackgroundImage pauseButtonIconImage = new BackgroundImage(new ImportImage().getImage("NewPausePic.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background pauseButtonIcon = new Background(pauseButtonIconImage);
+
+            pauseButton.setBackground(pauseButtonIcon);
+            pauseButton.setPrefSize(32, 27);
+        }catch(Exception e)
+        {
+            System.out.println("Pause Button Icon cannot be found !");
+        }
+        HBox engineBox = new HBox(10,pauseButton);
+        engineBox.setAlignment(Pos.BOTTOM_LEFT);
+        engineBox.setLayoutX(0);
+        engineBox.setLayoutY(0);
+        mainPane.setLeft(engineBox);
+
+        pauseButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PauseScreen.getInstance().prepareScene(stage);
+                MyTimer.getInstance().pauseTimer();
+            }
+        });
+        //--------------------------------------------------------------------------------------------------------------
     }
     //------------------------------------------------------------------------------------------------------------------
 

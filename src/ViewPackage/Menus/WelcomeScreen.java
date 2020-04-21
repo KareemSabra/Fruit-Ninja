@@ -49,6 +49,7 @@ public class WelcomeScreen {
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(1280, 720);
 
+
             Button newGameButton = new Button();
             Button continueButton = new Button();
             Button settingsButton = new Button("Settings");
@@ -93,36 +94,29 @@ public class WelcomeScreen {
                 newGameButton.setText("New Game");
                 continueButton.setText("Continue Game");
             }
-           newGameButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-               @Override
-               public void handle(MouseEvent event) {
-                   mouseHandle2(newGameButton);
-               }
-           });
+
+            newGameButton.setOnMouseDragEntered(event ->  GameMode.getInstance().prepareScene(stage));
+
             settingsButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     SettingsScreen.getInstance().getsSettingsScreen(settingsStage);
                 }
             });
-            continueButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                     GameMode.getInstance().prepareScene(stage);
-                }
-            });
+            continueButton.setOnMouseDragEntered(event -> GameMode.getInstance().prepareScene(stage));
 
             HBox settingsBox = new HBox(settingsButton);
             settingsBox.setAlignment(Pos.BOTTOM_RIGHT);
 
-            //Transparent Label to adjust spacing ----------------------------------------------------------------------
-            Label transparentLabel = new Label();
-            transparentLabel.setPrefWidth(100);
-            //----------------------------------------------------------------------------------------------------------
-            HBox buttonsBox = new HBox(50, settingsBox, continueButton, newGameButton, transparentLabel);
-            buttonsBox.setAlignment(Pos.CENTER_RIGHT);
-            stackPane.getChildren().add(buttonsBox);
-            scene = new Scene(stackPane, 1280, 720);
+           //Transparent Label to adjust spacing ----------------------------------------------------------------------
+           Label transparentLabel = new Label();
+           transparentLabel.setPrefWidth(100);
+           //----------------------------------------------------------------------------------------------------------
+           HBox buttonsBox = new HBox(50, settingsBox, continueButton, newGameButton, transparentLabel);
+           buttonsBox.setAlignment(Pos.CENTER_RIGHT);
+           stackPane.getChildren().add(buttonsBox);
+           stackPane.setOnDragDetected(event -> stackPane.startFullDrag());
+           scene = new Scene(stackPane, 1280, 720);
 
             //Closing settings stage on click --------------------------------------------------------------------------
             scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -138,15 +132,4 @@ public class WelcomeScreen {
         stage.show();
 
     }
-
-    private void mouseHandle2(Button button){
-        button.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("success");
-                GameMode.getInstance().prepareScene(stage);
-            }
-        });
-    }
-
 }

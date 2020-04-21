@@ -15,12 +15,14 @@ public class ClassicScreen extends GameScreen{
         super.prepareScene(stage);
         Label livesLabel = new Label("X X X");
         livesLabel.setTextFill(Color.WHITE);
+        livesLabel.setAlignment(Pos.TOP_RIGHT);
         VBox box2 = new VBox(livesLabel);
         box2.setAlignment(Pos.TOP_RIGHT);
-
-        super.mainPane.getChildren().add(box2);
-        super.mainPane.getChildren().add(new GameEngine().getGame(stage));
-
+        super.topView.getChildren().add(box2);
+        StackPane gamePane = new StackPane();
+        GameEngine gameEngine = new GameEngine();
+        gamePane.getChildren().add(gameEngine.getGame(stage));
+        super.mainPane.setBottom(gamePane);
         Scene scene = new Scene(super.mainPane,1280,720);
         stage.setScene(scene);
         stage.show();

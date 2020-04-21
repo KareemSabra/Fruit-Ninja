@@ -95,9 +95,6 @@ public class Testss extends Application {
         System.out.println(i);
         System.out.println(j);
 
-
-
-
             Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.millis(100),
@@ -105,7 +102,6 @@ public class Testss extends Application {
 
                             if(i == 1)
                             {
-
                                 imageView.setY(imageView.getY() - dy);
                                 imageView1.setY(imageView1.getY() - dy);
 
@@ -114,34 +110,26 @@ public class Testss extends Application {
                                     System.out.println("CLASH UP");
                                     dy = -dy-2;
                                 }
-
                             if((imageView1.getBoundsInLocal().intersects(rectangle1.getBoundsInLocal())) && ((j==1)||(i!=1)) ) {
-
-
                                 System.out.println("CLASH DOWN");
                                 dy = dy+22;
                             }}
 
                             if(j == 0)
                             {
-
                                 imageView2.setY(imageView2.getY() - dy);
                                 imageView3.setY(imageView3.getY() - dy);
-
                                 if(imageView2.getBoundsInLocal().intersects(rectangle.getBoundsInLocal())) {
 
                                     System.out.println("CLASH UP");
                                     dy = -dy-2;
                                 }
-
                                 if((imageView2.getBoundsInLocal().intersects(rectangle1.getBoundsInLocal())) && ((i==0)||(j!=0)) ) {
 
                                     System.out.println("CLASH DOWN");
                                     dy = dy+22;
                                 }}
-
                             }));
-
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 

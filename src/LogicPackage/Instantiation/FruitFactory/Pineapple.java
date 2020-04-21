@@ -22,13 +22,13 @@ public class Pineapple implements GameObject {
     @Override
     public int getXlocation() {
 
-        return x;
+        return (int)((Math.random() * ((1280 - 0) + 1)) + 0);
     }
 
     @Override
     public int getYlocation() {
 
-        return y;
+        return (int)((Math.random() * ((720 - 0) + 1)) + 0);
     }
 
     @Override

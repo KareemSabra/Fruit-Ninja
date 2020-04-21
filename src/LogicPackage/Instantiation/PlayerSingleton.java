@@ -1,12 +1,15 @@
 package LogicPackage.Instantiation;
 
+import LogicPackage.GameActions;
+import LogicPackage.GameObject;
 import LogicPackage.Instantiation.DifficultyFactory.Difficulty;
 import LogicPackage.Instantiation.DifficultyFactory.DifficultyFactory;
 
+import LogicPackage.Instantiation.FruitFactory.FruitFactory;
 import ViewPackage.Menus.SettingsScreen;
 
 
-public class PlayerSingleton {
+public class PlayerSingleton implements GameActions {
     private static PlayerSingleton instance;
 
     private PlayerSingleton() {
@@ -26,4 +29,34 @@ public class PlayerSingleton {
         difficulty.level();
     }
 
+
+    @Override
+    public GameObject createGameObject() {
+        return new FruitFactory().getFruitType("Pineapple");
+    }
+
+    @Override
+    public void updateObjectsLocations() {
+
+    }
+
+    @Override
+    public void sliceObjects() {
+
+    }
+
+    @Override
+    public void saveGame() {
+
+    }
+
+    @Override
+    public void loadGame() {
+
+    }
+
+    @Override
+    public void ResetGame() {
+
+    }
 }
