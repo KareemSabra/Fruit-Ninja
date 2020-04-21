@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -19,6 +21,7 @@ public class WelcomeScreen {
     private static WelcomeScreen instance;
     private  Boolean flag = true ;
     private Scene scene = null;
+    private Stage stage;
 
 
     private WelcomeScreen(){
@@ -31,6 +34,7 @@ public class WelcomeScreen {
     }
 
     public  void prepareScene(Stage stage) {
+        this.stage = stage;
        if (flag) {
            flag = false;
             Stage settingsStage = new Stage();
@@ -80,21 +84,18 @@ public class WelcomeScreen {
                 newGameButton.setText("New Game");
                 continueButton.setText("Continue Game");
             }
-
+           newGameButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent event) {
+                   mouseHandle2(newGameButton);
+               }
+           });
             settingsButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     SettingsScreen.getInstance().getsSettingsScreen(settingsStage);
                 }
             });
-
-            newGameButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                     GameMode.getInstance().prepareScene(stage);
-                }
-            });
-
             continueButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -112,7 +113,7 @@ public class WelcomeScreen {
             HBox buttonsBox = new HBox(50, settingsBox, continueButton, newGameButton, transparentLabel);
             buttonsBox.setAlignment(Pos.CENTER_RIGHT);
             stackPane.getChildren().add(buttonsBox);
-             scene = new Scene(stackPane, 1280, 720);
+            scene = new Scene(stackPane, 1280, 720);
 
             //Closing settings stage on click --------------------------------------------------------------------------
             scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -128,4 +129,15 @@ public class WelcomeScreen {
         stage.show();
 
     }
+
+    private void mouseHandle2(Button button){
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("success");
+                GameMode.getInstance().prepareScene(stage);
+            }
+        });
+    }
+
 }
