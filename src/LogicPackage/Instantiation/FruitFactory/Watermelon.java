@@ -72,4 +72,5 @@ public class Watermelon implements GameObject {
     public Image[] getImages() {
         return new Image[0];
     }
+
 }

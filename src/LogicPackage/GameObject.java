@@ -29,5 +29,4 @@ public interface GameObject {
     public Image[] getImages();
 
 
-
 }

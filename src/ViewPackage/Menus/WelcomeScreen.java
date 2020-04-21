@@ -1,11 +1,16 @@
 package ViewPackage.Menus;
 
 import LogicPackage.ImportImage;
+import com.sun.prism.GraphicsPipeline;
+import com.sun.prism.impl.ps.BaseShaderGraphics;
 import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -13,6 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.awt.*;
 
 public class WelcomeScreen {
 
@@ -70,10 +77,12 @@ public class WelcomeScreen {
                 rotateTransition1.setByAngle(360);
                 rotateTransition1.play();
 
+
                 BackgroundImage newSettingsImage = new BackgroundImage(new ImportImage().getImage("settingsPic.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
                 Background newSettings = new Background(newSettingsImage);
                 settingsButton.setBackground(newSettings);
                 settingsButton.setPrefSize(28, 32);
+
 
             } catch (Exception e) {
                 System.out.println("Images error");
