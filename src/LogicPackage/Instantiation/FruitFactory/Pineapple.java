@@ -1,7 +1,11 @@
 package LogicPackage.Instantiation.FruitFactory;
 
 import LogicPackage.GameObject;
+import LogicPackage.ImportImage;
 import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class Pineapple implements GameObject {
     private boolean movingUp = true;
