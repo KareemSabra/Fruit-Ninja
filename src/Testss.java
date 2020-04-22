@@ -75,7 +75,6 @@ public class Testss extends Application {
         ImageView imageView3 = new ImageView(image3);
         imageView3.setY(500);
         imageView3.setLayoutX(350);
-        //imagesSliced.add(image3);
 
         Image image4 = new ImportImage().getImage("Orange.png");
         ImageView imageView4 = new ImageView(image4);
