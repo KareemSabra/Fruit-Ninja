@@ -74,7 +74,7 @@ public class GameMode {
                 arcadeButton.setText("Arcade Mode");
 
             }
-            classicButton.setOnMouseDragEntered(event ->startGame(stage,"Classic"));
+            classicButton.setOnMouseDragEntered(event -> startGame(stage,"Classic"));
 
             arcadeButton.setOnMouseDragEntered(event -> startGame(stage,"Arcade"));
 
