@@ -124,12 +124,10 @@ public class Testss extends Application {
                         Duration.millis(150),
                         (evt) -> {
 
-
                             imageView.setY(imageView.getY() - db);
                             imageView2.setY(imageView2.getY() - ds);
                             imageView4.setY(imageView4.getY() - dor);
                             imageView6.setY(imageView6.getY() - dw);
-
 
                             if (imageView.getBoundsInLocal().intersects(rectangle.getBoundsInLocal())) {
 
@@ -307,6 +305,7 @@ public class Testss extends Application {
                         }));
 
         timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(true);
         timeline.play();
 
         Scene scene = new Scene(root, 500, 500);
