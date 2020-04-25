@@ -40,7 +40,7 @@ public  class GameScreen {
 
     public void prepareScreen(){
 
-        mainBox.setPrefSize(1280,720);
+      //  mainBox.setPrefSize(1280,720);
         try{
             BackgroundImage gameBackgroundImage = new BackgroundImage(new ImportImage().getImage("WoodBackground.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background gameBackground = new Background(gameBackgroundImage);
@@ -50,21 +50,11 @@ public  class GameScreen {
             System.out.println("Image Error");
         }
 
-
-
-        mainBox.getChildren().addAll(overlayBox);
-        Scene scene = new Scene(mainBox,1280,720);
-        stage.setScene(scene);
-        stage.show();
-
-
-
         HBox gameBox = new HBox();
-        gameBox.setPrefSize(1280,650);
+       // gameBox.setPrefSize(1280,650);
         gameBox.getChildren().add(new  GameEngine().getGame(stage));
 
-
-        mainBox.getChildren().addAll(overlayBox,gameBox);
+        mainBox.getChildren().addAll(overlayBox);
         Scene scene = new Scene(mainBox,1280,720);
         stage.setScene(scene);
         stage.show();
