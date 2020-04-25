@@ -2,10 +2,12 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.ImportImage;
 import MainPackage.MyTimer;
+import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -37,9 +39,25 @@ public  class GameScreen {
     }
 
     public void prepareScreen(){
-        System.out.println("Working");
+        mainBox.setPrefSize(1280,720);
+        try{
+            BackgroundImage gameBackgroundImage = new BackgroundImage(new ImportImage().getImage("WoodBackground.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background gameBackground = new Background(gameBackgroundImage);
+            mainBox.setBackground(gameBackground);
+        }catch (Exception e)
+        {
+            System.out.println("Image Error");
+        }
 
+
+        HBox gameBox = new HBox();
+        gameBox.setPrefSize(1280,650);
+        gameBox.getChildren().add(new  GameEngine().getGame(stage));
+
+
+        mainBox.getChildren().addAll(overlayBox,gameBox);
+        Scene scene = new Scene(mainBox,1280,720);
+        stage.setScene(scene);
+        stage.show();
     }
-
-
 }
