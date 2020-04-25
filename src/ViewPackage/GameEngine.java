@@ -23,16 +23,18 @@ import javafx.util.Duration;
 
 public class GameEngine {
 
-    public Node getGame(Stage stage){
-        StackPane pane = new StackPane();
-        pane.minWidth(1000);
-        pane.minHeight(700);
+    public HBox getGame(Stage stage){
+        HBox pane = new HBox(10);
+        pane.minWidth(1280);
+        pane.minHeight(500);
 
             GameObject fruit = new FruitFactory().getFruitType("pineapple");
 
             Button fruitLabel = new Button("Pineapple");
-          //  fruitLabel.setLayoutX(fruit.getXlocation());
-          //  fruitLabel.setLayoutY(pane.getLayoutY() - 50);
+            fruitLabel.setLayoutX(0);
+            fruitLabel.setLayoutY(0 );
+            fruitLabel.setTranslateX(0);
+            fruitLabel.setTranslateY(0);
 
 
 
@@ -50,17 +52,6 @@ public class GameEngine {
             sequentialTransition.play();
 
             pane.getChildren().add(fruitLabel);
-
-
-
-
-
-
-
-
-
-
-
 
 
         return pane;
