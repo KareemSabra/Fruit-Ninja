@@ -23,20 +23,20 @@ import javafx.util.Duration;
 
 public class GameEngine {
 
-    public HBox getGame(Stage stage){
-        HBox pane = new HBox(10);
+    public Node getGame(Stage stage){
+        Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
 
             GameObject fruit = new FruitFactory().getFruitType("pineapple");
 
             Button fruitLabel = new Button("Pineapple");
-            fruitLabel.setLayoutX(0);
-            fruitLabel.setLayoutY(0 );
+            fruitLabel.setLayoutX(fruit.getXlocation());
+            fruitLabel.setLayoutY(650);
             fruitLabel.setTranslateX(0);
             fruitLabel.setTranslateY(0);
 
-
+            fruitLabel.setOnMouseDragEntered(event -> System.out.println("Sliced"));
 
 
             TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
@@ -52,6 +52,9 @@ public class GameEngine {
             sequentialTransition.play();
 
             pane.getChildren().add(fruitLabel);
+
+
+
 
 
         return pane;
