@@ -127,7 +127,7 @@ public class WelcomeScreen {
             });
             //--------------------------------------------------------------------------------------------------------------
        }
-      stage.setMaxWidth(1280);stage.setMaxHeight(720);
+     // stage.setMaxWidth(1280);stage.setMaxHeight(720);
         stage.setScene(scene);
         stage.show();
 
