@@ -52,11 +52,10 @@ public  class GameScreen {
 
         HBox gameBox = new HBox();
         gameBox.setMinSize(1280,650);
-
-
         gameBox.getChildren().add(new  GameEngine().getGame(stage));
+        gameBox.setOnDragDetected(event -> gameBox.startFullDrag());
 
-        mainBox.getChildren().addAll(overlayBox);
+        mainBox.getChildren().addAll(overlayBox,gameBox);
         Scene scene = new Scene(mainBox,1280,720);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
