@@ -23,6 +23,7 @@ public class ClassicScreen {
         VBox timerLivesBox = new VBox();
         HBox allBox = new HBox();
 
+
         Label currentScoreLabel = new Label("Score:");
         Label bestScoreLabel = new Label("Best:");
         scoreBox.setSpacing(10);
