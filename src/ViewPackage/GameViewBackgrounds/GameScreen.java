@@ -28,17 +28,18 @@ public  class GameScreen {
     public GameScreen(String mode , Stage stage) {
         if (mode.equalsIgnoreCase("Arcade"))
         {
-        overlayBox = new ArcadeScreen().ArcadeOverlay();
+        overlayBox = new ArcadeScreen().ArcadeOverlay(stage);
         }
         else if (mode.equalsIgnoreCase("Classic"))
         {
-            overlayBox = new ClassicScreen().classicOverlay();
+            overlayBox = new ClassicScreen().classicOverlay(stage);
         }
         this.stage = stage;
         prepareScreen();
     }
 
     public void prepareScreen(){
+
         mainBox.setPrefSize(1280,720);
         try{
             BackgroundImage gameBackgroundImage = new BackgroundImage(new ImportImage().getImage("WoodBackground.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -48,6 +49,14 @@ public  class GameScreen {
         {
             System.out.println("Image Error");
         }
+
+
+
+        mainBox.getChildren().addAll(overlayBox);
+        Scene scene = new Scene(mainBox,1280,720);
+        stage.setScene(scene);
+        stage.show();
+
 
 
         HBox gameBox = new HBox();

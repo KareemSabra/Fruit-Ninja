@@ -22,6 +22,7 @@ public class PauseScreen {
 
 
 
+
     public static PauseScreen getInstance(){
         if (instance == null)
             instance = new PauseScreen();
