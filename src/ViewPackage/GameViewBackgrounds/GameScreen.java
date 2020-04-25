@@ -6,6 +6,7 @@ import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -26,18 +27,23 @@ public  class GameScreen {
     public GameScreen(String mode , Stage stage) {
         if (mode.equalsIgnoreCase("Arcade"))
         {
-        overlayBox = new ArcadeScreen().ArcadeOverlay();
+        overlayBox = new ArcadeScreen().ArcadeOverlay(stage);
         }
         else if (mode.equalsIgnoreCase("Classic"))
         {
-            overlayBox = new ClassicScreen().classicOverlay();
+            overlayBox = new ClassicScreen().classicOverlay(stage);
         }
         this.stage = stage;
         prepareScreen();
     }
 
     public void prepareScreen(){
-        System.out.println("Working");
+
+
+        mainBox.getChildren().addAll(overlayBox);
+        Scene scene = new Scene(mainBox,1280,720);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
