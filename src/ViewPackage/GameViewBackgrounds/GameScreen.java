@@ -51,7 +51,7 @@ public  class GameScreen {
         }
 
         HBox gameBox = new HBox();
-       // gameBox.setPrefSize(1280,650);
+        gameBox.setMinSize(1280,650);
         gameBox.getChildren().add(new  GameEngine().getGame(stage));
 
         mainBox.getChildren().addAll(overlayBox);

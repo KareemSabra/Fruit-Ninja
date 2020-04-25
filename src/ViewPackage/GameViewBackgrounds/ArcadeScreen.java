@@ -23,6 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ArcadeScreen  {
+    Font labelFont = new Font("verdana",24);
 
     public HBox ArcadeOverlay(Stage stage)
     {
@@ -30,7 +31,11 @@ public class ArcadeScreen  {
         HBox allBox = new HBox();
 
         Label currentScoreLabel = new Label("Score:");
+        currentScoreLabel.setFont(labelFont);
+        currentScoreLabel.setTextFill(Color.WHITE);
         Label bestScoreLabel = new Label("Best:");
+        bestScoreLabel.setFont(labelFont);
+        bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);
         scoreBox.setAlignment(Pos.TOP_LEFT);
         scoreBox.getChildren().addAll(currentScoreLabel,bestScoreLabel);
@@ -45,6 +50,8 @@ public class ArcadeScreen  {
         }catch(Exception e){
             pauseButton.setText("Pause");
         }
+        HBox pauseButtonBox = new HBox(10,pauseButton);
+        pauseButtonBox.setAlignment(Pos.TOP_CENTER);
 
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -53,10 +60,14 @@ public class ArcadeScreen  {
             }
         });
 
-        Label timerLabel = new Label();
+        Label timerLabel = new Label("Add Timer");
+        timerLabel.setTextFill(Color.WHITE);
+        timerLabel.setFont(labelFont);
+        HBox timerLabelBox = new HBox(20,timerLabel);
+        timerLabelBox.setAlignment(Pos.TOP_RIGHT);
 
-        allBox.setSpacing(575);
-        allBox.getChildren().addAll(scoreBox,pauseButton,timerLabel);
+        allBox.setSpacing(520);
+        allBox.getChildren().addAll(scoreBox,pauseButtonBox,timerLabelBox);
 
         return allBox;
 
