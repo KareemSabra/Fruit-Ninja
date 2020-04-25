@@ -28,6 +28,9 @@ public class PlayerSingleton implements GameActions {
         Difficulty difficulty = new DifficultyFactory().getDifficultyLevel(difficultyLevel);
         difficulty.level();
     }
+    public void destruct(){
+        instance = null;
+    }
 
 
     @Override
