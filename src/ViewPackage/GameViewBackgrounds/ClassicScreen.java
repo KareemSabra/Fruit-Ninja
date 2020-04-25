@@ -45,6 +45,7 @@ public class ClassicScreen {
             @Override
             public void handle(ActionEvent event) {
                 PauseScreen.getInstance().prepareScene(stage);
+                MyTimer.getInstance().pauseTimer();
             }
         });
 
