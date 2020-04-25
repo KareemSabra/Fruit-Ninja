@@ -18,6 +18,8 @@ public class MyTimer {
     private int mins = 0, secs = 0, millis = 0;
     private Label timerLabel = new Label();
     boolean sos = true;
+    boolean counting = false;
+    boolean flag = false;
     Font labelFont = new Font("verdana",22);
 
 
@@ -53,6 +55,8 @@ public class MyTimer {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(false);
         timeline.play();
+        flag = true;
+        counting = true;
         //--------------------------------------------------------------------------------------------------------------
         return timerLabel;
     }
@@ -70,20 +74,26 @@ public class MyTimer {
         millis++;
     }
     public void pauseTimer(){
-        timeline.pause();
+        if (counting)
+        {   timeline.pause();
+        counting = false;}
     }
     public void playTimer(){
+        if (!counting){
         timeline.play();
+        counting = true;}
     }
     public void resetTimer(){
+        if (flag){
         mins = 0;
         secs = 0;
         millis = 0;
         timeline.pause();
+        counting = false;
         setTime("00:00");
         if(!sos) {
             sos = true;
-        }
+        }}
     }
     public String getcurrentTime() {
         return time;

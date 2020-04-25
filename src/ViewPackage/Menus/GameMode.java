@@ -74,7 +74,7 @@ public class GameMode {
                 arcadeButton.setText("Arcade Mode");
 
             }
-          //  classicButton.setOnMouseDragEntered(event -;
+            classicButton.setOnMouseDragEntered(event -> new GameScreen("Classic",stage));
 
             classicButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -83,7 +83,7 @@ public class GameMode {
                 }
             });
 
-           // arcadeButton.setOnMouseDragEntered(event -> startGame(stage,"Arcade"));
+            arcadeButton.setOnMouseDragEntered(event -> new GameScreen("Arcade",stage));
 
             arcadeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
