@@ -19,22 +19,14 @@ import javafx.util.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ArcadeScreen extends GameScreen {
+public class ArcadeScreen  {
 
 
 
-    public void prepareScene(Stage stage)
+    public HBox ArcadeOverlay( )
     {
-        super.prepareScene(stage);
-        StackPane gamePane = new StackPane();
-        GameEngine gameEngine = new GameEngine();
-        gamePane.getChildren().add(gameEngine.getGame(stage));
-        super.mainPane.setBottom(gamePane);
-        gamePane.setOnDragDetected(event -> System.out.println("Drag detected gowa el l3ba"));
-        Scene scene = new Scene(super.mainPane,1280,720);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Arcade");
+
+        return null;
     }
 }
 

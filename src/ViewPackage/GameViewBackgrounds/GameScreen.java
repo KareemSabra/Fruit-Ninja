@@ -18,83 +18,28 @@ import javafx.stage.Stage;
 
 import java.util.Timer;
 
-public abstract class GameScreen {
-    protected BorderPane mainPane;
-    HBox topView = new HBox();
-    Font labelFont = new Font("verdana",22);
+public  class GameScreen {
+    VBox mainBox = new VBox();
+    HBox overlayBox ;
+    Stage stage;
 
-
-    // Creating Main Game View------------------------------------------------------------------------------------------
-    public void prepareScene(Stage stage) {
-        // Initializing Containers -------------------------------------------------------------------------------------
-       // StackPane pane = new StackPane();
-         mainPane = new BorderPane();
-         mainPane.setPrefSize(1280,720);
-        //--------------------------------------------------------------------------------------------------------------
-        // Initializing Nodes ------------------------------------------------------------------------------------------
-        Label currentScoreLabel = MyTimer.getInstance().getTimeLabel();
-        MyTimer.getInstance().playTimer();
-        currentScoreLabel.setTextFill(Color.WHITE);
-        currentScoreLabel.setFont(labelFont);
-        Label bestScoreLabel = new Label("BEST: 0");
-        bestScoreLabel.setTextFill(Color.WHITE);
-        bestScoreLabel.setFont(labelFont);
-        VBox superBox = new VBox(10,currentScoreLabel, bestScoreLabel);
-        superBox.setAlignment(Pos.TOP_LEFT);
-        topView.getChildren().add(superBox);
-        topView.setSpacing(1150);
-
-        // Importing needed Images -------------------------------------------------------------------------------------
-        try {
-            ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
-            backGroundImage.setPreserveRatio(true);
-            backGroundImage.setFitWidth(1280);
-            backGroundImage.setFitHeight(720);
-            mainPane.getChildren().addAll(backGroundImage);
-
-        } catch (Exception e) {
-            System.out.println("Images not found!");
-        }
-        //--------------------------------------------------------------------------------------------------------------
-
-        mainPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode()== KeyCode.ESCAPE){
-                     PauseScreen.getInstance().prepareScene(stage);
-                    MyTimer.getInstance().pauseTimer();
-                }
-
-            }
-        });
-        mainPane.setTop(topView);
-        //Pause Button -------------------------------------------------------------------------------------------------
-        Button pauseButton = new Button();
-        try{
-            BackgroundImage pauseButtonIconImage = new BackgroundImage(new ImportImage().getImage("NewPausePic.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-            Background pauseButtonIcon = new Background(pauseButtonIconImage);
-
-            pauseButton.setBackground(pauseButtonIcon);
-            pauseButton.setPrefSize(32, 27);
-        }catch(Exception e)
+    public GameScreen(String mode , Stage stage) {
+        if (mode.equalsIgnoreCase("Arcade"))
         {
-            System.out.println("Pause Button Icon cannot be found !");
+        overlayBox = new ArcadeScreen().ArcadeOverlay();
         }
-        HBox engineBox = new HBox(10,pauseButton);
-        engineBox.setAlignment(Pos.BOTTOM_LEFT);
-        engineBox.setLayoutX(0);
-        engineBox.setLayoutY(0);
-        mainPane.setLeft(engineBox);
-
-        pauseButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                PauseScreen.getInstance().prepareScene(stage);
-                MyTimer.getInstance().pauseTimer();
-            }
-        });
-        //--------------------------------------------------------------------------------------------------------------
+        else if (mode.equalsIgnoreCase("Classic"))
+        {
+            overlayBox = new ClassicScreen().classicOverlay();
+        }
+        this.stage = stage;
+        prepareScreen();
     }
-    //------------------------------------------------------------------------------------------------------------------
+
+    public void prepareScreen(){
+        System.out.println("Working");
+
+    }
+
 
 }

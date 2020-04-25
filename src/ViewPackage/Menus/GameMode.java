@@ -1,9 +1,9 @@
 package ViewPackage.Menus;
 
 
-import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
 import LogicPackage.ImportImage;
+import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -74,21 +74,21 @@ public class GameMode {
                 arcadeButton.setText("Arcade Mode");
 
             }
-            classicButton.setOnMouseDragEntered(event -> startGame(stage,"Classic"));
+          //  classicButton.setOnMouseDragEntered(event -;
 
             classicButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    startGame(stage,"Classic");
+                    new GameScreen("Classic",stage);
                 }
             });
 
-            arcadeButton.setOnMouseDragEntered(event -> startGame(stage,"Arcade"));
+           // arcadeButton.setOnMouseDragEntered(event -> startGame(stage,"Arcade"));
 
             arcadeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    startGame(stage, "Arcade");
+                    new GameScreen("Arcade" , stage);
                 }
             });
 
@@ -100,7 +100,7 @@ public class GameMode {
             buttonsBox.setSpacing(40);
             buttonsBox.setAlignment(Pos.CENTER_RIGHT);
             stackPane.getChildren().add(buttonsBox);
-          //  stackPane.setOnDragDetected(event -> stackPane.startFullDrag());
+           // stackPane.setOnDragDetected(event -> buttonsBox.startFullDrag());
 
             scene = new Scene(stackPane, 1280, 720);
             //GoBack with Esc ----------------------------------------------------------------------------------------------
@@ -117,12 +117,6 @@ public class GameMode {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void startGame(Stage stage,String mode){
-        PlayerSingleton.getInstance();
-        new GameModeFactory().getMode(mode,stage).prepareScene(stage);
-    }
-
 
 
 }

@@ -1,33 +1,19 @@
 
 import java.util.ArrayList;
-import java.util.List;
 
-import LogicPackage.GameObject;
 import LogicPackage.ImportImage;
-import LogicPackage.Instantiation.FruitFactory.FruitFactory;
-import LogicPackage.Instantiation.FruitFactory.Pineapple;
-import LogicPackage.Instantiation.Game.Game;
-import com.sun.xml.internal.bind.WhiteSpaceProcessor;
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import static javafx.scene.paint.Color.BLUE;
-import static javafx.scene.paint.Color.WHITE;
 
 public class Testss extends Application {
 
