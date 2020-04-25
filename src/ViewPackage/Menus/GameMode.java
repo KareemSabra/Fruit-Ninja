@@ -76,7 +76,21 @@ public class GameMode {
             }
             classicButton.setOnMouseDragEntered(event -> startGame(stage,"Classic"));
 
+            classicButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    startGame(stage,"Classic");
+                }
+            });
+
             arcadeButton.setOnMouseDragEntered(event -> startGame(stage,"Arcade"));
+
+            arcadeButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    startGame(stage, "Arcade");
+                }
+            });
 
             Label transparentLabel = new Label();
             transparentLabel.setPrefWidth(100);
@@ -86,7 +100,7 @@ public class GameMode {
             buttonsBox.setSpacing(40);
             buttonsBox.setAlignment(Pos.CENTER_RIGHT);
             stackPane.getChildren().add(buttonsBox);
-            stackPane.setOnDragDetected(event -> stackPane.startFullDrag());
+          //  stackPane.setOnDragDetected(event -> stackPane.startFullDrag());
 
             scene = new Scene(stackPane, 1280, 720);
             //GoBack with Esc ----------------------------------------------------------------------------------------------

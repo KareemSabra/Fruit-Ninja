@@ -25,7 +25,7 @@ public class ArcadeScreen extends GameScreen {
 
     public void prepareScene(Stage stage)
     {
-       /* super.prepareScene(stage);
+        super.prepareScene(stage);
         StackPane gamePane = new StackPane();
         GameEngine gameEngine = new GameEngine();
         gamePane.getChildren().add(gameEngine.getGame(stage));
@@ -33,7 +33,7 @@ public class ArcadeScreen extends GameScreen {
         gamePane.setOnDragDetected(event -> System.out.println("Drag detected gowa el l3ba"));
         Scene scene = new Scene(super.mainPane,1280,720);
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
         System.out.println("Arcade");
     }
 }

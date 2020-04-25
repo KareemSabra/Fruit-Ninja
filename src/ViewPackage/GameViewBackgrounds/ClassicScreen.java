@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class ClassicScreen extends GameScreen{
 
     public void prepareScene(Stage stage)
-    {/*
+    {
         super.prepareScene(stage);
         Label livesLabel = new Label("X X X");
         livesLabel.setTextFill(Color.WHITE);
@@ -25,7 +25,7 @@ public class ClassicScreen extends GameScreen{
         super.mainPane.setBottom(gamePane);
         Scene scene = new Scene(super.mainPane,1280,720);
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
         System.out.println("CLassic");
 
 
