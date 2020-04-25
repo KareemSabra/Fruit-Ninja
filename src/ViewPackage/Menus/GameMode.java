@@ -106,7 +106,7 @@ public class GameMode {
 
     public void startGame(Stage stage,String mode){
         PlayerSingleton playerSingleton = PlayerSingleton.getInstance();
-        new GameModeFactory().getMode(mode, stage).prepareScene(stage);
+        new GameModeFactory().getMode(mode , stage).prepareScene(stage);
     }
 
 
