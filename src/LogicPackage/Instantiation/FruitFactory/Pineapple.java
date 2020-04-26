@@ -3,6 +3,7 @@ package LogicPackage.Instantiation.FruitFactory;
 import LogicPackage.GameObject;
 import LogicPackage.ImportImage;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -40,7 +41,7 @@ public class Pineapple implements GameObject {
     @Override
     public int getInitialVelocity() {
 
-        return 10;
+        return 40;
     }
 
     @Override
@@ -63,7 +64,7 @@ public class Pineapple implements GameObject {
 
     @Override
     public void slice() {
-        sliced = true;
+        sliced = false;
     }
 
     @Override
@@ -72,8 +73,23 @@ public class Pineapple implements GameObject {
     }
 
     @Override
-    public Image[] getImages() {
-        return new Image[0];
+    public ImageView getFruitImages() {
+        Image pineapple = new ImportImage().getImage("Pineapple (1).png");
+
+        Image pineappleSliced = new ImportImage().getImage("PineappleSliced (1)");
+
+        ImageView returnImage = new ImageView();
+
+        if(isSliced()==true)
+        {
+            returnImage.setImage(pineappleSliced);
+        }
+
+        if(isSliced()==false)
+        {
+            returnImage.setImage(pineapple);
+        }
+        return returnImage;
     }
 
 }

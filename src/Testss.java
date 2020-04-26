@@ -17,10 +17,10 @@ import javafx.util.Duration;
 
 public class Testss extends Application {
 
-    private int db = 10;
-    private int dor = 10;
-    private int ds = 10;
-    private int dw = 10;
+    private int db = 30;
+    private int dor = 30;
+    private int ds = 30;
+    private int dw = 30;
     ArrayList<ImageView> images = new ArrayList<>();
     ArrayList<Image> images2 = new ArrayList<>();
 
@@ -37,52 +37,52 @@ public class Testss extends Application {
 
         Pane root = new Pane();
 
-        Image image = new ImportImage().getImage("Banana.png");
+        Image image = new ImportImage().getImage("Apple.png");
         ImageView imageView = new ImageView(image);
         imageView.setY(500);
         imageView.setLayoutX(50);
         images.add(imageView);
         images2.add(image);
 
-        Image image1 = new ImportImage().getImage("BananaSliced.png");
+        Image image1 = new ImportImage().getImage("AppleSliced (1).png");
         ImageView imageView1 = new ImageView(image1);
         imageView1.setY(500);
         imageView1.setLayoutX(50);
         //images2.add(image1);
 
-        Image image2 = new ImportImage().getImage("Strawberry.png");
+        Image image2 = new ImportImage().getImage("Strawberry (1).png");
         ImageView imageView2 = new ImageView(image2);
         imageView2.setY(500);
         imageView2.setLayoutX(350);
         images.add(imageView2);
         images2.add(image2);
 
-        Image image3 = new ImportImage().getImage("StrawberrySliced.png");
+        Image image3 = new ImportImage().getImage("StrawberrySliced (1).png");
         ImageView imageView3 = new ImageView(image3);
         imageView3.setY(500);
         imageView3.setLayoutX(350);
 
-        Image image4 = new ImportImage().getImage("Orange.png");
+        Image image4 = new ImportImage().getImage("Orange (1).png");
         ImageView imageView4 = new ImageView(image4);
         imageView4.setY(500);
         imageView4.setLayoutX(150);
         images.add(imageView4);
         images2.add(image4);
 
-        Image image5 = new ImportImage().getImage("OrangeSliced.png");
+        Image image5 = new ImportImage().getImage("OrangeSliced (1).png");
         ImageView imageView5 = new ImageView(image5);
         imageView5.setY(500);
         imageView5.setLayoutX(150);
         //imagesSliced.add(image5);
 
-        Image image6 = new ImportImage().getImage("Watermelon.png");
+        Image image6 = new ImportImage().getImage("Watermelon (1).png");
         ImageView imageView6 = new ImageView(image6);
         imageView6.setY(500);
         imageView6.setLayoutX(250);
         images.add(imageView6);
         images2.add(image6);
 
-        Image image7 = new ImportImage().getImage("WatermelonSliced.png");
+        Image image7 = new ImportImage().getImage("WatermelonSliced (1).png");
         ImageView imageView7 = new ImageView(image7);
         imageView7.setY(500);
         imageView7.setLayoutX(250);
@@ -107,7 +107,7 @@ public class Testss extends Application {
 
         Timeline timeline = new Timeline(
                 new KeyFrame(
-                        Duration.millis(150),
+                        Duration.millis(100),
                         (evt) -> {
 
                             imageView.setY(imageView.getY() - db);

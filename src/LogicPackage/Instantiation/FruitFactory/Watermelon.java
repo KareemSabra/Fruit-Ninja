@@ -1,7 +1,11 @@
 package LogicPackage.Instantiation.FruitFactory;
 
 import LogicPackage.GameObject;
+import LogicPackage.ImportImage;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.util.ArrayList;
 
 public class Watermelon implements GameObject {
 
@@ -37,13 +41,13 @@ public class Watermelon implements GameObject {
     @Override
     public int getInitialVelocity() {
 
-        return 7;
+        return 30;
     }
 
     @Override
     public int getFallingVelocity() {
 
-        return 80;
+        return 50;
     }
 
     @Override
@@ -60,7 +64,7 @@ public class Watermelon implements GameObject {
 
     @Override
     public void slice() {
-        sliced = true;
+        sliced = false;
     }
 
     @Override
@@ -69,8 +73,23 @@ public class Watermelon implements GameObject {
     }
 
     @Override
-    public Image[] getImages() {
-        return new Image[0];
+    public ImageView getFruitImages() {
+            Image watermelon = new ImportImage().getImage("Watermelon (1).png");
+
+            Image watermelonSliced = new ImportImage().getImage("WatermelonSliced (1)");
+
+            ImageView returnImage = new ImageView();
+
+            if(isSliced()==true)
+            {
+                returnImage.setImage(watermelonSliced);
+            }
+
+            if(isSliced()==false)
+            {
+                returnImage.setImage(watermelon);
+            }
+            return returnImage;
     }
 
 }
