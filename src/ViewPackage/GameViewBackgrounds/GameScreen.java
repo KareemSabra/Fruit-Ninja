@@ -70,12 +70,12 @@ public  class GameScreen {
 
         gameBox.getChildren().add(gameEngine.getGame(stage));
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), new EventHandler<ActionEvent>() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("6 scs");
+                System.out.println("5 scs");
+                gameBox.getChildren().clear();
                 gameBox.getChildren().add(gameEngine.getGame(stage));
-
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

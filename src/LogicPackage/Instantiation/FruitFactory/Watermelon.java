@@ -19,7 +19,7 @@ public class Watermelon implements GameObject {
     @Override
     public int getXlocation() {
 
-        return x;
+        return (int)((Math.random() *1200 + 100));
     }
 
     @Override
