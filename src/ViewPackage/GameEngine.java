@@ -27,36 +27,29 @@ public class GameEngine {
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
+        int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
+        for (int i =0; i<numberFruitsPerWave;i++) {
+                GameObject fruit = new FruitFactory().getFruitType();
+                Button fruitLabel = new Button(fruit.getObjectType());
+                fruitLabel.setLayoutX(fruit.getXlocation());
+                fruitLabel.setLayoutY(600);
 
-            GameObject fruit = new FruitFactory().getFruitType("pineapple");
+                fruitLabel.setOnMouseDragEntered(event -> System.out.println("Sliced "));
 
-            Button fruitLabel = new Button("Pineapple");
-            fruitLabel.setLayoutX(fruit.getXlocation());
-            fruitLabel.setLayoutY(650);
-            fruitLabel.setTranslateX(0);
-            fruitLabel.setTranslateY(0);
+                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
-            fruitLabel.setOnMouseDragEntered(event -> System.out.println("Sliced"));
+                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                fruitTransitionDown.setByY(fruit.getMaxHeight() + 50);
 
+                SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
+                // sequentialTransition.setCycleCount(Animation.INDEFINITE);
+                sequentialTransition.setCycleCount(1);
+                sequentialTransition.play();
 
-            TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
-            fruitTransitionUP.setByY(-fruit.getMaxHeight());
-            // fruitTransitionUP.play();
+                pane.getChildren().add(fruitLabel);
 
-
-            TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000), fruitLabel);
-            fruitTransitionDown.setByY(fruit.getMaxHeight() + 50);
-
-            SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
-            sequentialTransition.setCycleCount(Animation.INDEFINITE);
-            sequentialTransition.play();
-
-            pane.getChildren().add(fruitLabel);
-
-
-
-
-
+            }
         return pane;
     }
 }

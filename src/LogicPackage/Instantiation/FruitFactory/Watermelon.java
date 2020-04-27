@@ -12,8 +12,8 @@ public class Watermelon implements GameObject {
 
 
     @Override
-    public Enum getObjectType() {
-        return null;
+    public String getObjectType() {
+        return "Watermelon";
     }
 
     @Override

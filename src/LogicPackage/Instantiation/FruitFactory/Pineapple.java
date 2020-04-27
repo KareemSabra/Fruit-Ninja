@@ -15,8 +15,8 @@ public class Pineapple implements GameObject {
 
 
     @Override
-    public Enum getObjectType() {
-        return null;
+    public String getObjectType() {
+        return "Pineapple";
     }
 
     @Override

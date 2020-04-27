@@ -5,14 +5,13 @@ import LogicPackage.GameObject;
 
 public class FruitFactory {
 
-    public GameObject getFruitType(String type){
-        if(type==null)
-            return null;
+    public GameObject getFruitType(){
+        int i  = (int )(Math.random() * 2 + 1);
 
-        if(type.equalsIgnoreCase("Pineapple"))
+        if(i==1)
             return new Pineapple();
         else
-        if (type.equalsIgnoreCase("Watermelon"))
+        if (i==2)
             return new Watermelon();
 
         return null;
