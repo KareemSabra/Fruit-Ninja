@@ -16,14 +16,14 @@ public class Watermelon implements GameObject {
 
 
     @Override
-    public Enum getObjectType() {
-        return null;
+    public String getObjectType() {
+        return "Watermelon";
     }
 
     @Override
     public int getXlocation() {
 
-        return x;
+        return (int)((Math.random() *1200 + 100));
     }
 
     @Override

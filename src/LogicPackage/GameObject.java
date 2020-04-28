@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public interface GameObject {
 
-    public Enum getObjectType();
+    public String getObjectType();
 
     public int getXlocation();
 

@@ -4,6 +4,8 @@ import LogicPackage.ImportImage;
 import MainPackage.MyTimer;
 import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -13,17 +15,25 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public  class GameScreen {
     VBox mainBox = new VBox();
     HBox overlayBox ;
     Stage stage;
+    HBox gameBox = new HBox();
+    Scene scene ;
+
 
     public GameScreen(String mode , Stage stage) {
         if (mode.equalsIgnoreCase("Arcade"))
@@ -52,11 +62,29 @@ public  class GameScreen {
 
         HBox gameBox = new HBox();
         gameBox.setMinSize(1280,650);
-        gameBox.getChildren().add(new  GameEngine().getGame(stage));
         gameBox.setOnDragDetected(event -> gameBox.startFullDrag());
+        GameEngine gameEngine = new GameEngine();
 
-        mainBox.getChildren().addAll(overlayBox,gameBox);
-        Scene scene = new Scene(mainBox,1280,720);
+        /*final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(GameScreen::myTask, 0, 4, TimeUnit.SECONDS);*/
+
+        gameBox.getChildren().add(gameEngine.getGame(stage));
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("5 scs");
+                gameBox.getChildren().clear();
+                gameBox.getChildren().add(gameEngine.getGame(stage));
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(false);
+        timeline.play();
+
+        mainBox.getChildren().add(overlayBox);
+        mainBox.getChildren().add(gameBox);
+        scene = new Scene(mainBox,1280,720);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

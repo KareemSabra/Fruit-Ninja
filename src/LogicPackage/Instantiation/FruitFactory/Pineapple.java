@@ -16,14 +16,14 @@ public class Pineapple implements GameObject {
 
 
     @Override
-    public Enum getObjectType() {
-        return null;
+    public String getObjectType() {
+        return "Pineapple";
     }
 
     @Override
     public int getXlocation() {
 
-        return (int)((Math.random() * ((1280 - 0) + 1)) + 0);
+        return (int)((Math.random() *1200 + 100));
     }
 
     @Override

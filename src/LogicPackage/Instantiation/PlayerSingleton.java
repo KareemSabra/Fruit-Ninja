@@ -35,7 +35,7 @@ public class PlayerSingleton implements GameActions {
 
     @Override
     public GameObject createGameObject() {
-        return new FruitFactory().getFruitType("Pineapple");
+        return new FruitFactory().getFruitType();
     }
 
     @Override
