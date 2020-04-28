@@ -1,6 +1,8 @@
 package ViewPackage;
 
 import LogicPackage.GameObject;
+import LogicPackage.Instantiation.BombsFactory.Bombs;
+import LogicPackage.Instantiation.BombsFactory.BombsFactory;
 import LogicPackage.Instantiation.FruitFactory.FruitFactory;
 import javafx.animation.*;
 import javafx.scene.Node;
@@ -16,6 +18,8 @@ public class GameEngine {
         pane.minWidth(1280);
         pane.minHeight(500);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
+        int numberBombsPerWave = (int) (Math.random()*2);
+
         for (int i =0; i<numberFruitsPerWave;i++) {
                 GameObject fruit = new FruitFactory().getFruitType();
                 Button fruitLabel = new Button();
@@ -25,22 +29,22 @@ public class GameEngine {
                 fruitLabel.setLayoutY(600);
 
                 fruitLabel.setOnMouseDragEntered(event -> {
-                    System.out.println("Sliced ");
+                    System.out.println("Sliced");
                     fruit.slice();
                     fruitLabel.setBackground(fruit.getImages());
                     fruitLabel.setPrefSize(230, 250);
                 });
 
-                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000),fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
-                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000),fruitLabel);
                 fruitTransitionDown.setByY(fruit.getMaxHeight() + 100);
 
                 RotateTransition rotateTransition = new RotateTransition(Duration.millis(4000),fruitLabel);
                 rotateTransition.setByAngle(360);
 
-                SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
+                SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP,fruitTransitionDown);
                 sequentialTransition.setCycleCount(1);
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition,sequentialTransition);
@@ -48,6 +52,43 @@ public class GameEngine {
 
                 pane.getChildren().add(fruitLabel);
             }
+        for (int i=0 ; i<numberBombsPerWave;i++){
+            GameObject bomb = new BombsFactory().getBombType();
+
+            Button bombLabel = new Button("Bomb");
+            bombLabel.setBackground(bomb.getImages());
+            bombLabel.setPrefSize(230, 250);
+            bombLabel.setLayoutX(bomb.getXlocation());
+            bombLabel.setLayoutY(600);
+
+            bombLabel.setOnMouseDragEntered(event -> {
+                System.out.println("Sliced");
+                bomb.slice();
+                bombLabel.setBackground(bomb.getImages());
+                bombLabel.setPrefSize(230, 250);
+            });
+
+            TranslateTransition bombTransitionUp = new TranslateTransition(Duration.millis(2000),bombLabel);
+            bombTransitionUp.setByY(-bomb.getMaxHeight());
+
+            TranslateTransition bombTransitionDown = new TranslateTransition(Duration.millis(2000),bombLabel);
+            bombTransitionDown.setByY(bomb.getMaxHeight() + 100);
+
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(4000),bombLabel);
+            rotateTransition.setByAngle(360);
+
+            SequentialTransition sequentialTransition = new SequentialTransition(bombTransitionUp,bombTransitionDown);
+            sequentialTransition.setCycleCount(1);
+
+            ParallelTransition parallelTransition = new ParallelTransition(rotateTransition,sequentialTransition);
+            parallelTransition.play();
+
+            pane.getChildren().add(bombLabel);
+        }
+
+
+
+
         return pane;
     }
 }
