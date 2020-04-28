@@ -6,10 +6,7 @@ import LogicPackage.Instantiation.FruitFactory.FruitFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
 import MainPackage.MyTimer;
 import ViewPackage.Menus.PauseScreen;
-import javafx.animation.Animation;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -42,10 +39,17 @@ public class GameEngine {
                 TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000), fruitLabel);
                 fruitTransitionDown.setByY(fruit.getMaxHeight() + 50);
 
+                RotateTransition rotateTransition = new RotateTransition(Duration.millis(4000),fruitLabel);
+                rotateTransition.setByAngle(360);
+
                 SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
-                // sequentialTransition.setCycleCount(Animation.INDEFINITE);
                 sequentialTransition.setCycleCount(1);
-                sequentialTransition.play();
+
+                ParallelTransition parallelTransition = new ParallelTransition(rotateTransition,sequentialTransition);
+                parallelTransition.play();
+
+
+
 
                 pane.getChildren().add(fruitLabel);
 
