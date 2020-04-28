@@ -1,8 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import LogicPackage.ImportImage;
 import javafx.animation.Animation;
@@ -18,26 +15,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Testss  {
+public class Testss extends Application {
 
-    public static void main(String[] args) {
-        final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(Testss::myTask, 0, 4, TimeUnit.SECONDS);
-    }
-
-    private static void myTask() {
-        System.out.println("Running");
-    }
-
-
-
-
-
-
-
-}
-
-  /*  private int db = 10;
+    private int db = 10;
     private int dor = 10;
     private int ds = 10;
     private int dw = 10;
@@ -323,4 +303,4 @@ public class Testss  {
     public int rand(int min, int max) {
         return (int) (Math.random() * max + min);
     }
-}*/
+}
