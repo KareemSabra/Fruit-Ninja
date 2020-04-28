@@ -1,6 +1,5 @@
 package LogicPackage.Instantiation.DifficultyFactory;
 
-import LogicPackage.Instantiation.GameModeFactory.GameModeFactory;
 
 public class EasyLevel implements Difficulty {
     @Override
