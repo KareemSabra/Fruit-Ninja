@@ -40,7 +40,7 @@ public class LuckyBlastBomb implements GameObject {
 
     @Override
     public Boolean isSliced() {
-        return null;
+        return sliced;
     }
 
     @Override

@@ -55,13 +55,13 @@ public class GameEngine {
         for (int i=0 ; i<numberBombsPerWave;i++){
             GameObject bomb = new BombsFactory().getBombType();
 
-            Button bombLabel = new Button("Bomb");
+            Button bombLabel = new Button();
             bombLabel.setBackground(bomb.getImages());
             bombLabel.setPrefSize(230, 250);
             bombLabel.setLayoutX(bomb.getXlocation());
             bombLabel.setLayoutY(600);
 
-            bombLabel.setOnMouseDragEntered(event -> {
+            bombLabel.setOnMouseDragExited(event -> {
                 System.out.println("Sliced");
                 bomb.slice();
                 bombLabel.setBackground(bomb.getImages());

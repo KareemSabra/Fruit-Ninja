@@ -39,7 +39,7 @@ public class RedBomb implements GameObject {
 
     @Override
     public Boolean isSliced() {
-        return null;
+        return sliced;
     }
 
     @Override
