@@ -64,17 +64,17 @@ public class RedBomb implements GameObject {
         Background returnBackground = null;
 
      try {
-         BackgroundImage appleImage = new BackgroundImage(new ImportImage().getImage("RedBomb.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+         BackgroundImage redBombImage = new BackgroundImage(new ImportImage().getImage("RedBomb.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
-         BackgroundImage appleSlicedImage = new BackgroundImage(new ImportImage().getImage("RedBombSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+         BackgroundImage redBombSlicedImage = new BackgroundImage(new ImportImage().getImage("RedBombSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
          if(isSliced() == false)
          {
-             returnBackground = new Background(appleImage);
+             returnBackground = new Background(redBombImage);
          }
 
          if(isSliced() == true)
          {
-             returnBackground = new Background(appleSlicedImage);
+             returnBackground = new Background(redBombSlicedImage);
          }
      }
      catch (Exception e) {
