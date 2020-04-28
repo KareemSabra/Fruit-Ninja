@@ -18,11 +18,18 @@ public class GameEngine {
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
         for (int i =0; i<numberFruitsPerWave;i++) {
                 GameObject fruit = new FruitFactory().getFruitType();
-                Button fruitLabel = new Button(fruit.getObjectType());
+                Button fruitLabel = new Button();
+                fruitLabel.setBackground(fruit.getImages());
+                fruitLabel.setPrefSize(230, 250);
                 fruitLabel.setLayoutX(fruit.getXlocation());
                 fruitLabel.setLayoutY(600);
 
-                fruitLabel.setOnMouseDragEntered(event -> System.out.println("Sliced "));
+                fruitLabel.setOnMouseDragEntered(event -> {
+                    System.out.println("Sliced ");
+                    fruit.slice();
+                    fruitLabel.setBackground(fruit.getImages());
+                    fruitLabel.setPrefSize(230, 250);
+                });
 
                 TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());

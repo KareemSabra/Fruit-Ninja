@@ -72,8 +72,25 @@ public class Pineapple implements GameObject {
     }
 
     @Override
-    public Image[] getImages() {
-        return new Image[0];
+    public Background getImages() {
+        Background returnBackground = null;
+
+        BackgroundImage pineappleImage = new BackgroundImage(new ImportImage().getImage("Pineapple.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+
+        BackgroundImage pineappleSlicedImage = new BackgroundImage(new ImportImage().getImage("PineappleSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+
+        if(isSliced() == false)
+        {
+            returnBackground = new Background(pineappleImage);
+        }
+
+        if(isSliced() == true)
+        {
+            returnBackground = new Background(pineappleSlicedImage);
+        }
+
+        return returnBackground;
+
     }
 
 }

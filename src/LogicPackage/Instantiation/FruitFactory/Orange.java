@@ -2,10 +2,9 @@ package LogicPackage.Instantiation.FruitFactory;
 
 import LogicPackage.GameObject;
 import LogicPackage.ImportImage;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-public class Watermelon implements GameObject {
+public class Orange implements GameObject {
 
     private boolean movingUp = true;
     private boolean movedOffScreen = false;
@@ -15,48 +14,41 @@ public class Watermelon implements GameObject {
 
     @Override
     public String getObjectType() {
-        return "Watermelon";
+        return "Orange";
     }
 
     @Override
     public int getXlocation() {
-
         return (int)((Math.random() *1200 + 0));
     }
 
     @Override
     public int getYlocation() {
-
-        return y;
+        return (int)((Math.random() * ((720 - 0) + 1)) + 0);
     }
 
     @Override
     public int getMaxHeight() {
-
-        return 500;
+        return 700;
     }
 
     @Override
     public int getInitialVelocity() {
-
-        return 7;
+        return 12;
     }
 
     @Override
     public int getFallingVelocity() {
-
-        return 80;
+        return 50;
     }
 
     @Override
     public Boolean isSliced() {
-
         return sliced;
     }
 
     @Override
     public Boolean hasMovedOffScreen() {
-
         return movedOffScreen;
     }
 
@@ -72,26 +64,22 @@ public class Watermelon implements GameObject {
 
     @Override
     public Background getImages() {
-
         Background returnBackground = null;
 
-        BackgroundImage watermelonImage = new BackgroundImage(new ImportImage().getImage("Watermelon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage orangeImage = new BackgroundImage(new ImportImage().getImage("Orange.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
-        BackgroundImage watermelonSlicedImage = new BackgroundImage(new ImportImage().getImage("WatermelonSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage orangeSlicedImage = new BackgroundImage(new ImportImage().getImage("OrangeSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
         if(isSliced() == false)
         {
-            returnBackground = new Background(watermelonImage);
+            returnBackground = new Background(orangeImage);
         }
 
         if(isSliced() == true)
         {
-            returnBackground = new Background(watermelonSlicedImage);
+            returnBackground = new Background(orangeSlicedImage);
         }
 
         return returnBackground;
-
-
     }
-
 }
