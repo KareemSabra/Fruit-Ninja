@@ -2,9 +2,7 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.StopWatch;
-import LogicPackage.ImportImage;
-import LogicPackage.Instantiation.PlayerSingleton;
-import MainPackage.MyTimer;
+import LogicPackage.PlayerSingleton;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ClassicScreen {

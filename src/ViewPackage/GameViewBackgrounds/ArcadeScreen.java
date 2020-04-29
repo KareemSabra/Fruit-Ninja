@@ -1,9 +1,8 @@
 package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
-import LogicPackage.ImportImage;
-import LogicPackage.Instantiation.PlayerSingleton;
-import MainPackage.MyTimer;
+
+import LogicPackage.PlayerSingleton;
 import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
