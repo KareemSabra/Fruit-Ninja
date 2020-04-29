@@ -1,9 +1,8 @@
 package ViewPackage;
 
 import LogicPackage.GameObject;
-import LogicPackage.Instantiation.BombsFactory.Bombs;
-import LogicPackage.Instantiation.BombsFactory.BombsFactory;
-import LogicPackage.Instantiation.FruitFactory.FruitFactory;
+import LogicPackage.Factories.BombsFactory.BombsFactory;
+import LogicPackage.Factories.FruitFactory.FruitFactory;
 import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

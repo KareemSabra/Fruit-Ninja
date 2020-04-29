@@ -1,6 +1,6 @@
 package ViewPackage.Menus;
 
-import LogicPackage.ImportImage;
+import LogicPackage.Misc.ImportImage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

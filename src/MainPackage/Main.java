@@ -1,6 +1,6 @@
 package MainPackage;
 
-import LogicPackage.ImportImage;
+import LogicPackage.Misc.ImportImage;
 import ViewPackage.Menus.WelcomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;

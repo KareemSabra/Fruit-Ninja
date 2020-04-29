@@ -1,31 +1,19 @@
 package ViewPackage.GameViewBackgrounds;
 
-import LogicPackage.ImportImage;
-import MainPackage.MyTimer;
+import LogicPackage.Misc.ImportImage;
+import LogicPackage.Misc.StopWatch;
 import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.util.Timer;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public  class GameScreen {
     VBox mainBox = new VBox();
@@ -91,7 +79,7 @@ public  class GameScreen {
                 if (event.getCode().equals(KeyCode.ESCAPE))
                 {
                     PauseScreen.getInstance().prepareScene(stage);
-                    MyTimer.getInstance().pauseTimer();
+                    StopWatch.getInstance().pauseTimer();
                 }
             }
         });

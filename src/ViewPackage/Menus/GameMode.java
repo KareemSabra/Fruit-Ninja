@@ -1,10 +1,9 @@
 package ViewPackage.Menus;
 
 
-import LogicPackage.GameCommands.HoldGame;
-import LogicPackage.GameCommands.Invoker;
-import LogicPackage.Instantiation.PlayerSingleton;
-import LogicPackage.ImportImage;
+import LogicPackage.Commands.HoldGame;
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Misc.ImportImage;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -102,7 +101,7 @@ public class GameMode {
             buttonsBox.setSpacing(40);
             buttonsBox.setAlignment(Pos.CENTER_RIGHT);
             stackPane.getChildren().add(buttonsBox);
-           // stackPane.setOnDragDetected(event -> buttonsBox.startFullDrag());
+            stackPane.setOnDragDetected(event -> buttonsBox.startFullDrag());
 
             scene = new Scene(stackPane, 1280, 720);
             //GoBack with Esc ----------------------------------------------------------------------------------------------

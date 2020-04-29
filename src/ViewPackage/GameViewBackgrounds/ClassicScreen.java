@@ -1,18 +1,14 @@
 package ViewPackage.GameViewBackgrounds;
 
-import LogicPackage.ImportImage;
-import MainPackage.MyTimer;
-import ViewPackage.GameEngine;
+import LogicPackage.Misc.ImportImage;
+import LogicPackage.Misc.StopWatch;
 import ViewPackage.Menus.PauseScreen;
-import ViewPackage.Menus.SettingsScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ClassicScreen {
@@ -45,13 +41,13 @@ public class ClassicScreen {
             @Override
             public void handle(ActionEvent event) {
                 PauseScreen.getInstance().prepareScene(stage);
-                MyTimer.getInstance().pauseTimer();
+                StopWatch.getInstance().pauseTimer();
             }
         });
 
         Label livesLabel = new Label("XXX");
         Label timerLabel = new Label();
-        timerLabel = MyTimer.getInstance().getTimeLabel();
+        timerLabel = StopWatch.getInstance().getTimeLabel();
         timerLivesBox.setAlignment(Pos.TOP_RIGHT);
         timerLivesBox.setSpacing(10);
         timerLivesBox.getChildren().addAll(livesLabel,timerLabel);

@@ -1,27 +1,18 @@
 package ViewPackage.Menus;
 
-import LogicPackage.ImportImage;
-import com.sun.prism.GraphicsPipeline;
-import com.sun.prism.impl.ps.BaseShaderGraphics;
+import LogicPackage.Misc.ImportImage;
 import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.*;
 
 public class WelcomeScreen {
 
@@ -51,7 +42,6 @@ public class WelcomeScreen {
 
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(1280, 720);
-
 
             Button newGameButton = new Button();
             Button continueButton = new Button();
