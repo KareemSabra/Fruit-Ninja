@@ -3,6 +3,8 @@ package ViewPackage;
 import LogicPackage.GameObject;
 import LogicPackage.Instantiation.FruitFactory.FruitFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
+import ViewPackage.GameViewBackgrounds.ArcadeScreen;
+import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -16,20 +18,21 @@ import javafx.util.Duration;
 public class GameEngine {
 
     Font labelFont = new Font("verdana",24);
-    int slice = 0;
+    int slicedFruit =0;
+    int numberOfFruits =0;
 
     public Node getGame(Stage stage){
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
-        Label currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
-        currentScoreLabel.setFont(labelFont);
-        currentScoreLabel.setTextFill(Color.WHITE);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
+        numberOfFruits = numberOfFruits + numberFruitsPerWave;
+        System.out.println("fruits = " +numberOfFruits);
+        System.out.println("wave = " + numberFruitsPerWave);
+
 
         for (int i =0; i<numberFruitsPerWave;i++) {
 
-            slice =0;
                 GameObject fruit = new FruitFactory().getFruitType();
                 Button fruitLabel = new Button();
                 fruitLabel.setBackground(fruit.getImages());
@@ -39,18 +42,19 @@ public class GameEngine {
 
 
                 fruitLabel.setOnMouseDragEntered(event -> {
+
                     if (fruit.isSliced() == false) {
                         PlayerSingleton.calculateCurrentScore();
                         PlayerSingleton.calculateBestScore();
-                        currentScoreLabel.setText("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
+                        ClassicScreen.getCurrentScoreLabel().setText("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
+                        ClassicScreen.getBestScoreLabel().setText("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
+                        slicedFruit ++;
                     }
                     fruit.slice();
+                    System.out.println("sliced = " + slicedFruit);
                     fruitLabel.setBackground(fruit.getImages());
-                    slice = 1;
                     fruitLabel.setPrefSize(230, 250);
-                    //System.out.println(GameLogic.getCurrentScore());
                 });
-
 
 
                 TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
@@ -71,7 +75,6 @@ public class GameEngine {
                 pane.getChildren().add(fruitLabel);
 
             }
-        pane.getChildren().add(currentScoreLabel);
         return pane;
     }
 }

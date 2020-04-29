@@ -1,6 +1,7 @@
 package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.ImportImage;
+import LogicPackage.Instantiation.PlayerSingleton;
 import MainPackage.MyTimer;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -17,22 +19,37 @@ public class ClassicScreen {
 
     Font labelFont = new Font("verdana",24);
 
+    static Label currentScoreLabel;
+    static Label bestScoreLabel;
+    static Label livesLabel;
+
+    public static Label getLivesLabel() {
+        return livesLabel;
+    }
+
+    public static Label getCurrentScoreLabel() {
+        return currentScoreLabel;
+    }
+
+    public static Label getBestScoreLabel() {
+        return bestScoreLabel;
+    }
+
     public HBox classicOverlay(Stage stage)
     {
         VBox scoreBox = new VBox();
         VBox timerLivesBox = new VBox();
         HBox allBox = new HBox();
 
-
-        //Label currentScoreLabel = new Label("Score: " + String.valueOf(GameLogic.getCurrentScore()));
-        //currentScoreLabel.setFont(labelFont);
-        //currentScoreLabel.setTextFill(Color.WHITE);
-        Label bestScoreLabel = new Label("Best: ");
+        currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
+        currentScoreLabel.setFont(labelFont);
+        currentScoreLabel.setTextFill(Color.WHITE);
+        bestScoreLabel = new Label("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
         bestScoreLabel.setFont(labelFont);
         bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);
         scoreBox.setAlignment(Pos.TOP_LEFT);
-        scoreBox.getChildren().addAll(bestScoreLabel);
+        scoreBox.getChildren().addAll(currentScoreLabel,bestScoreLabel);
 
         Button pauseButton = new Button();
 
@@ -53,7 +70,7 @@ public class ClassicScreen {
             }
         });
 
-        Label livesLabel = new Label("XXX");
+        livesLabel = new Label("XXX");
         livesLabel.setFont(labelFont);
         livesLabel.setTextFill(Color.WHITE);
         Label timerLabel = new Label();

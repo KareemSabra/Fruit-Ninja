@@ -44,7 +44,6 @@ public class PlayerSingleton implements GameActions {
     }
 
     public static int getCurrentScore(){
-        System.out.println(currentScore);
         return currentScore;
     }
 
