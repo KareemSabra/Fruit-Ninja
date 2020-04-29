@@ -8,6 +8,8 @@ import LogicPackage.PlayerSingleton;
 import ViewPackage.GameViewBackgrounds.ArcadeScreen;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -26,7 +28,7 @@ public class GameEngine {
 
 
 
-    public Node getGame( ){
+    public Node getGame(HBox gamebox ){
         Boolean flag = false;
         Pane pane = new Pane();
         pane.minWidth(1280);

@@ -56,13 +56,13 @@ public  class GameScreen {
         /*final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(GameScreen::myTask, 0, 4, TimeUnit.SECONDS);*/
 
-        gameBox.getChildren().add(gameEngine.getGame());
+        gameBox.getChildren().add(gameEngine.getGame(gameBox));
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 gameBox.getChildren().clear();
-                gameBox.getChildren().add(gameEngine.getGame());
+                gameBox.getChildren().add(gameEngine.getGame(gameBox));
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
