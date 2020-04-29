@@ -27,6 +27,8 @@ public class GameEngine {
         pane.minHeight(500);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
         numberOfFruits = numberOfFruits + numberFruitsPerWave;
+        int numberBombsPerWave = (int) (Math.random() * 2);
+
         System.out.println("fruits = " +numberOfFruits);
         System.out.println("wave = " + numberFruitsPerWave);
 
