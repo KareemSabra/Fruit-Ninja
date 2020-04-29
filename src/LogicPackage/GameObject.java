@@ -29,5 +29,8 @@ public interface GameObject {
 
     public Background getImages();
 
+    public int getScoreMultiplier();
+
+
 
 }

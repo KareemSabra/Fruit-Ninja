@@ -82,4 +82,9 @@ public class Coconut implements GameObject {
 
         return returnBackground;
     }
+
+    @Override
+    public int getScoreMultiplier(){
+        return 5;
+    }
 }

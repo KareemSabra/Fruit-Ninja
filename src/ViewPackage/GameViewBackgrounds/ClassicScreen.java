@@ -23,6 +23,7 @@ public class ClassicScreen {
     static Label bestScoreLabel = new Label("Best: 0" );;
     static Label livesLabel = new Label("XXX");
 
+
     public static void setCurrentScoreLabel(String currentScore){
        currentScoreLabel.setText("Score: "+currentScore);
        setBestScoreLabel(currentScore);

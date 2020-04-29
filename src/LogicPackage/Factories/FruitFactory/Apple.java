@@ -83,4 +83,9 @@ public class Apple implements GameObject {
 
         return returnBackground;
     }
+
+    @Override
+    public int getScoreMultiplier(){
+        return 1;
+    }
 }
