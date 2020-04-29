@@ -1,5 +1,7 @@
 package ViewPackage.Menus;
 
+import LogicPackage.GameCommands.HoldGame;
+import LogicPackage.GameCommands.Invoker;
 import LogicPackage.ImportImage;
 import MainPackage.MyTimer;
 import javafx.event.ActionEvent;
@@ -81,7 +83,9 @@ public class PauseScreen {
             homeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    WelcomeScreen.getInstance().prepareScene(stage);
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new HoldGame());
+                    invoker.execute();
                     optionsStage.close();
                     MyTimer.getInstance().resetTimer();
 
@@ -96,7 +100,9 @@ public class PauseScreen {
                 public void handle(KeyEvent event) {
                     if (event.getCode() == KeyCode.ESCAPE) {
                         //TODO: Confirm going back message
-                        WelcomeScreen.getInstance().prepareScene(stage);
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new HoldGame());
+                        invoker.execute();
                         MyTimer.getInstance().resetTimer();
                         optionsStage.close();
                     } else if (event.getCode() == KeyCode.ENTER) {

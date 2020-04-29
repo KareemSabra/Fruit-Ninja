@@ -28,8 +28,11 @@ public class WelcomeScreen {
     private static WelcomeScreen instance;
     private  Boolean flag = true ;
     private Scene scene = null;
-    private Stage stage;
+    private static Stage stage;
 
+    public static void setStage(Stage stage) {
+        WelcomeScreen.stage = stage;
+    }
 
     private WelcomeScreen(){
     }
@@ -40,8 +43,8 @@ public class WelcomeScreen {
         return instance;
     }
 
-    public  void prepareScene(Stage stage) {
-        this.stage = stage;
+    public  void prepareScene() {
+
        if (flag) {
            flag = false;
             Stage settingsStage = new Stage();

@@ -1,6 +1,8 @@
 package ViewPackage.Menus;
 
 
+import LogicPackage.GameCommands.HoldGame;
+import LogicPackage.GameCommands.Invoker;
 import LogicPackage.Instantiation.PlayerSingleton;
 import LogicPackage.ImportImage;
 import ViewPackage.GameViewBackgrounds.GameScreen;
@@ -108,7 +110,9 @@ public class GameMode {
                 @Override
                 public void handle(KeyEvent event) {
                     if (event.getCode().equals(KeyCode.ESCAPE)) {
-                        WelcomeScreen.getInstance().prepareScene(stage);
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new HoldGame());
+                        invoker.execute();
                     }
                 }
             });
