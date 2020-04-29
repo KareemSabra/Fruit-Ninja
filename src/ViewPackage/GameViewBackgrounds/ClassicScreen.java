@@ -21,7 +21,7 @@ public class ClassicScreen {
 
     static Label currentScoreLabel = new Label("Score: 0" );
     static Label bestScoreLabel = new Label("Best: 0" );;
-    static Label livesLabel;
+    static Label livesLabel = new Label("XXX");
 
     public static void setCurrentScoreLabel(String currentScore){
        currentScoreLabel.setText("Score: "+currentScore);
@@ -31,8 +31,6 @@ public class ClassicScreen {
     public static void setBestScoreLabel(String bestScore){
         bestScoreLabel.setText("Score: "+bestScore);
     }
-
-
 
     public HBox classicOverlay(Stage stage)
     {
@@ -68,11 +66,10 @@ public class ClassicScreen {
             }
         });
 
-        Label livesLabel = new Label("XXX");
-        livesLabel = new Label("XXX");
+
         livesLabel.setFont(labelFont);
         livesLabel.setTextFill(Color.WHITE);
-        Label timerLabel = new Label();
+        Label timerLabel;
         timerLabel = StopWatch.getInstance().getTimeLabel();
         timerLivesBox.setAlignment(Pos.TOP_RIGHT);
         timerLivesBox.setSpacing(10);

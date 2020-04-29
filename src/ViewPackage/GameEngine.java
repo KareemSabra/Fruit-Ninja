@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import javafx.scene.text.Font;
@@ -28,7 +29,7 @@ public class GameEngine {
 
 
 
-    public Node getGame(HBox gamebox ){
+    public Node getGame( ){
         Boolean flag = false;
         Pane pane = new Pane();
         pane.minWidth(1280);
@@ -54,6 +55,21 @@ public class GameEngine {
                 fruitLabel.setPrefSize(230, 250);
                 fruitLabel.setLayoutX(fruitLocationsperwave.get(i));
                 fruitLabel.setLayoutY(600);
+
+                fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (!fruit.isSliced()) {
+
+                            PlayerSingleton.calculateCurrentScore(10);
+                            slicedFruit++;
+                            fruit.slice();
+                            System.out.println("sliced = " + slicedFruit);
+                            fruitLabel.setBackground(fruit.getImages());
+                            fruitLabel.setPrefSize(230, 250);
+                        }
+                    }
+                });
 
                 fruitLabel.setOnMouseDragEntered(event -> {
 
