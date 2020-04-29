@@ -56,34 +56,6 @@ public class GameEngine {
                 fruitLabel.setLayoutX(fruitLocationsperwave.get(i));
                 fruitLabel.setLayoutY(600);
 
-                fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        if (!fruit.isSliced()) {
-
-                            PlayerSingleton.calculateCurrentScore(10);
-                            slicedFruit++;
-                            fruit.slice();
-                            System.out.println("sliced = " + slicedFruit);
-                            fruitLabel.setBackground(fruit.getImages());
-                            fruitLabel.setPrefSize(230, 250);
-                        }
-                    }
-                });
-
-                fruitLabel.setOnMouseDragEntered(event -> {
-
-                    if (!fruit.isSliced()) {
-
-                        PlayerSingleton.calculateCurrentScore(fruit.getScoreMultiplier());
-                        slicedFruit++;
-                        fruit.slice();
-                        System.out.println("sliced = " + slicedFruit);
-                        fruitLabel.setBackground(fruit.getImages());
-                        fruitLabel.setPrefSize(230, 250);
-                    }
-                });
-
                 TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
@@ -98,6 +70,43 @@ public class GameEngine {
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
+
+                fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (!fruit.isSliced()) {
+                            TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
+                            fruitFalling.setByY(fruit.getMaxHeight() + 100);
+                            parallelTransition.stop();
+                            fruitFalling.play();
+
+                            PlayerSingleton.calculateCurrentScore(fruit.getScoreMultiplier());
+                            slicedFruit++;
+                            fruit.slice();
+                            System.out.println("sliced = " + slicedFruit);
+                            fruitLabel.setBackground(fruit.getImages());
+                            fruitLabel.setPrefSize(230, 250);
+                        }
+                    }
+                });
+
+                fruitLabel.setOnMouseDragEntered(event -> {
+
+                    if (!fruit.isSliced()) {
+
+                        TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
+                        fruitFalling.setByY(fruit.getMaxHeight() + 100);
+                        parallelTransition.stop();
+                        fruitFalling.play();
+
+                        PlayerSingleton.calculateCurrentScore(fruit.getScoreMultiplier());
+                        slicedFruit++;
+                        fruit.slice();
+                        System.out.println("sliced = " + slicedFruit);
+                        fruitLabel.setBackground(fruit.getImages());
+                        fruitLabel.setPrefSize(230, 250);
+                    }
+                });
 
                 pane.getChildren().add(fruitLabel);
             }
