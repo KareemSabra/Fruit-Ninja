@@ -17,23 +17,21 @@ import javafx.stage.Stage;
 
 public class ClassicScreen {
 
-    Font labelFont = new Font("verdana",24);
+    Font labelFont = new Font("verdana",18);
 
-    static Label currentScoreLabel;
+    static Label currentScoreLabel = new Label("Score: 0" );
     static Label bestScoreLabel;
-    static Label livesLabel;
+    static Label livesLabel = new Label("Best: 0" );
 
-    public static Label getLivesLabel() {
-        return livesLabel;
+    public static void setCurrentScoreLabel(String currentScore){
+       currentScoreLabel.setText("Score: "+currentScore);
+        System.out.println("Current Score gowa Screen = "+ currentScore);
+    }
+    public static void setBestScoreLabel(String bestScore){
+        bestScoreLabel.setText("Score: "+bestScore);
     }
 
-    public static Label getCurrentScoreLabel() {
-        return currentScoreLabel;
-    }
 
-    public static Label getBestScoreLabel() {
-        return bestScoreLabel;
-    }
 
     public HBox classicOverlay(Stage stage)
     {
@@ -42,13 +40,8 @@ public class ClassicScreen {
         HBox allBox = new HBox();
 
 
-        Label currentScoreLabel = new Label("Score:");
-        Label bestScoreLabel = new Label("Best:");
-
-        currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
         currentScoreLabel.setFont(labelFont);
         currentScoreLabel.setTextFill(Color.WHITE);
-        bestScoreLabel = new Label("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
         bestScoreLabel.setFont(labelFont);
         bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);
@@ -84,7 +77,7 @@ public class ClassicScreen {
         timerLivesBox.setSpacing(10);
         timerLivesBox.getChildren().addAll(livesLabel,timerLabel);
 
-        allBox.setSpacing(575);
+        allBox.setSpacing(545);
         allBox.getChildren().addAll(scoreBox,pauseButton,timerLivesBox);
 
         return allBox;
