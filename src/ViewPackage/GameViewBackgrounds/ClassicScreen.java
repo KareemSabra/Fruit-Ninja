@@ -2,20 +2,20 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.ImportImage;
 import MainPackage.MyTimer;
-import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
-import ViewPackage.Menus.SettingsScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ClassicScreen {
+
+    Font labelFont = new Font("verdana",24);
 
     public HBox classicOverlay(Stage stage)
     {
@@ -24,11 +24,15 @@ public class ClassicScreen {
         HBox allBox = new HBox();
 
 
-        Label currentScoreLabel = new Label("Score:");
-        Label bestScoreLabel = new Label("Best:");
+        //Label currentScoreLabel = new Label("Score: " + String.valueOf(GameLogic.getCurrentScore()));
+        //currentScoreLabel.setFont(labelFont);
+        //currentScoreLabel.setTextFill(Color.WHITE);
+        Label bestScoreLabel = new Label("Best: ");
+        bestScoreLabel.setFont(labelFont);
+        bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);
         scoreBox.setAlignment(Pos.TOP_LEFT);
-        scoreBox.getChildren().addAll(currentScoreLabel,bestScoreLabel);
+        scoreBox.getChildren().addAll(bestScoreLabel);
 
         Button pauseButton = new Button();
 
@@ -50,13 +54,15 @@ public class ClassicScreen {
         });
 
         Label livesLabel = new Label("XXX");
+        livesLabel.setFont(labelFont);
+        livesLabel.setTextFill(Color.WHITE);
         Label timerLabel = new Label();
         timerLabel = MyTimer.getInstance().getTimeLabel();
         timerLivesBox.setAlignment(Pos.TOP_RIGHT);
         timerLivesBox.setSpacing(10);
         timerLivesBox.getChildren().addAll(livesLabel,timerLabel);
 
-        allBox.setSpacing(575);
+        allBox.setSpacing(520);
         allBox.getChildren().addAll(scoreBox,pauseButton,timerLivesBox);
 
         return allBox;

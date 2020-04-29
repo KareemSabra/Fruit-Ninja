@@ -32,6 +32,25 @@ public class PlayerSingleton implements GameActions {
         instance = null;
     }
 
+    private static int currentScore = 0;
+    private static int bestScore = 0;
+
+    public static void calculateCurrentScore(){
+        currentScore ++;
+    }
+
+    public static void calculateBestScore(){
+        bestScore ++;
+    }
+
+    public static int getCurrentScore(){
+        System.out.println(currentScore);
+        return currentScore;
+    }
+
+    public static int getBestScore(){
+        return bestScore;
+    }
 
     @Override
     public GameObject createGameObject() {
