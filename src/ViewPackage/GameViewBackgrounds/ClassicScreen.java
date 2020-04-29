@@ -25,6 +25,7 @@ public class ClassicScreen {
 
     public static void setCurrentScoreLabel(String currentScore){
        currentScoreLabel.setText("Score: "+currentScore);
+       setBestScoreLabel(currentScore);
         System.out.println("Current Score gowa Screen = "+ currentScore);
     }
     public static void setBestScoreLabel(String bestScore){
