@@ -87,7 +87,11 @@ public class Pineapple implements GameObject {
         }
 
         return returnBackground;
+    }
 
+    @Override
+    public int getScoreMultiplier(){
+        return 10;
     }
 
 }

@@ -83,4 +83,9 @@ public class RedBomb implements GameObject {
 
         return returnBackground;
     }
+
+    @Override
+    public int getScoreMultiplier(){
+        return 0;
+    }
 }

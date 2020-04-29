@@ -83,5 +83,11 @@ public class LuckyBlastBomb implements GameObject {
             System.out.println("Bomb image error ");
         }
 
-        return returnBackground;    }
+        return returnBackground;
+    }
+
+    @Override
+    public int getScoreMultiplier(){
+        return 0;
+    }
 }

@@ -57,7 +57,7 @@ public class GameEngine {
 
                     if (!fruit.isSliced()) {
 
-                        PlayerSingleton.calculateCurrentScore(10);
+                        PlayerSingleton.calculateCurrentScore(fruit.getScoreMultiplier());
                         slicedFruit++;
                         fruit.slice();
                         System.out.println("sliced = " + slicedFruit);
