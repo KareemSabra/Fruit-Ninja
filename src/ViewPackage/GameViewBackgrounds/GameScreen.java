@@ -61,7 +61,6 @@ public  class GameScreen {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("5 scs");
                 gameBox.getChildren().clear();
                 gameBox.getChildren().add(gameEngine.getGame());
             }

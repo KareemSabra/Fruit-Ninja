@@ -1,6 +1,10 @@
 package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
+import LogicPackage.ImportImage;
+import LogicPackage.Instantiation.PlayerSingleton;
+import MainPackage.MyTimer;
+import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,16 +18,26 @@ import javafx.stage.Stage;
 
 public class ArcadeScreen  {
     Font labelFont = new Font("verdana",24);
+    static Label currentScoreLabel;
+    static Label bestScoreLabel;
+
+    public static Label getCurrentScoreLabel() {
+        return currentScoreLabel;
+    }
+
+    public static Label getBestScoreLabel() {
+        return bestScoreLabel;
+    }
 
     public HBox ArcadeOverlay(Stage stage)
     {
         VBox scoreBox = new VBox();
         HBox allBox = new HBox();
 
-        Label currentScoreLabel = new Label("Score:");
+        currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
         currentScoreLabel.setFont(labelFont);
         currentScoreLabel.setTextFill(Color.WHITE);
-        Label bestScoreLabel = new Label("Best:");
+        bestScoreLabel = new Label("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
         bestScoreLabel.setFont(labelFont);
         bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);

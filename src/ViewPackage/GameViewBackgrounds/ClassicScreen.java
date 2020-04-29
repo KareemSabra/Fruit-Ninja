@@ -2,16 +2,38 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.StopWatch;
+import LogicPackage.ImportImage;
+import LogicPackage.Instantiation.PlayerSingleton;
+import MainPackage.MyTimer;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class ClassicScreen {
+
+    Font labelFont = new Font("verdana",24);
+
+    static Label currentScoreLabel;
+    static Label bestScoreLabel;
+    static Label livesLabel;
+
+    public static Label getLivesLabel() {
+        return livesLabel;
+    }
+
+    public static Label getCurrentScoreLabel() {
+        return currentScoreLabel;
+    }
+
+    public static Label getBestScoreLabel() {
+        return bestScoreLabel;
+    }
 
     public HBox classicOverlay(Stage stage)
     {
@@ -22,6 +44,13 @@ public class ClassicScreen {
 
         Label currentScoreLabel = new Label("Score:");
         Label bestScoreLabel = new Label("Best:");
+
+        currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
+        currentScoreLabel.setFont(labelFont);
+        currentScoreLabel.setTextFill(Color.WHITE);
+        bestScoreLabel = new Label("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
+        bestScoreLabel.setFont(labelFont);
+        bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);
         scoreBox.setAlignment(Pos.TOP_LEFT);
         scoreBox.getChildren().addAll(currentScoreLabel,bestScoreLabel);
@@ -46,6 +75,9 @@ public class ClassicScreen {
         });
 
         Label livesLabel = new Label("XXX");
+        livesLabel = new Label("XXX");
+        livesLabel.setFont(labelFont);
+        livesLabel.setTextFill(Color.WHITE);
         Label timerLabel = new Label();
         timerLabel = StopWatch.getInstance().getTimeLabel();
         timerLivesBox.setAlignment(Pos.TOP_RIGHT);

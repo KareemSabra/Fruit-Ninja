@@ -3,6 +3,10 @@ package ViewPackage;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
+import LogicPackage.Instantiation.FruitFactory.FruitFactory;
+import LogicPackage.Instantiation.PlayerSingleton;
+import ViewPackage.GameViewBackgrounds.ArcadeScreen;
+import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -14,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameEngine {
+    Font labelFont = new Font("verdana",24);
+    int slicedFruit =0;
+    int numberOfFruits =0;
 
     public Node getGame(){
         Pane pane = new Pane();
@@ -26,6 +33,14 @@ public class GameEngine {
         Boolean flag = false;
 
         for (int i =0; i<numberFruitsPerWave;i++) {
+
+        numberOfFruits = numberOfFruits + numberFruitsPerWave;
+        System.out.println("fruits = " +numberOfFruits);
+        System.out.println("wave = " + numberFruitsPerWave);
+
+
+        for (int i =0; i<numberFruitsPerWave;i++) {
+
                 GameObject fruit = new FruitFactory().getFruitType();
                 fruitLocationsperwave.add(fruit.getXlocation());
 
@@ -37,12 +52,24 @@ public class GameEngine {
 
                 fruitLabel.setOnMouseDragEntered(event -> {
                     System.out.println("Sliced");
+
+                    if (fruit.isSliced() == false) {
+                        PlayerSingleton.calculateCurrentScore();
+                        PlayerSingleton.calculateBestScore();
+                        ClassicScreen.getCurrentScoreLabel().setText("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
+                        ClassicScreen.getBestScoreLabel().setText("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
+                        slicedFruit ++;
+                    }
                     fruit.slice();
+                    System.out.println("sliced = " + slicedFruit);
                     fruitLabel.setBackground(fruit.getImages());
                     fruitLabel.setPrefSize(230, 250);
                 });
 
                 TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000),fruitLabel);
+
+
+                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
                 TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000),fruitLabel);
