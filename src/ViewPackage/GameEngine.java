@@ -21,7 +21,9 @@ public class GameEngine {
     int slicedFruit =0;
     int numberOfFruits =0;
 
+
     public Node getGame(Stage stage){
+        Boolean flag = false;
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
@@ -77,6 +79,50 @@ public class GameEngine {
                 pane.getChildren().add(fruitLabel);
 
             }
+        for (i = 0; i < numberBombsPerWave; i++) {
+            GameObject bomb = new BombsFactory().getBombType();
+            bombLocation = bomb.getXlocation();
+            for (Integer temp :
+                    fruitLocationsperwave) {
+                int diff = bombLocation - temp;
+                if (diff < 0) diff *= -1;
+                if ((diff) < 150) {
+                    System.out.println("Orayeben");
+                    flag = true;
+                }
+            }
+
+            Button bombLabel = new Button();
+            bombLabel.setBackground(bomb.getImages());
+            bombLabel.setPrefSize(230, 250);
+            bombLabel.setLayoutX(bombLocation);
+            bombLabel.setLayoutY(600);
+
+            bombLabel.setOnMouseDragExited(event -> {
+                System.out.println("Sliced");
+                bomb.slice();
+                bombLabel.setBackground(bomb.getImages());
+                bombLabel.setPrefSize(230, 250);
+            });
+
+            TranslateTransition bombTransitionUp = new TranslateTransition(Duration.millis(2000), bombLabel);
+            bombTransitionUp.setByY(-bomb.getMaxHeight());
+
+            TranslateTransition bombTransitionDown = new TranslateTransition(Duration.millis(2000), bombLabel);
+            bombTransitionDown.setByY(bomb.getMaxHeight() + 100);
+
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(4000), bombLabel);
+            rotateTransition.setByAngle(360);
+
+            SequentialTransition sequentialTransition = new SequentialTransition(bombTransitionUp, bombTransitionDown);
+            sequentialTransition.setCycleCount(1);
+
+            ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
+            parallelTransition.play();
+
+            if (!flag)
+                pane.getChildren().add(bombLabel);
+        }
         return pane;
     }
 }
