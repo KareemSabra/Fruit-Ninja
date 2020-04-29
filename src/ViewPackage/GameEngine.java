@@ -1,6 +1,7 @@
 package ViewPackage;
 
 import LogicPackage.GameObject;
+import LogicPackage.Instantiation.BombsFactory.BombsFactory;
 import LogicPackage.Instantiation.FruitFactory.FruitFactory;
 import LogicPackage.Instantiation.PlayerSingleton;
 import ViewPackage.GameViewBackgrounds.ArcadeScreen;
@@ -79,7 +80,7 @@ public class GameEngine {
                 pane.getChildren().add(fruitLabel);
 
             }
-        for (i = 0; i < numberBombsPerWave; i++) {
+        for (int i = 0; i < numberBombsPerWave; i++) {
             GameObject bomb = new BombsFactory().getBombType();
             bombLocation = bomb.getXlocation();
             for (Integer temp :
