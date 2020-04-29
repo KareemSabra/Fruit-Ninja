@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -22,10 +23,11 @@ public class GameEngine {
     Font labelFont = new Font("verdana", 24);
     int slicedFruit = 0;
     int numberOfFruits = 0;
+    List<Integer> fruitLocationsperwave = new ArrayList<>();
 
 
 
-    public Node getGame(Stage stage){
+    public Node getGame( ){
         Boolean flag = false;
         Pane pane = new Pane();
         pane.minWidth(1280);
@@ -33,12 +35,13 @@ public class GameEngine {
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
         numberOfFruits = numberOfFruits + numberFruitsPerWave;
         int numberBombsPerWave = (int) (Math.random() * 2);
+        int bombLocation ;
 
         System.out.println("fruits = " +numberOfFruits);
         System.out.println("wave = " + numberFruitsPerWave);
 
 
-            for (i = 0; i < numberFruitsPerWave; i++) {
+            for (int i = 0; i < numberFruitsPerWave; i++) {
 
                 GameObject fruit = new FruitFactory().getFruitType();
                 fruitLocationsperwave.add(fruit.getXlocation());
@@ -82,7 +85,7 @@ public class GameEngine {
 
                 pane.getChildren().add(fruitLabel);
             }
-            for (i = 0; i < numberBombsPerWave; i++) {
+            for (int i = 0; i < numberBombsPerWave; i++) {
                 GameObject bomb = new BombsFactory().getBombType();
                 bombLocation = bomb.getXlocation();
                 for (Integer temp :
