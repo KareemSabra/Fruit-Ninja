@@ -85,10 +85,7 @@ public class GameEngine {
 
             pane.getChildren().add(bombLabel);
         }
-
-
-
-
+        
         return pane;
     }
 }
