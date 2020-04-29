@@ -4,6 +4,7 @@ import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
 import LogicPackage.PlayerSingleton;
+
 import ViewPackage.GameViewBackgrounds.ArcadeScreen;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import javafx.animation.*;
@@ -22,22 +23,19 @@ public class GameEngine {
     int slicedFruit = 0;
     int numberOfFruits = 0;
 
-    public Node getGame() {
+
+
+    public Node getGame(Stage stage){
+        Boolean flag = false;
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
-        int numberFruitsPerWave = (int) (Math.random() * 4 + 1);
+        int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
+        numberOfFruits = numberOfFruits + numberFruitsPerWave;
         int numberBombsPerWave = (int) (Math.random() * 2);
-        List<Integer> fruitLocationsperwave = new ArrayList<>();
-        Integer bombLocation;
-        Boolean flag = false;
-        Integer i;
 
-        for (i = 0; i < numberFruitsPerWave; i++) {
-
-            numberOfFruits = numberOfFruits + numberFruitsPerWave;
-            System.out.println("fruits = " + numberOfFruits);
-            System.out.println("wave = " + numberFruitsPerWave);
+        System.out.println("fruits = " +numberOfFruits);
+        System.out.println("wave = " + numberFruitsPerWave);
 
 
             for (i = 0; i < numberFruitsPerWave; i++) {
@@ -129,7 +127,7 @@ public class GameEngine {
                     pane.getChildren().add(bombLabel);
             }
 
-        }
+
         return pane;
     }
 }
