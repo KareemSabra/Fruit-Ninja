@@ -10,6 +10,9 @@ import javafx.scene.layout.*;
 
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameEngine {
 
     public Node getGame(){
@@ -18,13 +21,18 @@ public class GameEngine {
         pane.minHeight(500);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
         int numberBombsPerWave = (int) (Math.random()*2);
+        List<Integer> fruitLocationsperwave = new ArrayList<>();
+        Integer bombLocation ;
+        Boolean flag = false;
 
         for (int i =0; i<numberFruitsPerWave;i++) {
                 GameObject fruit = new FruitFactory().getFruitType();
+                fruitLocationsperwave.add(fruit.getXlocation());
+
                 Button fruitLabel = new Button();
                 fruitLabel.setBackground(fruit.getImages());
                 fruitLabel.setPrefSize(230, 250);
-                fruitLabel.setLayoutX(fruit.getXlocation());
+                fruitLabel.setLayoutX(fruitLocationsperwave.get(i));
                 fruitLabel.setLayoutY(600);
 
                 fruitLabel.setOnMouseDragEntered(event -> {
@@ -53,11 +61,19 @@ public class GameEngine {
             }
         for (int i=0 ; i<numberBombsPerWave;i++){
             GameObject bomb = new BombsFactory().getBombType();
+            bombLocation = bomb.getXlocation();
+            for (Integer temp:
+                 fruitLocationsperwave) {
+                int diff = bombLocation - temp;
+                if (diff <0) diff *= -1;
+                if ( (diff) < 150 ) {System.out.println("Orayeben");
+                flag = true;}
+            }
 
             Button bombLabel = new Button();
             bombLabel.setBackground(bomb.getImages());
             bombLabel.setPrefSize(230, 250);
-            bombLabel.setLayoutX(bomb.getXlocation());
+            bombLabel.setLayoutX(bombLocation);
             bombLabel.setLayoutY(600);
 
             bombLabel.setOnMouseDragExited(event -> {
@@ -82,6 +98,7 @@ public class GameEngine {
             ParallelTransition parallelTransition = new ParallelTransition(rotateTransition,sequentialTransition);
             parallelTransition.play();
 
+            if(!flag)
             pane.getChildren().add(bombLabel);
         }
 
