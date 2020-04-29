@@ -17,11 +17,11 @@ import javafx.stage.Stage;
 
 public class ClassicScreen {
 
-    Font labelFont = new Font("verdana",18);
+    Font labelFont = new Font("verdana",16);
 
     static Label currentScoreLabel = new Label("Score: 0" );
-    static Label bestScoreLabel;
-    static Label livesLabel = new Label("Best: 0" );
+    static Label bestScoreLabel = new Label("Best: 0" );;
+    static Label livesLabel;
 
     public static void setCurrentScoreLabel(String currentScore){
        currentScoreLabel.setText("Score: "+currentScore);
