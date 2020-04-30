@@ -2,6 +2,7 @@ package LogicPackage.Commands;
 
 import LogicPackage.PlayerSingleton;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
+import ViewPackage.GameViewBackgrounds.GameScreen;
 
 public class LoseLife implements GameCommands {
     @Override
@@ -9,6 +10,7 @@ public class LoseLife implements GameCommands {
         PlayerSingleton.getInstance().loseLife();
         if (PlayerSingleton.getInstance().getLivesLeft()==0)
         {
+            GameScreen.stopGame();
             Invoker invoker = new Invoker();
             invoker.setCommands(new EndGame());
             invoker.execute();

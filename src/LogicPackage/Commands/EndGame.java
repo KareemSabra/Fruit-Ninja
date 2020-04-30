@@ -2,6 +2,7 @@ package LogicPackage.Commands;
 
 import LogicPackage.Misc.StopWatch;
 import LogicPackage.PlayerSingleton;
+import ViewPackage.GameEngine;
 import ViewPackage.GameOverScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 import ViewPackage.Menus.WelcomeScreen;
@@ -11,6 +12,8 @@ public class EndGame implements GameCommands {
     public void execute() {
         GameScreen.stopTimeline();
         StopWatch.getInstance().resetTimer();
+
+        GameScreen.stopGame();
 
         GameOverScreen gameOverScreen = new GameOverScreen();
         gameOverScreen.GameOver();
