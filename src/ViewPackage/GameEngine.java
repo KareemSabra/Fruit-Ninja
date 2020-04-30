@@ -24,7 +24,7 @@ import java.util.List;
 
 public class GameEngine {
     Font labelFont = new Font("verdana", 24);
-    int slicedFruit = 0;
+   public static int slicedFruit = 0;
     int numberOfFruits = 0;
 
 
@@ -35,15 +35,13 @@ public class GameEngine {
         pane.minWidth(1280);
         pane.minHeight(500);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
+        PlayerSingleton.getInstance().setFruitsPerWave(numberFruitsPerWave);
+
         numberOfFruits = numberOfFruits + numberFruitsPerWave;
         int numberBombsPerWave = (int) (Math.random() * 2);
         int bombLocation ;
         List<Integer> fruitLocationsperwave = new ArrayList<>();
-
-
-        System.out.println("fruits = " +numberOfFruits);
-        System.out.println("wave = " + numberFruitsPerWave);
-
+        slicedFruit = 0;
 
             for (int i = 0; i < numberFruitsPerWave; i++) {
 
@@ -79,11 +77,10 @@ public class GameEngine {
                             fruitFalling.setByY(fruit.getMaxHeight() + 100);
                             parallelTransition.stop();
                             fruitFalling.play();
-
-                            PlayerSingleton.calculateCurrentScore(fruit.getScoreMultiplier());
+                            PlayerSingleton.getInstance().sliceFruit();
+                            PlayerSingleton.getInstance().calculateCurrentScore(fruit.getScoreMultiplier());
                             slicedFruit++;
                             fruit.slice();
-                            System.out.println("sliced = " + slicedFruit);
                             fruitLabel.setBackground(fruit.getImages());
                             fruitLabel.setPrefSize(230, 250);
                         }
@@ -93,16 +90,14 @@ public class GameEngine {
                 fruitLabel.setOnMouseDragEntered(event -> {
 
                     if (!fruit.isSliced()) {
-
                         TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
                         fruitFalling.setByY(fruit.getMaxHeight() + 100);
                         parallelTransition.stop();
                         fruitFalling.play();
-
-                        PlayerSingleton.calculateCurrentScore(fruit.getScoreMultiplier());
+                        PlayerSingleton.getInstance().sliceFruit();
+                        PlayerSingleton.getInstance().calculateCurrentScore(fruit.getScoreMultiplier());
                         slicedFruit++;
                         fruit.slice();
-                        System.out.println("sliced = " + slicedFruit);
                         fruitLabel.setBackground(fruit.getImages());
                         fruitLabel.setPrefSize(230, 250);
                     }
@@ -118,7 +113,6 @@ public class GameEngine {
                     int diff = bombLocation - temp;
                     if (diff < 0) diff *= -1;
                     if ((diff) < 150) {
-                        System.out.println("Orayeben");
                         flag = true;
                     }
                 }
@@ -130,7 +124,6 @@ public class GameEngine {
                 bombLabel.setLayoutY(600);
 
                 bombLabel.setOnMouseDragExited(event -> {
-                    System.out.println("Sliced");
                     bomb.slice();
                     bombLabel.setBackground(bomb.getImages());
                     bombLabel.setPrefSize(230, 250);
@@ -151,11 +144,10 @@ public class GameEngine {
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
 
+
                 if (!flag)
                     pane.getChildren().add(bombLabel);
             }
-
-
         return pane;
     }
 }

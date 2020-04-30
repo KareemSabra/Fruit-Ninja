@@ -10,6 +10,6 @@ public class EasyLevel implements Difficulty {
         d.setFruitTimer(1);
         d.setDif('E');
 
-        System.out.println("Easy Level");
+        System.out.println("Easy Level xx");
     }
 }

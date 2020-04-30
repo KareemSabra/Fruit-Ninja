@@ -1,5 +1,7 @@
 package LogicPackage.Factories.BombsFactory;
 
+import LogicPackage.Commands.EndGame;
+import LogicPackage.Commands.Invoker;
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
 import javafx.scene.layout.*;
@@ -51,6 +53,9 @@ public class RedBomb implements GameObject {
     public void slice() {
         System.out.println("Red Boomb Sliced");
         sliced = true;
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new EndGame());
+        invoker.execute();
 
     }
 

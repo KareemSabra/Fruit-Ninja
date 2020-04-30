@@ -2,6 +2,7 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.StopWatch;
+import LogicPackage.PlayerSingleton;
 import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.animation.KeyFrame;
@@ -63,6 +64,8 @@ public  class GameScreen {
         timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                PlayerSingleton.getInstance().compareSliced();
+                PlayerSingleton.getInstance().resetFruits();
                 gameBox.getChildren().clear();
                 gameBox.getChildren().add(gameEngine.getGame());
             }
