@@ -86,6 +86,7 @@ public class PauseScreen {
                     Invoker invoker = new Invoker();
                     invoker.setCommands(new HoldGame());
                     invoker.execute();
+                    WelcomeScreen.getInstance().prepareScene();
                     optionsStage.close();
                     StopWatch.getInstance().resetTimer();
 

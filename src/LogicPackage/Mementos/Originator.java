@@ -4,6 +4,7 @@ public class Originator {
 
     private int currentScore;
 
+
     public void setCurrentScore(int currentScore){
         this.currentScore = currentScore;
     }
@@ -19,4 +20,10 @@ public class Originator {
     public void getCurrentScoreFromMemento(Memento memento){
         currentScore = saveCurrentScoreToMemento().getCurrentScore();
     }
+
+    public Memento saveBestScoreToMemento(){
+        return new Memento(currentScore);
+    }
+
+
 }

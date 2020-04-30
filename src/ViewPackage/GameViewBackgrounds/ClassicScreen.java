@@ -68,9 +68,6 @@ public class ClassicScreen {
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Invoker invoker = new Invoker();
-                invoker.setCommands(new HoldGame());
-                invoker.execute();
                 PauseScreen.getInstance().prepareScene(stage);
                 StopWatch.getInstance().pauseTimer();
             }
