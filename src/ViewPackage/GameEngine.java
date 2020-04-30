@@ -27,8 +27,14 @@ import java.util.List;
 
 public class GameEngine {
 
+    int eventCount = 0;
+    int i;
 
+    GameScreen gameScreen ;
 
+    public void setGameScreen(GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
+    }
 
     public Node getGame( ){
         Boolean flag = false;
@@ -37,15 +43,14 @@ public class GameEngine {
         pane.minHeight(500);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
 
-
-
         int numberBombsPerWave = (int) (Math.random() * 2);
         int bombLocation ;
         List<Integer> fruitLocationsperwave = new ArrayList<>();
 
 
-            for (int i = 0; i < numberFruitsPerWave; i++) {
+            for ( i = 0; i < numberFruitsPerWave; i++) {
 
+                int temp = i;
                 GameObject fruit = new FruitFactory().getFruitType();
                 fruitLocationsperwave.add(fruit.getXlocation());
 
@@ -70,6 +75,8 @@ public class GameEngine {
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
 
+                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
+
                 sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -85,7 +92,6 @@ public class GameEngine {
                     public void handle(MouseEvent event) {
                         if (!fruit.isSliced()) {
                             fruit.slice();
-                            TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
                             fruitFalling.setByY(fruit.getMaxHeight() + 100);
                             parallelTransition.stop();
                             fruitLabel.setBackground(fruit.getImages());
@@ -98,7 +104,6 @@ public class GameEngine {
                 fruitLabel.setOnMouseDragEntered(event -> {
                     if (!fruit.isSliced()) {
                         fruit.slice();
-                        TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
                         fruitFalling.setByY(fruit.getMaxHeight() + 100);
                         parallelTransition.stop();
                         fruitLabel.setBackground(fruit.getImages());
@@ -152,6 +157,7 @@ public class GameEngine {
 
                 SequentialTransition sequentialTransition = new SequentialTransition(bombTransitionUp, bombTransitionDown);
                 sequentialTransition.setCycleCount(1);
+                
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();

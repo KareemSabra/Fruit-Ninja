@@ -22,6 +22,10 @@ public  class GameScreen {
     Stage stage;
     Scene scene ;
     static Timeline timeline;
+    HBox gameBox = new HBox();
+    GameEngine gameEngine = new GameEngine();
+
+
 
     public static void pauseTimeline(){
         timeline.pause();
@@ -54,19 +58,16 @@ public  class GameScreen {
             System.out.println("Image Error");
         }
 
-        HBox gameBox = new HBox();
         gameBox.setMinSize(1280,650);
         gameBox.setOnDragDetected(event -> gameBox.startFullDrag());
-        GameEngine gameEngine = new GameEngine();
+        gameEngine.setGameScreen(GameScreen.this);
 
         gameBox.getChildren().add(gameEngine.getGame());
 
         timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                gameBox.getChildren().clear();
-                gameBox.getChildren().add(gameEngine.getGame());
+                getWave();
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -88,5 +89,10 @@ public  class GameScreen {
         });
         stage.setScene(scene);
         stage.show();
+    }
+    public void getWave(){
+        gameBox.getChildren().clear();
+        gameBox.getChildren().add(gameEngine.getGame());
+
     }
 }
