@@ -1,5 +1,8 @@
 package ViewPackage.GameViewBackgrounds;
 
+import LogicPackage.Commands.HoldGame;
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.LoseLife;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.StopWatch;
 import ViewPackage.Menus.PauseScreen;
@@ -23,7 +26,7 @@ public class ClassicScreen {
 
 
     public static void setCurrentScoreLabel(String currentScore){
-       currentScoreLabel.setText("Score: "+currentScore);
+       currentScoreLabel.setText("Score: "+ currentScore);
        setBestScoreLabel(currentScore);
     }
     public static void setBestScoreLabel(String bestScore){
@@ -65,6 +68,9 @@ public class ClassicScreen {
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Invoker invoker = new Invoker();
+                invoker.setCommands(new HoldGame());
+                invoker.execute();
                 PauseScreen.getInstance().prepareScene(stage);
                 StopWatch.getInstance().pauseTimer();
             }
