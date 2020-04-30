@@ -9,6 +9,9 @@ import ViewPackage.Menus.WelcomeScreen;
 public class EndGame implements GameCommands {
     @Override
     public void execute() {
+        GameScreen.stopTimeline();
+        StopWatch.getInstance().resetTimer();
+
         GameOverScreen gameOverScreen = new GameOverScreen();
         gameOverScreen.GameOver();
     }

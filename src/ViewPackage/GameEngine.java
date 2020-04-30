@@ -131,10 +131,10 @@ public class GameEngine {
                 bombLabel.setLayoutX(bombLocation);
                 bombLabel.setLayoutY(600);
 
-                bombLabel.setOnMouseDragExited(event -> {
-                    bomb.slice();
+                bombLabel.setOnMouseDragEntered(event -> {
                     bombLabel.setBackground(bomb.getImages());
                     bombLabel.setPrefSize(230, 250);
+                    bomb.slice();
                 });
 
                 TranslateTransition bombTransitionUp = new TranslateTransition(Duration.millis(2000), bombLabel);

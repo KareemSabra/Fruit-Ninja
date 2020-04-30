@@ -38,9 +38,9 @@ public class ScoreBoard {
         continueButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                StopWatch.getInstance().resetTimer();
+               // StopWatch.getInstance().resetTimer();
                 PlayerSingleton.getInstance().destruct();
-                GameScreen.stopTimeline();
+             //   GameScreen.stopTimeline();
                 WelcomeScreen.getInstance().prepareScene();
             }
         });
