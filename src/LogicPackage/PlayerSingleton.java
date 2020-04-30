@@ -32,8 +32,6 @@ public class PlayerSingleton {
     }
 
     public void compareSliced(){
-
-
         int diff = fruitsPerWave-slicedFruits;
         if(diff > 0){
             for (int i =0 ; i <diff; i++) {
@@ -47,6 +45,7 @@ public class PlayerSingleton {
         fruitsPerWave = 0;
         slicedFruits = 0;
     }
+
 
     private PlayerSingleton() {
         setDifficultyLevel();

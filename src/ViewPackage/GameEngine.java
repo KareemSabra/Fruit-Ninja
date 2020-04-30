@@ -69,6 +69,14 @@ public class GameEngine {
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
 
+                parallelTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        PlayerSingleton.getInstance().compareSliced();
+                        PlayerSingleton.getInstance().resetFruits();
+                    }
+                });
+
                 fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {

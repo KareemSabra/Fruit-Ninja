@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Stage stage;
     @Override
     public void start(Stage stage) throws Exception{
         stage.setTitle("Fruit Ninja");
@@ -16,14 +17,13 @@ public class Main extends Application {
         {
             System.out.println("Icon cannot be Found !");
         }
+        this.stage = stage;
         WelcomeScreen welcomeScreen =  WelcomeScreen.getInstance();
         WelcomeScreen.setStage(stage);
         welcomeScreen.prepareScene();
     }
 
-
     public static void main(String[] args) {
-
         launch(args);
     }
 
