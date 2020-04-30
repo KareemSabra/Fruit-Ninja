@@ -2,6 +2,7 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.StopWatch;
+import LogicPackage.PlayerSingleton;
 import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.animation.KeyFrame;
@@ -19,19 +20,24 @@ public  class GameScreen {
     VBox mainBox = new VBox();
     HBox overlayBox ;
     Stage stage;
-    HBox gameBox = new HBox();
     Scene scene ;
+    static Timeline timeline;
 
+    public static void pauseTimeline(){
+        timeline.pause();
+    }
+    public static void startTimeline(){
+        timeline.playFromStart();
+    }
+    public static void stopTimeline(){
+        timeline.stop();
+    }
 
     public GameScreen(String mode , Stage stage) {
         if (mode.equalsIgnoreCase("Arcade"))
-        {
-        overlayBox = new ArcadeScreen().ArcadeOverlay(stage);
-        }
+            overlayBox = new ArcadeScreen().ArcadeOverlay(stage);
         else if (mode.equalsIgnoreCase("Classic"))
-        {
             overlayBox = new ClassicScreen().classicOverlay(stage);
-        }
         this.stage = stage;
         prepareScreen();
     }
@@ -53,16 +59,14 @@ public  class GameScreen {
         gameBox.setOnDragDetected(event -> gameBox.startFullDrag());
         GameEngine gameEngine = new GameEngine();
 
-        /*final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(GameScreen::myTask, 0, 4, TimeUnit.SECONDS);*/
+        gameBox.getChildren().add(gameEngine.getGame());
 
-        gameBox.getChildren().add(gameEngine.getGame(gameBox));
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 gameBox.getChildren().clear();
-                gameBox.getChildren().add(gameEngine.getGame(gameBox));
+                gameBox.getChildren().add(gameEngine.getGame());
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

@@ -33,10 +33,10 @@ public class ArcadeScreen  {
         VBox scoreBox = new VBox();
         HBox allBox = new HBox();
 
-        currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getCurrentScore()));
+        currentScoreLabel = new Label("Score: " + String.valueOf(PlayerSingleton.getInstance().getCurrentScore()));
         currentScoreLabel.setFont(labelFont);
         currentScoreLabel.setTextFill(Color.WHITE);
-        bestScoreLabel = new Label("Best: " + String.valueOf(PlayerSingleton.getBestScore()));
+        bestScoreLabel = new Label("Best: " + String.valueOf(PlayerSingleton.getInstance().getBestScore()));
         bestScoreLabel.setFont(labelFont);
         bestScoreLabel.setTextFill(Color.WHITE);
         scoreBox.setSpacing(10);

@@ -2,14 +2,12 @@ package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.StopWatch;
-import LogicPackage.PlayerSingleton;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,6 +17,7 @@ public class ClassicScreen {
 
     Font labelFont = new Font("verdana",18);
 
+
     static Label currentScoreLabel = new Label("Score: 0" );
     static Label bestScoreLabel = new Label("Best: 0" ) ;
     static Label livesLabel;
@@ -26,12 +25,22 @@ public class ClassicScreen {
     public static void setCurrentScoreLabel(String currentScore){
        currentScoreLabel.setText("Score: "+currentScore);
         System.out.println("Current Score gowa Screen = "+ currentScore);
+
+    static Label currentScoreLabel = new Label();
+    static Label bestScoreLabel = new Label( );;
+    static Label livesLabel = new Label();
+
+
+    public static void setCurrentScoreLabel(String currentScore){
+       currentScoreLabel.setText("Score: "+currentScore);
+       setBestScoreLabel(currentScore);
     }
     public static void setBestScoreLabel(String bestScore){
         bestScoreLabel.setText("Score: "+bestScore);
     }
-
-
+    public static void loseLifeLabel(int livesLeft){
+        livesLabel.setText(String.valueOf(livesLeft));
+    }
 
     public HBox classicOverlay(Stage stage)
     {
@@ -40,10 +49,13 @@ public class ClassicScreen {
         HBox allBox = new HBox();
 
 
+        currentScoreLabel.setText("Score: 0");
+        bestScoreLabel.setText("Best: 0");
         currentScoreLabel.setFont(labelFont);
         currentScoreLabel.setTextFill(Color.WHITE);
         bestScoreLabel.setFont(labelFont);
         bestScoreLabel.setTextFill(Color.WHITE);
+        livesLabel.setText("3");
         scoreBox.setSpacing(10);
         scoreBox.setAlignment(Pos.TOP_LEFT);
         scoreBox.getChildren().addAll(currentScoreLabel,bestScoreLabel);
@@ -67,11 +79,10 @@ public class ClassicScreen {
             }
         });
 
-        Label livesLabel = new Label("XXX");
-        livesLabel = new Label("XXX");
+
         livesLabel.setFont(labelFont);
         livesLabel.setTextFill(Color.WHITE);
-        Label timerLabel = new Label();
+        Label timerLabel;
         timerLabel = StopWatch.getInstance().getTimeLabel();
         timerLivesBox.setAlignment(Pos.TOP_RIGHT);
         timerLivesBox.setSpacing(10);
