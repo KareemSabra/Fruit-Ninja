@@ -3,6 +3,7 @@ package ViewPackage;
 import LogicPackage.Commands.EndGame;
 import LogicPackage.Commands.Invoker;
 import LogicPackage.Commands.LoseLife;
+import LogicPackage.DifficutlyController;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
@@ -11,6 +12,7 @@ import LogicPackage.PlayerSingleton;
 import ViewPackage.GameViewBackgrounds.ArcadeScreen;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +29,13 @@ import java.util.List;
 
 public class GameEngine {
 
-    int eventCount = 0;
+    Boolean bombAnimationDone = false;
+    Boolean fruitAnimationDone = false;
+    int numberBombsDone = 0;
+    int numberFruitsDone = 0;
+
+
+
     int i;
 
     GameScreen gameScreen ;
@@ -38,19 +46,28 @@ public class GameEngine {
 
     public Node getGame( ){
         Boolean flag = false;
+         bombAnimationDone = false;
+         fruitAnimationDone = false;
+         numberBombsDone = 0;
+         numberFruitsDone = 0;
+
+        DifficutlyController difficutlyController = new DifficutlyController();
+
+
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
-        int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
+        int numberFruitsPerWave = difficutlyController.getNumberofFruitsWave();
 
-        int numberBombsPerWave = (int) (Math.random() * 2);
+        int numberBombsPerWave = difficutlyController.getNumberofBombsWave();
+        if (numberBombsPerWave==0) bombAnimationDone = true;
         int bombLocation ;
         List<Integer> fruitLocationsperwave = new ArrayList<>();
 
 
             for ( i = 0; i < numberFruitsPerWave; i++) {
 
-                int temp = i;
+
                 GameObject fruit = new FruitFactory().getFruitType();
                 fruitLocationsperwave.add(fruit.getXlocation());
 
@@ -60,13 +77,13 @@ public class GameEngine {
                 fruitLabel.setLayoutX(fruitLocationsperwave.get(i));
                 fruitLabel.setLayoutY(600);
 
-                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(difficutlyController.getSpeed()), fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
-                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(difficutlyController.getDownSpeed()), fruitLabel);
                 fruitTransitionDown.setByY(fruit.getMaxHeight() + 100);
 
-                RotateTransition rotateTransition = new RotateTransition(Duration.millis(4000), fruitLabel);
+                RotateTransition rotateTransition = new RotateTransition(Duration.millis(difficutlyController.getSpeed()+difficutlyController.getDownSpeed()), fruitLabel);
                 rotateTransition.setByAngle(360);
 
                 SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
@@ -75,7 +92,8 @@ public class GameEngine {
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
 
-                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
+
+                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(difficutlyController.getFallingSpeed()), fruitLabel);
 
                 sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
@@ -85,6 +103,17 @@ public class GameEngine {
                             invoker.setCommands(new LoseLife());
                             invoker.execute();
                         }
+                        numberFruitsDone++;
+                        if (numberFruitsDone==numberFruitsPerWave) fruitAnimationDone = true;
+                        if (fruitAnimationDone&&bombAnimationDone) gameScreen.getWave();
+                    }
+                });
+                fruitFalling.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        numberFruitsDone++;
+                        if (numberFruitsDone==numberFruitsPerWave) fruitAnimationDone = true;
+                        if (fruitAnimationDone&&bombAnimationDone) gameScreen.getWave();
                     }
                 });
                 fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -157,6 +186,16 @@ public class GameEngine {
 
                 SequentialTransition sequentialTransition = new SequentialTransition(bombTransitionUp, bombTransitionDown);
                 sequentialTransition.setCycleCount(1);
+
+                sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        numberBombsDone++;
+                        if (numberBombsDone==numberBombsPerWave) bombAnimationDone = true;
+                        if (bombAnimationDone && fruitAnimationDone) gameScreen.getWave();
+
+                    }
+                });
                 
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);

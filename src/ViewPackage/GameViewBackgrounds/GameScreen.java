@@ -22,10 +22,12 @@ public  class GameScreen {
     Stage stage;
     Scene scene ;
     static Timeline timeline;
+    static Boolean gameRunning = true;
     HBox gameBox = new HBox();
     GameEngine gameEngine = new GameEngine();
 
 
+    public static void stopGame(){ gameRunning=false;}
 
     public static void pauseTimeline(){
         timeline.pause();
@@ -72,7 +74,7 @@ public  class GameScreen {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(false);
-        timeline.play();
+       // timeline.play();
 
         mainBox.getChildren().add(overlayBox);
         mainBox.getChildren().add(gameBox);
@@ -91,8 +93,9 @@ public  class GameScreen {
         stage.show();
     }
     public void getWave(){
-        gameBox.getChildren().clear();
-        gameBox.getChildren().add(gameEngine.getGame());
-
+        if(gameRunning) {
+            gameBox.getChildren().clear();
+            gameBox.getChildren().add(gameEngine.getGame());
+        }
     }
 }
