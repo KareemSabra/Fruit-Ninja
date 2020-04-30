@@ -1,5 +1,8 @@
 package ViewPackage;
 
+import LogicPackage.Commands.EndGame;
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.LoseLife;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
@@ -7,6 +10,7 @@ import LogicPackage.PlayerSingleton;
 
 import ViewPackage.GameViewBackgrounds.ArcadeScreen;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
+import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,17 +19,14 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
+
 import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameEngine {
-    Font labelFont = new Font("verdana", 24);
-   public static int slicedFruit = 0;
-    int numberOfFruits = 0;
+
 
 
 
@@ -35,13 +36,13 @@ public class GameEngine {
         pane.minWidth(1280);
         pane.minHeight(500);
         int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
-        PlayerSingleton.getInstance().setFruitsPerWave(numberFruitsPerWave);
 
-        numberOfFruits = numberOfFruits + numberFruitsPerWave;
+
+
         int numberBombsPerWave = (int) (Math.random() * 2);
         int bombLocation ;
         List<Integer> fruitLocationsperwave = new ArrayList<>();
-        slicedFruit = 0;
+
 
             for (int i = 0; i < numberFruitsPerWave; i++) {
 
@@ -69,47 +70,44 @@ public class GameEngine {
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
 
-                parallelTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        PlayerSingleton.getInstance().compareSliced();
-                        PlayerSingleton.getInstance().resetFruits();
+                        if (!fruit.isSliced()){
+                            Invoker invoker = new Invoker();
+                            invoker.setCommands(new LoseLife());
+                            invoker.execute();
+                        }
                     }
                 });
-
                 fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         if (!fruit.isSliced()) {
+                            fruit.slice();
                             TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
                             fruitFalling.setByY(fruit.getMaxHeight() + 100);
                             parallelTransition.stop();
-                            fruitFalling.play();
-                            PlayerSingleton.getInstance().sliceFruit();
-                            PlayerSingleton.getInstance().calculateCurrentScore(fruit.getScoreMultiplier());
-                            slicedFruit++;
-                            fruit.slice();
                             fruitLabel.setBackground(fruit.getImages());
                             fruitLabel.setPrefSize(230, 250);
+                            fruitFalling.play();
                         }
                     }
                 });
 
                 fruitLabel.setOnMouseDragEntered(event -> {
-
                     if (!fruit.isSliced()) {
+                        fruit.slice();
                         TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
                         fruitFalling.setByY(fruit.getMaxHeight() + 100);
                         parallelTransition.stop();
-                        fruitFalling.play();
-                        PlayerSingleton.getInstance().sliceFruit();
-                        PlayerSingleton.getInstance().calculateCurrentScore(fruit.getScoreMultiplier());
-                        slicedFruit++;
-                        fruit.slice();
                         fruitLabel.setBackground(fruit.getImages());
                         fruitLabel.setPrefSize(230, 250);
+                        fruitFalling.play();
                     }
                 });
+
+
 
                 pane.getChildren().add(fruitLabel);
             }
@@ -134,7 +132,13 @@ public class GameEngine {
                 bombLabel.setOnMouseDragEntered(event -> {
                     bombLabel.setBackground(bomb.getImages());
                     bombLabel.setPrefSize(230, 250);
-                    bomb.slice();
+                    try {bomb.slice();}
+                    catch (Exception e){
+                        System.out.println("Illegal bomb red");
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new EndGame());
+                        invoker.execute();
+                    }
                 });
 
                 TranslateTransition bombTransitionUp = new TranslateTransition(Duration.millis(2000), bombLabel);
@@ -151,7 +155,6 @@ public class GameEngine {
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
-
 
                 if (!flag)
                     pane.getChildren().add(bombLabel);

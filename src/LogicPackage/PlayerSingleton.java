@@ -16,36 +16,13 @@ public class PlayerSingleton {
     private  int currentScore = 0;
     private  int bestScore = 0;
     private  int livesLeft = 3 ;
-    private int fruitsPerWave = 0;
-    private int slicedFruits = 0;
 
-    public void setFruitsPerWave(int fruitsPerWave) {
-        this.fruitsPerWave = fruitsPerWave;
-    }
 
-    public void sliceFruit( ) {
-        this.slicedFruits ++;
-    }
+
 
     public int getLivesLeft() {
         return livesLeft;
     }
-
-    public void compareSliced(){
-        int diff = fruitsPerWave-slicedFruits;
-        if(diff > 0){
-            for (int i =0 ; i <diff; i++) {
-                Invoker invoker = new Invoker();
-                invoker.setCommands(new LoseLife());
-                invoker.execute();
-            }
-        }
-    }
-    public void resetFruits(){
-        fruitsPerWave = 0;
-        slicedFruits = 0;
-    }
-
 
     private PlayerSingleton() {
         setDifficultyLevel();

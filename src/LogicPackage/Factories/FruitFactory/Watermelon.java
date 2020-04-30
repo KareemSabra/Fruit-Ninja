@@ -2,6 +2,7 @@ package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
+import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
 
 public class Watermelon implements GameObject {
@@ -62,6 +63,8 @@ public class Watermelon implements GameObject {
     @Override
     public void slice() {
         sliced = true;
+        PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+
     }
 
     @Override

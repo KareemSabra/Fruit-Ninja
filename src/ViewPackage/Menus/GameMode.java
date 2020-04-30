@@ -101,7 +101,7 @@ public class GameMode {
             buttonsBox.setSpacing(40);
             buttonsBox.setAlignment(Pos.CENTER_RIGHT);
             stackPane.getChildren().add(buttonsBox);
-            stackPane.setOnDragDetected(event -> buttonsBox.startFullDrag());
+           // stackPane.setOnDragDetected(event -> buttonsBox.startFullDrag());
 
             scene = new Scene(stackPane, 1280, 720);
             //GoBack with Esc ----------------------------------------------------------------------------------------------

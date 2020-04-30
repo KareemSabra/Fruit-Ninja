@@ -2,6 +2,7 @@ package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
+import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
 
 public class Coconut implements GameObject {
@@ -54,7 +55,9 @@ public class Coconut implements GameObject {
 
     @Override
     public void slice() {
-       sliced = true;
+        PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+
+        sliced = true;
     }
 
     @Override

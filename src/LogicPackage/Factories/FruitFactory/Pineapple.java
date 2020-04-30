@@ -2,6 +2,7 @@ package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
+import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
 
 public class Pineapple implements GameObject {
@@ -60,6 +61,8 @@ public class Pineapple implements GameObject {
 
     @Override
     public void slice() {
+        PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+
         sliced = true;
     }
 

@@ -4,6 +4,7 @@ import LogicPackage.Commands.EndGame;
 import LogicPackage.Commands.Invoker;
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
+import MainPackage.Main;
 import javafx.scene.layout.*;
 
 public class RedBomb implements GameObject {
@@ -52,6 +53,7 @@ public class RedBomb implements GameObject {
     @Override
     public void slice() {
         System.out.println("Red Boomb Sliced");
+
         sliced = true;
         Invoker invoker = new Invoker();
         invoker.setCommands(new EndGame());
