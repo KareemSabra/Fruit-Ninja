@@ -10,8 +10,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class StopWatch {
-    private static StopWatch instance;
+public class ClassicTimer {
+    private static ClassicTimer instance;
     private static Timeline timeline;
     private Text text;
     private String time;
@@ -31,12 +31,12 @@ public class StopWatch {
         return timeline;
     }
 
-    private StopWatch(){
+    private ClassicTimer(){
 
     }
-    public static StopWatch getInstance(){
+    public static ClassicTimer getInstance(){
         if (instance== null) {
-            instance = new StopWatch();
+            instance = new ClassicTimer();
         }
         return instance;
     }

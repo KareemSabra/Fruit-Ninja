@@ -1,8 +1,7 @@
 package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
-import LogicPackage.Misc.StopWatch;
-import LogicPackage.PlayerSingleton;
+import LogicPackage.Misc.ClassicTimer;
 import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.animation.KeyFrame;
@@ -85,7 +84,7 @@ public  class GameScreen {
                 if (event.getCode().equals(KeyCode.ESCAPE))
                 {
                     PauseScreen.getInstance().prepareScene(stage);
-                    StopWatch.getInstance().pauseTimer();
+                    ClassicTimer.getInstance().pauseTimer();
                 }
             }
         });

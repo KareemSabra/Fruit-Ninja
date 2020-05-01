@@ -1,0 +1,24 @@
+package LogicPackage.StateDifficulties;
+
+import LogicPackage.PlayerSingleton;
+
+public class Difficulty {
+
+    private Level level;
+
+    public Level setDifficultyLevel(){
+
+        if(PlayerSingleton.getInstance().getCurrentScore()<50){
+            level = new Easy();
+        }
+
+        else if (PlayerSingleton.getInstance().getCurrentScore()<100){
+            level = new Medium();
+        }
+
+        else if (PlayerSingleton.getInstance().getCurrentScore()<150){
+            level = new Hard();
+        }
+        return level;
+    }
+}

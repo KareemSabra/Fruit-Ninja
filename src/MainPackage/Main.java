@@ -34,11 +34,11 @@ public class Main extends Application {
 
         launch(args);
 
-        CareTaker careTaker = new CareTaker();
+        //CareTaker careTaker = new CareTaker();
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(CareTaker.class);
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.marshal(careTaker,new File("savedGame.xml"));
+        //JAXBContext jaxbContext = JAXBContext.newInstance(CareTaker.class);
+        //Marshaller marshaller = jaxbContext.createMarshaller();
+        //marshaller.marshal(careTaker,new File("savedGame.xml"));
     }
 
 

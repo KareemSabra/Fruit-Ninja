@@ -12,13 +12,21 @@ public class Memento {
     @XmlElement (name = "currentScore")
     private int currentScore;
 
-    public Memento(int currentScore){
+    private int bestScore;
+
+    private int lives;
+
+    public Memento(int currentScore, int bestScore, int lives){
         this.currentScore = currentScore;
+        this.bestScore = bestScore;
+        this.lives = lives;
 
     }
 
     public int getCurrentScore(){
         return currentScore;
     }
+    public int getBestScore(){return bestScore;}
+    public int getLives(){return lives;}
 
 }

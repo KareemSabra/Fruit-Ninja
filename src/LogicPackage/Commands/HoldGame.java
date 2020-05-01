@@ -14,6 +14,13 @@ public class HoldGame implements GameCommands {
         originator.setCurrentScore(PlayerSingleton.getInstance().getCurrentScore());
         careTaker.add(originator.saveCurrentScoreToMemento());
 
+        originator.setBestScore(PlayerSingleton.getInstance().getBestScore());
+        careTaker.add(originator.saveBestScoreToMemento());
+
+        originator.setLives(PlayerSingleton.getInstance().getLivesLeft());
+        careTaker.add(originator.saveLivesToMemento());
+
+
         //WelcomeScreen.getInstance().prepareScene();
     }
 }
