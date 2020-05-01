@@ -66,6 +66,7 @@ public class DifficutlyController {
             return speedup;
         }
         speedup = (int) (2000-PlayerSingleton.getInstance().getCurrentScore()*1.3);
+        System.out.println(speedup);
         return speedup;
     }
     public int getFallingSpeed(){

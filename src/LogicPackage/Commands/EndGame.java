@@ -1,17 +1,14 @@
 package LogicPackage.Commands;
 
-import LogicPackage.Misc.StopWatch;
-import LogicPackage.PlayerSingleton;
-import ViewPackage.GameEngine;
+import LogicPackage.Misc.ClassicTimer;
 import ViewPackage.GameOverScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
-import ViewPackage.Menus.WelcomeScreen;
 
 public class EndGame implements GameCommands {
     @Override
     public void execute() {
         GameScreen.stopTimeline();
-        StopWatch.getInstance().resetTimer();
+        ClassicTimer.getInstance().resetTimer();
 
         GameScreen.stopGame();
 

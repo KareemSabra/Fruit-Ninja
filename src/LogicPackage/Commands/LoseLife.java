@@ -8,7 +8,7 @@ public class LoseLife implements GameCommands {
     @Override
     public void execute() {
         PlayerSingleton.getInstance().loseLife();
-        if (PlayerSingleton.getInstance().getLivesLeft()<0)
+        if (PlayerSingleton.getInstance().getLivesLeft()==0)
         {
             GameScreen.stopGame();
             Invoker invoker = new Invoker();

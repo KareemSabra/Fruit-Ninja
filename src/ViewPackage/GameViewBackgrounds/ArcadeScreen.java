@@ -3,7 +3,6 @@ package ViewPackage.GameViewBackgrounds;
 import LogicPackage.Misc.ImportImage;
 
 import LogicPackage.PlayerSingleton;
-import ViewPackage.GameEngine;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -63,8 +62,7 @@ public class ArcadeScreen  {
             }
         });
 
-        Label timerLabel = new Label("Add Timer");
-        timerLabel.setTextFill(Color.WHITE);
+        Label timerLabel = new Label();
         timerLabel.setFont(labelFont);
         HBox timerLabelBox = new HBox(20,timerLabel);
         timerLabelBox.setAlignment(Pos.TOP_RIGHT);

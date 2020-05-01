@@ -1,7 +1,7 @@
 package ViewPackage.GameViewBackgrounds;
 
 import LogicPackage.Misc.ImportImage;
-import LogicPackage.Misc.StopWatch;
+import LogicPackage.Misc.ClassicTimer;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,7 +23,7 @@ public class ClassicScreen {
 
 
     public static void setCurrentScoreLabel(String currentScore){
-       currentScoreLabel.setText("Score: "+currentScore);
+       currentScoreLabel.setText("Score: "+ currentScore);
        setBestScoreLabel(currentScore);
     }
     public static void setBestScoreLabel(String bestScore){
@@ -66,7 +66,7 @@ public class ClassicScreen {
             @Override
             public void handle(ActionEvent event) {
                 PauseScreen.getInstance().prepareScene(stage);
-                StopWatch.getInstance().pauseTimer();
+                ClassicTimer.getInstance().pauseTimer();
             }
         });
 
@@ -74,7 +74,7 @@ public class ClassicScreen {
         livesLabel.setFont(labelFont);
         livesLabel.setTextFill(Color.WHITE);
         Label timerLabel;
-        timerLabel = StopWatch.getInstance().getTimeLabel();
+        timerLabel = ClassicTimer.getInstance().getTimeLabel();
         timerLivesBox.setAlignment(Pos.TOP_RIGHT);
         timerLivesBox.setSpacing(10);
         timerLivesBox.getChildren().addAll(livesLabel,timerLabel);

@@ -7,6 +7,12 @@ import LogicPackage.DifficutlyController;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
+import LogicPackage.PlayerSingleton;
+
+import LogicPackage.StateDifficulties.Difficulty;
+import LogicPackage.StateDifficulties.Level;
+import ViewPackage.GameViewBackgrounds.ArcadeScreen;
+import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -43,15 +49,22 @@ public class GameEngine {
          numberBombsDone = 0;
          numberFruitsDone = 0;
 
-        DifficutlyController difficutlyController = new DifficutlyController();
+        //DifficutlyController difficutlyController = new DifficutlyController();
+
+        Difficulty difficulty = new Difficulty();
 
 
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
-        int numberFruitsPerWave = difficutlyController.getNumberofFruitsWave();
+        //int numberFruitsPerWave = difficutlyController.getNumberofFruitsWave();
 
-        int numberBombsPerWave = difficutlyController.getNumberofBombsWave();
+        //int numberBombsPerWave = difficutlyController.getNumberofBombsWave();
+
+        int numberFruitsPerWave = difficulty.setDifficultyLevel().getNumberofFruitsWave();
+
+        int numberBombsPerWave = difficulty.setDifficultyLevel().getNumberofBombsWave();
+
         if (numberBombsPerWave==0) bombAnimationDone = true;
         int bombLocation ;
         List<Integer> fruitLocationsperwave = new ArrayList<>();
@@ -69,13 +82,14 @@ public class GameEngine {
                 fruitLabel.setLayoutX(fruitLocationsperwave.get(i));
                 fruitLabel.setLayoutY(600);
 
-                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(difficutlyController.getSpeed()), fruitLabel);
+
+                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()), fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
-                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(difficutlyController.getDownSpeed()), fruitLabel);
+                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()/1.5), fruitLabel);
                 fruitTransitionDown.setByY(fruit.getMaxHeight() + 100);
 
-                RotateTransition rotateTransition = new RotateTransition(Duration.millis(difficutlyController.getSpeed()+difficutlyController.getDownSpeed()), fruitLabel);
+                RotateTransition rotateTransition = new RotateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()+(difficulty.setDifficultyLevel().getSpeed()/1.5)), fruitLabel);
                 rotateTransition.setByAngle(360);
 
                 SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
@@ -85,7 +99,7 @@ public class GameEngine {
                 parallelTransition.play();
 
 
-                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(difficutlyController.getFallingSpeed()), fruitLabel);
+                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()/2), fruitLabel);
 
                 sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override

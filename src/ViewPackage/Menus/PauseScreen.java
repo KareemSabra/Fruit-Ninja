@@ -3,7 +3,7 @@ package ViewPackage.Menus;
 import LogicPackage.Commands.HoldGame;
 import LogicPackage.Commands.Invoker;
 import LogicPackage.Misc.ImportImage;
-import LogicPackage.Misc.StopWatch;
+import LogicPackage.Misc.ClassicTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -86,8 +86,9 @@ public class PauseScreen {
                     Invoker invoker = new Invoker();
                     invoker.setCommands(new HoldGame());
                     invoker.execute();
+                    WelcomeScreen.getInstance().prepareScene();
                     optionsStage.close();
-                    StopWatch.getInstance().resetTimer();
+                    ClassicTimer.getInstance().resetTimer();
 
                 }
             });
@@ -103,11 +104,11 @@ public class PauseScreen {
                         Invoker invoker = new Invoker();
                         invoker.setCommands(new HoldGame());
                         invoker.execute();
-                        StopWatch.getInstance().resetTimer();
+                        ClassicTimer.getInstance().resetTimer();
                         optionsStage.close();
                     } else if (event.getCode() == KeyCode.ENTER) {
                         optionsStage.close();
-                        StopWatch.getInstance().playTimer();
+                        ClassicTimer.getInstance().playTimer();
                     }
                 }
             });
