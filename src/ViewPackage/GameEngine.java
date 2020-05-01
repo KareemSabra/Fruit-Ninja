@@ -7,12 +7,7 @@ import LogicPackage.DifficutlyController;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
-import LogicPackage.PlayerSingleton;
-
-import ViewPackage.GameViewBackgrounds.ArcadeScreen;
-import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,10 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-
-
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.List;
 

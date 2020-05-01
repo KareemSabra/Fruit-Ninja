@@ -1,12 +1,6 @@
 package LogicPackage;
 
-import LogicPackage.Commands.EndGame;
-import LogicPackage.Commands.Invoker;
-import LogicPackage.Commands.LoseLife;
-
-import LogicPackage.Factories.FruitFactory.FruitFactory;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
-import ViewPackage.Menus.SettingsScreen;
 
 
 public class PlayerSingleton {
@@ -29,7 +23,6 @@ public class PlayerSingleton {
     public static PlayerSingleton getInstance() {
         if (instance == null)
             instance = new PlayerSingleton();
-        //else instance.setDifficultyLevel();
         return instance;
     }
     public void destruct(){
