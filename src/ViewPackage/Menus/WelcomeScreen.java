@@ -9,9 +9,11 @@ import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -86,6 +88,9 @@ public class WelcomeScreen {
                 Background newSettings = new Background(newSettingsImage);
                 settingsButton.setBackground(newSettings);
                 settingsButton.setPrefSize(28, 32);
+
+                //Image bladeCursor = new ImportImage().getImage("Blade.png");
+                //scene.setCursor(new ImageCursor(new ImportImage().getImage("Blade.png")));
 
 
             } catch (Exception e) {
