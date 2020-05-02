@@ -18,6 +18,9 @@ public class Memento {
     @XmlElement(name = "Timer")
     private SaveTimer saveTimer;
 
+    @XmlElement(name = "bestScore")
+    private int bestScore;
+
     public void setCurrentScore(int currentScore) {
         this.currentScore = currentScore;
     }
@@ -38,6 +41,14 @@ public class Memento {
         return currentScore;
     }
     public int getLives(){return lives;}
+
+    public int getBestScore() {
+        return bestScore;
+    }
+
+    public void setBestScore(int bestScore) {
+        this.bestScore = bestScore;
+    }
 
 
 }

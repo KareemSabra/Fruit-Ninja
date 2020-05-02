@@ -32,7 +32,7 @@ public  class GameScreen {
     GameEngine gameEngine;
 
     public void clearGameBox(){
-        GameEngine.pause();
+        gameEngine.pause();
         gameBox.getChildren().clear();
     }
 
@@ -92,7 +92,9 @@ public  class GameScreen {
     }
     public void getWave(){
         if(gameRunning) {
+            GameEngine gameEngine = new GameEngine();
             gameBox.getChildren().clear();
+            gameEngine.setGameScreen(GameScreen.this);
             gameBox.getChildren().add(gameEngine.getGame());
         }
     }

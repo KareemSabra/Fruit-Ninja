@@ -31,6 +31,8 @@ public interface GameObject {
 
     public int getScoreMultiplier();
 
+    public void setSliced();
+
 
 
 }

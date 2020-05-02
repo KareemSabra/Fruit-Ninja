@@ -2,15 +2,23 @@ package LogicPackage;
 
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
 
+import static java.lang.Math.max;
+
 
 public class PlayerSingleton {
     private static PlayerSingleton instance;
     private  int currentScore = 0;
     private  int bestScore = 0;
     private  int livesLeft = 3 ;
+    private Boolean paused = false;
 
+    public Boolean getPaused() {
+        return paused;
+    }
 
-
+    public void setPaused(Boolean paused) {
+        this.paused = paused;
+    }
 
     public int getLivesLeft() {
         return livesLeft;
@@ -48,6 +56,16 @@ public class PlayerSingleton {
         currentScore +=Multiplier;
         ClassicScreen.setCurrentScoreLabel();
     }
+
+    public  void calculateBestScore(int Multiplier){
+
+        if(bestScore==currentScore)
+        {bestScore +=Multiplier;}
+
+        bestScore = max(bestScore, currentScore);
+        ClassicScreen.setBestScoreLabel();
+    }
+
     public void loseLife(){
         System.out.println("Life lost");
         livesLeft--;

@@ -1,6 +1,7 @@
 package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
@@ -55,7 +56,12 @@ public class Orange implements GameObject {
 
     @Override
     public void slice() {
+        AudioHandling.getInstance().stopSliceSound();
+
+        AudioHandling.getInstance().playSliceSound();
+
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+        PlayerSingleton.getInstance().calculateBestScore(getScoreMultiplier());
 
         sliced = true;
     }
@@ -89,5 +95,9 @@ public class Orange implements GameObject {
     @Override
     public int getScoreMultiplier(){
         return 1;
+    }
+    @Override
+    public void setSliced() {
+        sliced = true ;
     }
 }

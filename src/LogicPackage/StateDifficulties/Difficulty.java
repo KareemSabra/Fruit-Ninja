@@ -7,6 +7,8 @@ public class Difficulty {
     private Level level;
 
     public Level setDifficultyLevel(){
+        if (PlayerSingleton.getInstance().getPaused())
+            level = new PauseDifficulty();
 
         if(PlayerSingleton.getInstance().getCurrentScore()<50){
             level = new Easy();

@@ -1,6 +1,7 @@
 package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
@@ -55,9 +56,14 @@ public class Coconut implements GameObject {
 
     @Override
     public void slice() {
-        PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+        AudioHandling.getInstance().stopSliceSound();
 
-        sliced = true;
+        AudioHandling.getInstance().playSliceSound();
+
+        PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+        PlayerSingleton.getInstance().calculateBestScore(getScoreMultiplier());
+
+        setSliced();
     }
 
     @Override
@@ -89,5 +95,10 @@ public class Coconut implements GameObject {
     @Override
     public int getScoreMultiplier(){
         return 5;
+    }
+
+    @Override
+    public void setSliced() {
+        sliced = true ;
     }
 }

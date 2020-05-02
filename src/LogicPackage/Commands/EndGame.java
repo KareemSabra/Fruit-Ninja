@@ -1,5 +1,6 @@
 package LogicPackage.Commands;
 
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ClassicTimer;
 import ViewPackage.GameOverScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
@@ -22,6 +23,8 @@ public class EndGame implements GameCommands {
 
         GameScreen.getGameScreen().stopGame();
 
+        AudioHandling.getInstance().stopAll();
+        AudioHandling.getInstance().playGameOverSound();
         GameOverScreen gameOverScreen = new GameOverScreen();
         gameOverScreen.GameOver();
     }

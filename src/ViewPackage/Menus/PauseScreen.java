@@ -43,13 +43,13 @@ public class PauseScreen {
             HBox optionsBox = new HBox();
 
             Button homeButton = new Button();
-            Button restartButton = new Button();
             Button resumeButton = new Button();
+            Button restartButton = new Button();
 
             optionsBox.setSpacing(20);
             optionsBox.setAlignment(Pos.CENTER);
 
-            optionsBox.getChildren().addAll(homeButton, restartButton, resumeButton);
+            optionsBox.getChildren().addAll(homeButton, restartButton,resumeButton);
 
             try {
                 ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
@@ -76,6 +76,10 @@ public class PauseScreen {
                 System.out.println("Error");
             }
 
+
+            scene = new Scene(pane2, 400, 200);
+            //Keyboard inputs ----------------------------------------------------------------------------------------------
+            //Escape go to main menu----------------------------------------------------------------------------------------
             homeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -85,7 +89,6 @@ public class PauseScreen {
                     WelcomeScreen.getInstance().prepareScene();
                     optionsStage.close();
                     ClassicTimer.getInstance().resetTimer();
-
                 }
             });
             resumeButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -107,7 +110,6 @@ public class PauseScreen {
                 }
             });
 
-            scene = new Scene(pane2, 400, 200);
             //Keyboard inputs ----------------------------------------------------------------------------------------------
             //Escape go to main menu----------------------------------------------------------------------------------------
             scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
