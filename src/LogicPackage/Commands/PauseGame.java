@@ -3,6 +3,7 @@ package LogicPackage.Commands;
 import LogicPackage.Misc.ClassicTimer;
 import LogicPackage.PlayerSingleton;
 import MainPackage.Main;
+import ViewPackage.GameEngine;
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 import ViewPackage.Menus.PauseScreen;
@@ -15,6 +16,7 @@ public class PauseGame implements GameCommands {
         invoker.setCommands(new SaveGame());
         invoker.execute();
 
+       // GameEngine.pause();
         PlayerSingleton.getInstance().setPaused(true);
         ClassicTimer.getInstance().pauseTimer();
         GameScreen.getGameScreen().stopGame();

@@ -104,20 +104,13 @@ public class WelcomeScreen {
                 public void handle(ActionEvent event) {
 
                     File oldMementos = new File("Memento.xml");
-                    if (oldMementos.exists()){
-                        Invoker invoker = new Invoker();
-                        invoker.setCommands(new LoadNewGame());
-                        invoker.execute();
+                    oldMementos.delete();
 
-                        invoker.setCommands(new ResumeGame());
-                        invoker.execute();
-                    }
-                    else
-                    {
+
                         Invoker invoker = new Invoker();
                     invoker.setCommands(new StartNewGame());
                     invoker.execute();
-                    }
+
                 }
             });
 

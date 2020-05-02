@@ -31,13 +31,23 @@ public class GameEngine {
     Boolean fruitAnimationDone = false;
     int numberBombsDone = 0;
     int numberFruitsDone = 0;
-    static Boolean pause = false;
+     Boolean pause = false;
 
-    public static void pause(){
+    private static List<GameObject> onScreenObjects = new ArrayList<>();
+    private static List<ParallelTransition> transitions = new ArrayList<>();
+
+    public  void pause(){
         pause=true;
+        stopFruits();
     }
-    public void stopFruits(GameObject fruit){
-        fruit.setSliced();
+    public static void stopFruits( ){
+        for (GameObject fruit:
+             onScreenObjects) {fruit.setSliced();
+        }
+        for (ParallelTransition transition : transitions){
+            transition.stop();
+        }
+
     }
 
     int i;
@@ -49,7 +59,8 @@ public class GameEngine {
     }
 
     public Node getGame( ){
-         pause = false;
+        onScreenObjects.clear();
+        // pause = false;
          Boolean flag = false;
          bombAnimationDone = false;
          fruitAnimationDone = false;
@@ -71,8 +82,9 @@ public class GameEngine {
 
             for ( i = 0; i < numberFruitsPerWave; i++) {
                 GameObject fruit = new FruitFactory().getFruitType();
+                onScreenObjects.add(fruit);
                 if (pause) {
-                    stopFruits(fruit);
+                    stopFruits();
                     break;
                 }
                 fruitLocationsperwave.add(fruit.getXlocation());
@@ -96,11 +108,18 @@ public class GameEngine {
                 sequentialTransition.setCycleCount(1);
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
+                transitions.add(parallelTransition);
                 parallelTransition.play();
 
                 TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()/2), fruitLabel);
 
-                sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                if(pause)
+                {
+                    stopFruits();
+                    parallelTransition.stop();
+                }
+
+                parallelTransition.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         if(!pause) {
@@ -109,7 +128,8 @@ public class GameEngine {
                             invoker.setCommands(new LoseLife());
                             invoker.execute();}
                         }else
-                        {stopFruits(fruit);
+                        {stopFruits();
+                        parallelTransition.stop();
                         }
                         numberFruitsDone++;
                         if (numberFruitsDone==numberFruitsPerWave) fruitAnimationDone = true;
