@@ -20,6 +20,7 @@ public class SaveGame implements GameCommands {
 
         originator.setCurrentScore();
         originator.setLives();
+        originator.setBestScore();
         careTaker.add(originator.createMemento());
 
         try {

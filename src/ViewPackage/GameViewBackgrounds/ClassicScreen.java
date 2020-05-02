@@ -30,6 +30,7 @@ public class ClassicScreen {
 
     }
     public static void setBestScoreLabel(){
+        bestScoreLabel.setText("Best: "+ PlayerSingleton.getInstance().getBestScore());
     }
     public static void loseLifeLabel(int livesLeft){
         livesLabel.setText(String.valueOf(livesLeft));
@@ -43,7 +44,7 @@ public class ClassicScreen {
 
 
         currentScoreLabel.setText("Score: "+ PlayerSingleton.getInstance().getCurrentScore());
-        bestScoreLabel.setText("Best: 0");
+        bestScoreLabel.setText("Best: " +PlayerSingleton.getInstance().getBestScore());
         currentScoreLabel.setFont(labelFont);
         currentScoreLabel.setTextFill(Color.WHITE);
         bestScoreLabel.setFont(labelFont);

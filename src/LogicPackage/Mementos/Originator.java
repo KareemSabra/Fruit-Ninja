@@ -8,6 +8,7 @@ public class Originator {
 
     private int currentScore;
     private int lives;
+    private int bestScore;
 
 
     public void setCurrentScore( ){
@@ -15,6 +16,9 @@ public class Originator {
     }
     public void setLives( ){
         this.lives = PlayerSingleton.getInstance().getLivesLeft();
+    }
+    public void setBestScore( ){
+        this.bestScore = PlayerSingleton.getInstance().getBestScore();
     }
 
     public int getCurrentScore(){
@@ -31,6 +35,7 @@ public class Originator {
         Memento memento = new Memento();
         memento.setLives(lives);
         memento.setCurrentScore(currentScore);
+        memento.setBestScore(bestScore);
         memento.setSaveTimer(saveTimer);
         return memento;
     }

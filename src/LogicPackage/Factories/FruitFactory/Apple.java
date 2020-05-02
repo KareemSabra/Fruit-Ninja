@@ -57,6 +57,7 @@ public class Apple implements GameObject {
     public void slice() {
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
         setSliced();
+
     }
 
     @Override

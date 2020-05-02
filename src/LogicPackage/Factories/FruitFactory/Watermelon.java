@@ -64,6 +64,7 @@ public class Watermelon implements GameObject {
     public void slice() {
         sliced = true;
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
+        PlayerSingleton.getInstance().calculateBestScore(getScoreMultiplier());
 
     }
 

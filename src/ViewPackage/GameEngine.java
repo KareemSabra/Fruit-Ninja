@@ -163,22 +163,27 @@ public class GameEngine {
                 }
 
                 Button bombLabel = new Button();
+                System.out.println(bomb.isSliced());
                 bombLabel.setBackground(bomb.getImages());
                 bombLabel.setPrefSize(230, 250);
                 bombLabel.setLayoutX(bombLocation);
                 bombLabel.setLayoutY(600);
 
                 bombLabel.setOnMouseDragEntered(event -> {
-                    bombLabel.setBackground(bomb.getImages());
                     bombLabel.setPrefSize(230, 250);
-                    try {bomb.slice();}
+                    if (!bomb.isSliced())
+                    {
+                        try {bomb.slice();
+                            System.out.println(bomb.isSliced());
+                        bombLabel.setBackground(bomb.getImages());}
                     catch (Exception e){
                         System.out.println("Illegal bomb red");
+                        bombLabel.setBackground(bomb.getImages());
                         Invoker invoker = new Invoker();
                         invoker.setCommands(new EndGame());
                         invoker.execute();
                     }
-                });
+                }});
 
                 TranslateTransition bombTransitionUp = new TranslateTransition(Duration.millis(2000), bombLabel);
                 bombTransitionUp.setByY(-bomb.getMaxHeight());

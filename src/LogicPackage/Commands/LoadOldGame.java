@@ -10,7 +10,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class LoadGame implements GameCommands {
+public class LoadOldGame implements GameCommands {
     @Override
     public void execute() {
         try {
@@ -20,6 +20,7 @@ public class LoadGame implements GameCommands {
 
             PlayerSingleton.getInstance().setLivesLeft(careTaker.get(0).getLives());
             PlayerSingleton.getInstance().setCurrentScore(careTaker.get(0).getCurrentScore());
+            PlayerSingleton.getInstance().setBestScore(careTaker.get(0).getBestScore());
 
             ClassicTimer.getInstance().setMillis(careTaker.get(0).getSaveTimer().getMillis());
             ClassicTimer.getInstance().setSecs(careTaker.get(0).getSaveTimer().getSecs());

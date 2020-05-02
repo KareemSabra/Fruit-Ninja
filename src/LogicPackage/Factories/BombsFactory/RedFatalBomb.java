@@ -1,13 +1,15 @@
 package LogicPackage.Factories.BombsFactory;
 
+import LogicPackage.Commands.EndGame;
+import LogicPackage.Commands.Invoker;
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
+import MainPackage.Main;
 import javafx.scene.layout.*;
 
-public class LuckyBlastBomb implements GameObject {
+public class RedFatalBomb implements GameObject {
+
     boolean sliced = false;
-
-
 
     @Override
     public String getObjectType() {
@@ -50,8 +52,12 @@ public class LuckyBlastBomb implements GameObject {
 
     @Override
     public void slice() {
-        System.out.println("Lucky Bomb sliced");
+        System.out.println("Red Boomb Sliced");
+
         sliced = true;
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new EndGame());
+        invoker.execute();
 
     }
 
@@ -63,25 +69,24 @@ public class LuckyBlastBomb implements GameObject {
     @Override
     public Background getImages() {
         Background returnBackground = null;
-        try{
 
-        BackgroundImage appleImage = new BackgroundImage(new ImportImage().getImage("LuckyBomb.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+     try {
+         BackgroundImage redBombImage = new BackgroundImage(new ImportImage().getImage("FatalBomb.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
-        BackgroundImage appleSlicedImage = new BackgroundImage(new ImportImage().getImage("LuckyBombSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+         BackgroundImage redBombSlicedImage = new BackgroundImage(new ImportImage().getImage("FatalBombSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+         if(isSliced() == false)
+         {
+             returnBackground = new Background(redBombImage);
+         }
 
-        if(isSliced() == false)
-        {
-            returnBackground = new Background(appleImage);
-        }
-
-        if(isSliced() == true)
-        {
-            returnBackground = new Background(appleSlicedImage);
-        }}
-        catch (Exception e)
-        {
-            System.out.println("Bomb image error ");
-        }
+         if(isSliced() == true)
+         {
+             returnBackground = new Background(redBombSlicedImage);
+         }
+     }
+     catch (Exception e) {
+         System.out.println("Boomb image error");
+     }
 
         return returnBackground;
     }
