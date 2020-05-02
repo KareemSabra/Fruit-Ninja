@@ -1,5 +1,7 @@
 package LogicPackage.Factories.BombsFactory;
 
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.LoseLife;
 import LogicPackage.GameObject;
 import LogicPackage.Misc.ImportImage;
 import javafx.scene.layout.*;
@@ -50,8 +52,12 @@ public class BlueDangerousBomb implements GameObject {
 
     @Override
     public void slice() {
-        System.out.println("Lucky Bomb sliced");
+        System.out.println("Dangerous Bomb sliced");
         sliced = true;
+
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new LoseLife());
+        invoker.execute();
 
     }
 
@@ -65,18 +71,18 @@ public class BlueDangerousBomb implements GameObject {
         Background returnBackground = null;
         try{
 
-        BackgroundImage appleImage = new BackgroundImage(new ImportImage().getImage("DangerousBomb.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage dangerousBombImage = new BackgroundImage(new ImportImage().getImage("DangerousBomb.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
-        BackgroundImage appleSlicedImage = new BackgroundImage(new ImportImage().getImage("DangerousBombSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage dangerousBombSlicedImage = new BackgroundImage(new ImportImage().getImage("DangerousBombSliced.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
         if(isSliced() == false)
         {
-            returnBackground = new Background(appleImage);
+            returnBackground = new Background(dangerousBombImage);
         }
 
         if(isSliced() == true)
         {
-            returnBackground = new Background(appleSlicedImage);
+            returnBackground = new Background(dangerousBombSlicedImage);
         }}
         catch (Exception e)
         {

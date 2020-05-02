@@ -17,6 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -89,8 +91,12 @@ public class WelcomeScreen {
                 settingsButton.setBackground(newSettings);
                 settingsButton.setPrefSize(28, 32);
 
-                //Image bladeCursor = new ImportImage().getImage("Blade.png");
                 //scene.setCursor(new ImageCursor(new ImportImage().getImage("Blade.png")));
+
+                //Media welcomeAudio = new Media("GameWelcome.wav");
+                //MediaPlayer mediaPlayer = new MediaPlayer(welcomeAudio);
+                //mediaPlayer.setAutoPlay(true);
+
 
 
             } catch (Exception e) {

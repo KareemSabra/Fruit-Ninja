@@ -2,6 +2,8 @@ package LogicPackage;
 
 import ViewPackage.GameViewBackgrounds.ClassicScreen;
 
+import static java.lang.Math.max;
+
 
 public class PlayerSingleton {
     private static PlayerSingleton instance;
@@ -48,6 +50,16 @@ public class PlayerSingleton {
         currentScore +=Multiplier;
         ClassicScreen.setCurrentScoreLabel();
     }
+
+    public  void calculateBestScore(int Multiplier){
+
+        if(bestScore==currentScore)
+        {bestScore +=Multiplier;}
+
+        bestScore = max(bestScore, currentScore);
+        ClassicScreen.setBestScoreLabel();
+    }
+
     public void loseLife(){
         System.out.println("Life lost");
         livesLeft--;
