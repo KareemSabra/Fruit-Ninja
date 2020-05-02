@@ -1,7 +1,7 @@
 package ViewPackage.Menus;
 
 
-import LogicPackage.Commands.HoldGame;
+import LogicPackage.Commands.SaveGame;
 import LogicPackage.Commands.Invoker;
 import LogicPackage.Misc.ImportImage;
 import ViewPackage.GameViewBackgrounds.GameScreen;
@@ -110,7 +110,7 @@ public class GameMode {
                 public void handle(KeyEvent event) {
                     if (event.getCode().equals(KeyCode.ESCAPE)) {
                         Invoker invoker = new Invoker();
-                        invoker.setCommands(new HoldGame());
+                        invoker.setCommands(new SaveGame());
                         invoker.execute();
                     }
                 }

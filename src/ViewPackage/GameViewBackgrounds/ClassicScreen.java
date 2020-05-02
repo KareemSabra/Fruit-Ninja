@@ -1,7 +1,10 @@
 package ViewPackage.GameViewBackgrounds;
 
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.PauseGame;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.ClassicTimer;
+import LogicPackage.PlayerSingleton;
 import ViewPackage.Menus.PauseScreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,12 +25,11 @@ public class ClassicScreen {
     static Label livesLabel = new Label();
 
 
-    public static void setCurrentScoreLabel(String currentScore){
-       currentScoreLabel.setText("Score: "+ currentScore);
-       setBestScoreLabel(currentScore);
+    public static void setCurrentScoreLabel( ){
+       currentScoreLabel.setText("Score: "+ PlayerSingleton.getInstance().getCurrentScore());
+
     }
-    public static void setBestScoreLabel(String bestScore){
-        bestScoreLabel.setText("Score: "+bestScore);
+    public static void setBestScoreLabel(){
     }
     public static void loseLifeLabel(int livesLeft){
         livesLabel.setText(String.valueOf(livesLeft));
@@ -40,13 +42,13 @@ public class ClassicScreen {
         HBox allBox = new HBox();
 
 
-        currentScoreLabel.setText("Score: 0");
+        currentScoreLabel.setText("Score: "+ PlayerSingleton.getInstance().getCurrentScore());
         bestScoreLabel.setText("Best: 0");
         currentScoreLabel.setFont(labelFont);
         currentScoreLabel.setTextFill(Color.WHITE);
         bestScoreLabel.setFont(labelFont);
         bestScoreLabel.setTextFill(Color.WHITE);
-        livesLabel.setText("3");
+        livesLabel.setText(String.valueOf(PlayerSingleton.getInstance().getLivesLeft()));
         scoreBox.setSpacing(10);
         scoreBox.setAlignment(Pos.TOP_LEFT);
         scoreBox.getChildren().addAll(currentScoreLabel,bestScoreLabel);
@@ -65,8 +67,9 @@ public class ClassicScreen {
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PauseScreen.getInstance().prepareScene(stage);
-                ClassicTimer.getInstance().pauseTimer();
+                Invoker invoker = new Invoker();
+                invoker.setCommands(new PauseGame());
+                invoker.execute();
             }
         });
 

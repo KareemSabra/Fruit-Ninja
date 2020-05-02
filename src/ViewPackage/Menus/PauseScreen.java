@@ -1,7 +1,9 @@
 package ViewPackage.Menus;
 
-import LogicPackage.Commands.HoldGame;
+import LogicPackage.Commands.ResumeGame;
+import LogicPackage.Commands.SaveGame;
 import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.StartNewGame;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.ClassicTimer;
 import javafx.event.ActionEvent;
@@ -22,9 +24,6 @@ public class PauseScreen {
     Stage optionsStage = new Stage();
 
 
-
-
-
     public static PauseScreen getInstance(){
         if (instance == null)
             instance = new PauseScreen();
@@ -32,9 +31,6 @@ public class PauseScreen {
     }
     private PauseScreen() {
     }
-
-
-
 
     public void prepareScene(Stage stage)
     {
@@ -84,12 +80,30 @@ public class PauseScreen {
                 @Override
                 public void handle(ActionEvent event) {
                     Invoker invoker = new Invoker();
-                    invoker.setCommands(new HoldGame());
+                    invoker.setCommands(new SaveGame());
                     invoker.execute();
                     WelcomeScreen.getInstance().prepareScene();
                     optionsStage.close();
                     ClassicTimer.getInstance().resetTimer();
 
+                }
+            });
+            resumeButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    optionsStage.close();
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new ResumeGame());
+                    invoker.execute();
+                }
+            });
+            restartButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    optionsStage.close();
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new StartNewGame());
+                    invoker.execute();
                 }
             });
 
@@ -102,7 +116,7 @@ public class PauseScreen {
                     if (event.getCode() == KeyCode.ESCAPE) {
                         //TODO: Confirm going back message
                         Invoker invoker = new Invoker();
-                        invoker.setCommands(new HoldGame());
+                        invoker.setCommands(new SaveGame());
                         invoker.execute();
                         ClassicTimer.getInstance().resetTimer();
                         optionsStage.close();

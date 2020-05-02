@@ -19,6 +19,9 @@ public class Difficulty {
         else if (PlayerSingleton.getInstance().getCurrentScore()<150){
             level = new Hard();
         }
+        else if (PlayerSingleton.getInstance().getCurrentScore()>  150){
+            level = new Hard();
+        }
         return level;
     }
 }

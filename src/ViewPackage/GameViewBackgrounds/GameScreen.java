@@ -1,5 +1,7 @@
 package ViewPackage.GameViewBackgrounds;
 
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.PauseGame;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.Misc.ClassicTimer;
 import ViewPackage.GameEngine;
@@ -16,27 +18,28 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public  class GameScreen {
+    private static GameScreen gameScreen = null;
+    public static GameScreen getGameScreen(){
+        return gameScreen;
+    }
+
     VBox mainBox = new VBox();
     HBox overlayBox ;
     Stage stage;
     Scene scene ;
-    static Timeline timeline;
     static Boolean gameRunning = true;
-    HBox gameBox = new HBox();
-    GameEngine gameEngine = new GameEngine();
+     HBox gameBox = new HBox();
+    GameEngine gameEngine;
+
+    public void clearGameBox(){
+        GameEngine.pause();
+        gameBox.getChildren().clear();
+    }
 
 
-    public static void stopGame(){ gameRunning=false;}
+    public  void stopGame(){ gameRunning=false;}
 
-    public static void pauseTimeline(){
-        timeline.pause();
-    }
-    public static void startTimeline(){
-        timeline.playFromStart();
-    }
-    public static void stopTimeline(){
-        timeline.stop();
-    }
+
 
     public GameScreen(String mode , Stage stage) {
         if (mode.equalsIgnoreCase("Arcade"))
@@ -44,10 +47,12 @@ public  class GameScreen {
         else if (mode.equalsIgnoreCase("Classic"))
             overlayBox = new ClassicScreen().classicOverlay(stage);
         this.stage = stage;
+        gameScreen = GameScreen.this;
         prepareScreen();
     }
 
     public void prepareScreen(){
+        gameRunning = true;
 
        mainBox.setPrefSize(1280,720);
         try{
@@ -61,19 +66,12 @@ public  class GameScreen {
 
         gameBox.setMinSize(1280,650);
         gameBox.setOnDragDetected(event -> gameBox.startFullDrag());
+        gameEngine = new GameEngine();
         gameEngine.setGameScreen(GameScreen.this);
 
         gameBox.getChildren().add(gameEngine.getGame());
 
-        timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                getWave();
-            }
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.setAutoReverse(false);
-       // timeline.play();
+
 
         mainBox.getChildren().add(overlayBox);
         mainBox.getChildren().add(gameBox);
@@ -83,8 +81,9 @@ public  class GameScreen {
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.ESCAPE))
                 {
-                    PauseScreen.getInstance().prepareScene(stage);
-                    ClassicTimer.getInstance().pauseTimer();
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new PauseGame());
+                    invoker.execute();
                 }
             }
         });

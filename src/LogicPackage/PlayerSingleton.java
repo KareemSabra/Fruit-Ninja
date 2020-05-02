@@ -20,19 +20,26 @@ public class PlayerSingleton {
 
     }
 
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
+    }
+
     public static PlayerSingleton getInstance() {
         if (instance == null)
             instance = new PlayerSingleton();
         return instance;
     }
     public void destruct(){
-        instance = null;
+
+        currentScore = 0;
+        livesLeft = 3;
+
     }
 
 
     public  void calculateCurrentScore(int Multiplier){
         currentScore +=Multiplier;
-        ClassicScreen.setCurrentScoreLabel(String.valueOf(currentScore));
+        ClassicScreen.setCurrentScoreLabel();
     }
     public void loseLife(){
         System.out.println("Life lost");

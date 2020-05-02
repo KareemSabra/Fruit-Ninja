@@ -7,10 +7,9 @@ import ViewPackage.GameViewBackgrounds.GameScreen;
 public class EndGame implements GameCommands {
     @Override
     public void execute() {
-        GameScreen.stopTimeline();
         ClassicTimer.getInstance().resetTimer();
 
-        GameScreen.stopGame();
+        GameScreen.getGameScreen().stopGame();
 
         GameOverScreen gameOverScreen = new GameOverScreen();
         gameOverScreen.GameOver();
