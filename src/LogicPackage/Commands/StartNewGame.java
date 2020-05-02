@@ -3,7 +3,6 @@ package LogicPackage.Commands;
 import LogicPackage.Misc.ClassicTimer;
 import LogicPackage.PlayerSingleton;
 import MainPackage.Main;
-import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 
 public class StartNewGame implements GameCommands {

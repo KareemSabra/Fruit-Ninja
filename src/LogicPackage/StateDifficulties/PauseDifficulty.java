@@ -13,6 +13,6 @@ public class PauseDifficulty implements Level {
 
     @Override
     public int getSpeed() {
-        return 10;
+        return 1;
     }
 }
