@@ -27,8 +27,6 @@ public class SaveGame implements GameCommands {
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.marshal(careTaker, new File("Memento.xml"));
 
-
-            //WelcomeScreen.getInstance().prepareScene();
         } catch (JAXBException e) {
             e.printStackTrace();
         }

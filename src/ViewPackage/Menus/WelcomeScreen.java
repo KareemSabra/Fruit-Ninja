@@ -1,5 +1,9 @@
 package ViewPackage.Menus;
 
+import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.LoadGame;
+import LogicPackage.Commands.ResumeGame;
+import LogicPackage.Commands.StartNewGame;
 import LogicPackage.Misc.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -13,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 
 public class WelcomeScreen {
 
@@ -88,7 +94,15 @@ public class WelcomeScreen {
                 continueButton.setText("Continue Game");
             }
 
-            newGameButton.setOnMouseDragEntered(event ->  GameMode.getInstance().prepareScene(stage));
+
+            newGameButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new StartNewGame());
+                    invoker.execute();
+                }
+            });
 
             settingsButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -96,7 +110,19 @@ public class WelcomeScreen {
                     SettingsScreen.getInstance().getsSettingsScreen(settingsStage);
                 }
             });
-            continueButton.setOnMouseDragEntered(event -> GameMode.getInstance().prepareScene(stage));
+            continueButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    File oldMementos = new File("Memento.xml");
+                    if (oldMementos.exists()){
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new LoadGame());
+                    invoker.execute();
+
+                    invoker.setCommands(new ResumeGame());
+                    invoker.execute();}
+                }
+            });
 
             HBox settingsBox = new HBox(settingsButton);
             settingsBox.setAlignment(Pos.BOTTOM_RIGHT);

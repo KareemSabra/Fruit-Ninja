@@ -15,6 +15,31 @@ public class ClassicTimer {
     private static Timeline timeline;
     private Text text;
     private String time;
+
+    public int getMins() {
+        return mins;
+    }
+
+    public void setMins(int mins) {
+        this.mins = mins;
+    }
+
+    public int getSecs() {
+        return secs;
+    }
+
+    public void setSecs(int secs) {
+        this.secs = secs;
+    }
+
+    public int getMillis() {
+        return millis;
+    }
+
+    public void setMillis(int millis) {
+        this.millis = millis;
+    }
+
     private int mins = 0, secs = 0, millis = 0;
     private Label timerLabel = new Label();
     boolean sos = true;

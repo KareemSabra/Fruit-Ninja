@@ -115,14 +115,17 @@ public class PauseScreen {
                 public void handle(KeyEvent event) {
                     if (event.getCode() == KeyCode.ESCAPE) {
                         //TODO: Confirm going back message
+                        optionsStage.close();
                         Invoker invoker = new Invoker();
                         invoker.setCommands(new SaveGame());
                         invoker.execute();
                         ClassicTimer.getInstance().resetTimer();
-                        optionsStage.close();
+                        WelcomeScreen.getInstance().prepareScene();
                     } else if (event.getCode() == KeyCode.ENTER) {
                         optionsStage.close();
-                        ClassicTimer.getInstance().playTimer();
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new ResumeGame());
+                        invoker.execute();
                     }
                 }
             });

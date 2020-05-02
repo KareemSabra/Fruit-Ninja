@@ -36,6 +36,13 @@ public class PlayerSingleton {
 
     }
 
+    public void setCurrentScore(int currentScore) {
+        this.currentScore = currentScore;
+    }
+
+    public void setBestScore(int bestScore) {
+        this.bestScore = bestScore;
+    }
 
     public  void calculateCurrentScore(int Multiplier){
         currentScore +=Multiplier;

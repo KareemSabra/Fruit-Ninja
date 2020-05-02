@@ -1,5 +1,7 @@
 package LogicPackage.Mementos;
 
+import LogicPackage.Misc.SaveTimer;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,6 +15,9 @@ public class Memento {
     @XmlElement(name = "lives")
     private int lives;
 
+    @XmlElement(name = "Timer")
+    private SaveTimer saveTimer;
+
     public void setCurrentScore(int currentScore) {
         this.currentScore = currentScore;
     }
@@ -21,9 +26,18 @@ public class Memento {
         this.lives = lives;
     }
 
+    public SaveTimer getSaveTimer() {
+        return saveTimer;
+    }
+
+    public void setSaveTimer(SaveTimer saveTimer) {
+        this.saveTimer = saveTimer;
+    }
+
     public int getCurrentScore(){
         return currentScore;
     }
     public int getLives(){return lives;}
+
 
 }
