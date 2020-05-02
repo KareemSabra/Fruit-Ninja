@@ -56,7 +56,7 @@ public class Apple implements GameObject {
     @Override
     public void slice() {
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
-        sliced = true;
+        setSliced();
     }
 
     @Override
@@ -89,4 +89,10 @@ public class Apple implements GameObject {
     public int getScoreMultiplier(){
         return 1;
     }
+
+    @Override
+    public void setSliced() {
+        sliced = true ;
+    }
+
 }

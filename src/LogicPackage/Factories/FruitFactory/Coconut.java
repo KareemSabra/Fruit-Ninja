@@ -57,7 +57,7 @@ public class Coconut implements GameObject {
     public void slice() {
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
 
-        sliced = true;
+        setSliced();
     }
 
     @Override
@@ -89,5 +89,10 @@ public class Coconut implements GameObject {
     @Override
     public int getScoreMultiplier(){
         return 5;
+    }
+
+    @Override
+    public void setSliced() {
+        sliced = true ;
     }
 }

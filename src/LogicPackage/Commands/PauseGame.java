@@ -15,6 +15,7 @@ public class PauseGame implements GameCommands {
         invoker.setCommands(new SaveGame());
         invoker.execute();
 
+        PlayerSingleton.getInstance().setPaused(true);
         ClassicTimer.getInstance().pauseTimer();
         GameScreen.getGameScreen().stopGame();
         GameScreen.getGameScreen().clearGameBox();

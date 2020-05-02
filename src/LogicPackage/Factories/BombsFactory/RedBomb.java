@@ -95,4 +95,8 @@ public class RedBomb implements GameObject {
     public int getScoreMultiplier(){
         return 0;
     }
+    @Override
+    public void setSliced() {
+        sliced = true ;
+    }
 }

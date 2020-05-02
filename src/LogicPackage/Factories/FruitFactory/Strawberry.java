@@ -90,4 +90,8 @@ public class Strawberry implements GameObject {
     public int getScoreMultiplier(){
         return 1;
     }
+    @Override
+    public void setSliced() {
+        sliced = true ;
+    }
 }

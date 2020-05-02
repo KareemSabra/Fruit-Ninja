@@ -32,8 +32,12 @@ public class GameEngine {
     int numberBombsDone = 0;
     int numberFruitsDone = 0;
     static Boolean pause = false;
+
     public static void pause(){
         pause=true;
+    }
+    public void stopFruits(GameObject fruit){
+        fruit.setSliced();
     }
 
     int i;
@@ -66,8 +70,11 @@ public class GameEngine {
         List<Integer> fruitLocationsperwave = new ArrayList<>();
 
             for ( i = 0; i < numberFruitsPerWave; i++) {
-
                 GameObject fruit = new FruitFactory().getFruitType();
+                if (pause) {
+                    stopFruits(fruit);
+                    break;
+                }
                 fruitLocationsperwave.add(fruit.getXlocation());
 
                 Button fruitLabel = new Button();
@@ -101,6 +108,8 @@ public class GameEngine {
                             Invoker invoker = new Invoker();
                             invoker.setCommands(new LoseLife());
                             invoker.execute();}
+                        }else
+                        {stopFruits(fruit);
                         }
                         numberFruitsDone++;
                         if (numberFruitsDone==numberFruitsPerWave) fruitAnimationDone = true;

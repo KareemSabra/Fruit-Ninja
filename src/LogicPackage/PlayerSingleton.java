@@ -8,9 +8,15 @@ public class PlayerSingleton {
     private  int currentScore = 0;
     private  int bestScore = 0;
     private  int livesLeft = 3 ;
+    private Boolean paused = false;
 
+    public Boolean getPaused() {
+        return paused;
+    }
 
-
+    public void setPaused(Boolean paused) {
+        this.paused = paused;
+    }
 
     public int getLivesLeft() {
         return livesLeft;

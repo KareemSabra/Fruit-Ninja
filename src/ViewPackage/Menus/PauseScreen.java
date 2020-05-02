@@ -76,6 +76,10 @@ public class PauseScreen {
                 System.out.println("Error");
             }
 
+
+            scene = new Scene(pane2, 400, 200);
+            //Keyboard inputs ----------------------------------------------------------------------------------------------
+            //Escape go to main menu----------------------------------------------------------------------------------------
             homeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -85,7 +89,6 @@ public class PauseScreen {
                     WelcomeScreen.getInstance().prepareScene();
                     optionsStage.close();
                     ClassicTimer.getInstance().resetTimer();
-
                 }
             });
             resumeButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -106,10 +109,6 @@ public class PauseScreen {
                     invoker.execute();
                 }
             });
-
-            scene = new Scene(pane2, 400, 200);
-            //Keyboard inputs ----------------------------------------------------------------------------------------------
-            //Escape go to main menu----------------------------------------------------------------------------------------
             scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {

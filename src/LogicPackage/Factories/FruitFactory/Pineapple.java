@@ -96,5 +96,9 @@ public class Pineapple implements GameObject {
     public int getScoreMultiplier(){
         return 10;
     }
+    @Override
+    public void setSliced() {
+        sliced = true ;
+    }
 
 }
