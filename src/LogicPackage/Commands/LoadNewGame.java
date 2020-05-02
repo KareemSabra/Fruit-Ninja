@@ -18,6 +18,7 @@ public class LoadNewGame implements GameCommands {
             CareTaker careTaker = (CareTaker) unmarshaller.unmarshal(new File("Memento.xml"));
 
             PlayerSingleton.getInstance().setBestScore(careTaker.get(0).getBestScore());
+            PlayerSingleton.getInstance().setCurrentScore(0);
 
         } catch (JAXBException e) {
             System.out.println("No previous saved file");

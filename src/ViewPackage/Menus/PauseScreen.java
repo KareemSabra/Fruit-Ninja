@@ -43,13 +43,12 @@ public class PauseScreen {
             HBox optionsBox = new HBox();
 
             Button homeButton = new Button();
-            Button restartButton = new Button();
             Button resumeButton = new Button();
 
             optionsBox.setSpacing(20);
             optionsBox.setAlignment(Pos.CENTER);
 
-            optionsBox.getChildren().addAll(homeButton, restartButton, resumeButton);
+            optionsBox.getChildren().addAll(homeButton, resumeButton);
 
             try {
                 ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
@@ -62,11 +61,6 @@ public class PauseScreen {
                 Background newHome = new Background(newHomeImage);
                 homeButton.setBackground(newHome);
                 homeButton.setPrefSize(70, 70);
-
-                BackgroundImage newRestartImage = new BackgroundImage(new ImportImage().getImage("restartPic.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-                Background newRestart = new Background(newRestartImage);
-                restartButton.setBackground(newRestart);
-                restartButton.setPrefSize(70, 70);
 
                 BackgroundImage newResumeImage = new BackgroundImage(new ImportImage().getImage("playPic.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
                 Background newResume = new Background(newResumeImage);
@@ -94,15 +88,6 @@ public class PauseScreen {
                     optionsStage.close();
                     Invoker invoker = new Invoker();
                     invoker.setCommands(new ResumeGame());
-                    invoker.execute();
-                }
-            });
-            restartButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    optionsStage.close();
-                    Invoker invoker = new Invoker();
-                    invoker.setCommands(new StartNewGame());
                     invoker.execute();
                 }
             });
