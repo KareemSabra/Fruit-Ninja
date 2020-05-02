@@ -1,6 +1,7 @@
 package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
@@ -55,6 +56,10 @@ public class Lemon implements GameObject {
 
     @Override
     public void slice() {
+        AudioHandling.getInstance().stopSliceSound();
+
+        AudioHandling.getInstance().playSliceSound();
+
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
         PlayerSingleton.getInstance().calculateBestScore(getScoreMultiplier());
 

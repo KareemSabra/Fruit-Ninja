@@ -3,6 +3,7 @@ package LogicPackage.Factories.BombsFactory;
 import LogicPackage.Commands.EndGame;
 import LogicPackage.Commands.Invoker;
 import LogicPackage.GameObject;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import MainPackage.Main;
 import javafx.scene.layout.*;
@@ -54,6 +55,7 @@ public class RedFatalBomb implements GameObject {
     public void slice() {
         System.out.println("Red Boomb Sliced");
 
+        AudioHandling.getInstance().playExplodingSound();
         sliced = true;
         Invoker invoker = new Invoker();
         invoker.setCommands(new EndGame());

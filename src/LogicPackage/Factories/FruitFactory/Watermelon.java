@@ -1,6 +1,7 @@
 package LogicPackage.Factories.FruitFactory;
 
 import LogicPackage.GameObject;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import LogicPackage.PlayerSingleton;
 import javafx.scene.layout.*;
@@ -62,6 +63,8 @@ public class Watermelon implements GameObject {
 
     @Override
     public void slice() {
+        AudioHandling.getInstance().stopSliceSound();
+        AudioHandling.getInstance().playSliceSound();
         sliced = true;
         PlayerSingleton.getInstance().calculateCurrentScore(getScoreMultiplier());
         PlayerSingleton.getInstance().calculateBestScore(getScoreMultiplier());

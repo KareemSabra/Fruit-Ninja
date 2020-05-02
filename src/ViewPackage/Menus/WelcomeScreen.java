@@ -1,6 +1,7 @@
 package ViewPackage.Menus;
 
 import LogicPackage.Commands.*;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -38,6 +39,10 @@ public class WelcomeScreen {
     }
 
     public  void prepareScene() {
+
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new PlayThemeMusic());
+        invoker.execute();
 
        if (flag) {
            flag = false;
