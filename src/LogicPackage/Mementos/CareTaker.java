@@ -18,6 +18,7 @@ public class CareTaker {
 
 
     public void add(Memento state){
+        mementoList.clear();
         mementoList.add(state);
     }
 

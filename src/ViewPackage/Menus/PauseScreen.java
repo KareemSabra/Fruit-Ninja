@@ -130,7 +130,6 @@ public class PauseScreen {
                 }
             });
             //--------------------------------------------------------------------------------------------------------------
-
         }
         optionsStage.setScene(scene);
         optionsStage.show();
