@@ -1,24 +1,17 @@
 package ViewPackage.Menus;
 
-import LogicPackage.Commands.Invoker;
-import LogicPackage.Commands.LoadGame;
-import LogicPackage.Commands.ResumeGame;
-import LogicPackage.Commands.StartNewGame;
+import LogicPackage.Commands.*;
 import LogicPackage.Misc.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -109,9 +102,22 @@ public class WelcomeScreen {
             newGameButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    Invoker invoker = new Invoker();
+
+                    File oldMementos = new File("Memento.xml");
+                    if (oldMementos.exists()){
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new LoadNewGame());
+                        invoker.execute();
+
+                        invoker.setCommands(new ResumeGame());
+                        invoker.execute();
+                    }
+                    else
+                    {
+                        Invoker invoker = new Invoker();
                     invoker.setCommands(new StartNewGame());
                     invoker.execute();
+                    }
                 }
             });
 
@@ -127,7 +133,7 @@ public class WelcomeScreen {
                     File oldMementos = new File("Memento.xml");
                     if (oldMementos.exists()){
                     Invoker invoker = new Invoker();
-                    invoker.setCommands(new LoadGame());
+                    invoker.setCommands(new LoadOldGame());
                     invoker.execute();
 
                     invoker.setCommands(new ResumeGame());
