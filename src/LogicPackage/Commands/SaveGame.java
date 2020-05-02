@@ -15,6 +15,7 @@ import java.util.jar.JarException;
 public class SaveGame implements GameCommands {
     @Override
     public void execute() {
+        System.out.println("Saving...");
         Originator originator = new Originator();
         CareTaker careTaker = new CareTaker();
 

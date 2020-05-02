@@ -34,6 +34,9 @@ public class PauseScreen {
 
     public void prepareScene(Stage stage)
     {
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new SaveGame());
+        invoker.execute();
         if(flag) {
             flag = false;
 

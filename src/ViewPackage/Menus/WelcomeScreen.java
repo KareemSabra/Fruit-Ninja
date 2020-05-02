@@ -109,10 +109,10 @@ public class WelcomeScreen {
                 public void handle(ActionEvent event) {
 
                     File oldMementos = new File("Memento.xml");
-                    oldMementos.delete();
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new LoadNewGame());
+                    invoker.execute();
 
-
-                        Invoker invoker = new Invoker();
                     invoker.setCommands(new StartNewGame());
                     invoker.execute();
 
