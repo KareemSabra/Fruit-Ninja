@@ -36,6 +36,11 @@ public class GameEngine {
     private static List<GameObject> onScreenObjects = new ArrayList<>();
     private static List<ParallelTransition> transitions = new ArrayList<>();
 
+    public GameEngine() {
+        onScreenObjects.clear();
+        transitions.clear();
+    }
+
     public  void pause(){
         pause=true;
         stopFruits();
