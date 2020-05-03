@@ -3,16 +3,11 @@ package ViewPackage;
 import LogicPackage.Commands.EndGame;
 import LogicPackage.Commands.Invoker;
 import LogicPackage.Commands.LoseLife;
-import LogicPackage.DifficutlyController;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
-import LogicPackage.PlayerSingleton;
 
 import LogicPackage.StateDifficulties.Difficulty;
-import LogicPackage.StateDifficulties.Level;
-import ViewPackage.GameViewBackgrounds.ArcadeScreen;
-import ViewPackage.GameViewBackgrounds.ClassicScreen;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -65,7 +60,6 @@ public class GameEngine {
 
     public Node getGame( ){
         onScreenObjects.clear();
-        // pause = false;
          Boolean flag = false;
          bombAnimationDone = false;
          fruitAnimationDone = false;
@@ -188,7 +182,6 @@ public class GameEngine {
                 }
 
                 Button bombLabel = new Button();
-                System.out.println(bomb.isSliced());
                 bombLabel.setBackground(bomb.getImages());
                 bombLabel.setPrefSize(230, 250);
                 bombLabel.setLayoutX(bombLocation);
@@ -199,10 +192,8 @@ public class GameEngine {
                     if (!bomb.isSliced())
                     {
                         try {bomb.slice();
-                            System.out.println(bomb.isSliced());
                         bombLabel.setBackground(bomb.getImages());}
                     catch (Exception e){
-                        System.out.println("Illegal bomb red");
                         bombLabel.setBackground(bomb.getImages());
                         Invoker invoker = new Invoker();
                         invoker.setCommands(new EndGame());
@@ -240,8 +231,5 @@ public class GameEngine {
             }
             if(pause) return null;
         return pane;
-    }
-    public void Escape(){
-
     }
 }

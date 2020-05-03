@@ -53,7 +53,6 @@ public class RedFatalBomb implements GameObject {
 
     @Override
     public void slice() {
-        System.out.println("Red Boomb Sliced");
 
         AudioHandling.getInstance().playExplodingSound();
         sliced = true;

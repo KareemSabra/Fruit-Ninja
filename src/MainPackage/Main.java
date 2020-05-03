@@ -30,15 +30,10 @@ public class Main extends Application {
         welcomeScreen.prepareScene();
     }
 
-    public static void main(String[] args) throws JAXBException {
+    public static void main(String[] args){
 
         launch(args);
 
-        //CareTaker careTaker = new CareTaker();
-
-        //JAXBContext jaxbContext = JAXBContext.newInstance(CareTaker.class);
-        //Marshaller marshaller = jaxbContext.createMarshaller();
-        //marshaller.marshal(careTaker,new File("savedGame.xml"));
     }
 
 

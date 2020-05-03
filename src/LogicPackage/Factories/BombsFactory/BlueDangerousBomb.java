@@ -52,7 +52,6 @@ public class BlueDangerousBomb implements GameObject {
 
     @Override
     public void slice() {
-        System.out.println("Dangerous Bomb sliced");
         sliced = true;
 
         Invoker invoker = new Invoker();

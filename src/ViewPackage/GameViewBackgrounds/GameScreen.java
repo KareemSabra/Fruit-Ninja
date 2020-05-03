@@ -42,9 +42,7 @@ public  class GameScreen {
 
 
     public GameScreen(String mode , Stage stage) {
-        if (mode.equalsIgnoreCase("Arcade"))
-            overlayBox = new ArcadeScreen().ArcadeOverlay(stage);
-        else if (mode.equalsIgnoreCase("Classic"))
+        if (mode.equalsIgnoreCase("Classic"))
             overlayBox = new ClassicScreen().classicOverlay(stage);
         this.stage = stage;
         gameScreen = GameScreen.this;

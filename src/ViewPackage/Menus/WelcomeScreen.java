@@ -46,7 +46,6 @@ public class WelcomeScreen {
 
        if (flag) {
            flag = false;
-            Stage settingsStage = new Stage();
 
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(1280, 720);
@@ -89,14 +88,6 @@ public class WelcomeScreen {
                 settingsButton.setBackground(newSettings);
                 settingsButton.setPrefSize(28, 32);
 
-                //scene.setCursor(new ImageCursor(new ImportImage().getImage("Blade.png")));
-
-                //Media welcomeAudio = new Media("GameWelcome.wav");
-                //MediaPlayer mediaPlayer = new MediaPlayer(welcomeAudio);
-                //mediaPlayer.setAutoPlay(true);
-
-
-
             } catch (Exception e) {
                 System.out.println("Images error");
                 newGameButton.setText("New Game");
@@ -109,22 +100,22 @@ public class WelcomeScreen {
                 public void handle(ActionEvent event) {
 
                     File oldMementos = new File("Memento.xml");
+                    if (oldMementos.exists()){
                     Invoker invoker = new Invoker();
                     invoker.setCommands(new LoadNewGame());
                     invoker.execute();
 
                     invoker.setCommands(new StartNewGame());
-                    invoker.execute();
+                    invoker.execute();}
+                    else{
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new StartNewGame());
+                        invoker.execute();
+                    }
 
                 }
             });
 
-            settingsButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    SettingsScreen.getInstance().getsSettingsScreen(settingsStage);
-                }
-            });
             continueButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -139,29 +130,17 @@ public class WelcomeScreen {
                 }
             });
 
-            HBox settingsBox = new HBox(settingsButton);
-            settingsBox.setAlignment(Pos.BOTTOM_RIGHT);
 
            //Transparent Label to adjust spacing ----------------------------------------------------------------------
            Label transparentLabel = new Label();
            transparentLabel.setPrefWidth(100);
            //----------------------------------------------------------------------------------------------------------
-           HBox buttonsBox = new HBox(50, settingsBox, continueButton, newGameButton, transparentLabel);
+           HBox buttonsBox = new HBox(50, continueButton, newGameButton, transparentLabel);
            buttonsBox.setAlignment(Pos.CENTER_RIGHT);
            stackPane.getChildren().add(buttonsBox);
            stackPane.setOnDragDetected(event -> stackPane.startFullDrag());
            scene = new Scene(stackPane, 1280, 720);
-
-            //Closing settings stage on click --------------------------------------------------------------------------
-            scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    settingsStage.close();
-                }
-            });
-            //--------------------------------------------------------------------------------------------------------------
        }
-     // stage.setMaxWidth(1280);stage.setMaxHeight(720);
         stage.setScene(scene);
         stage.show();
 

@@ -23,7 +23,6 @@ public class CareTaker {
     }
 
     public Memento get(int index){
-        System.out.println(mementoList.get(0).getCurrentScore()+mementoList.get(0).getLives());
         return mementoList.get(index);
     }
 

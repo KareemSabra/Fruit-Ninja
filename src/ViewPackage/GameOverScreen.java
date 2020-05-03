@@ -36,7 +36,6 @@ public class GameOverScreen  {
 
         }catch (Exception e)
         {
-            System.out.println("Image Error");
             gameOverLabel.setText("Game Over");
         }
 
