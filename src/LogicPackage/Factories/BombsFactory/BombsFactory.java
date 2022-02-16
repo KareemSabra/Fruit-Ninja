@@ -8,10 +8,10 @@ public class BombsFactory {
         int i  = (int )(Math.random() * 2 + 1);
 
         if(i == 1)
-            return (GameObject) new LuckyBlastBomb();
+            return (GameObject) new BlueDangerousBomb();
         else
         if (i==2)
-            return (GameObject) new RedBomb();
+            return (GameObject) new RedFatalBomb();
 
         return null;
     }

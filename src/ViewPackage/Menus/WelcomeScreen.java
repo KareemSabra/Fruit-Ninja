@@ -1,5 +1,7 @@
 package ViewPackage.Menus;
 
+import LogicPackage.Commands.*;
+import LogicPackage.Misc.AudioHandling;
 import LogicPackage.Misc.ImportImage;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -13,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 
 public class WelcomeScreen {
 
@@ -36,9 +40,12 @@ public class WelcomeScreen {
 
     public  void prepareScene() {
 
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new PlayThemeMusic());
+        invoker.execute();
+
        if (flag) {
            flag = false;
-            Stage settingsStage = new Stage();
 
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(1280, 720);
@@ -81,46 +88,59 @@ public class WelcomeScreen {
                 settingsButton.setBackground(newSettings);
                 settingsButton.setPrefSize(28, 32);
 
-
             } catch (Exception e) {
                 System.out.println("Images error");
                 newGameButton.setText("New Game");
                 continueButton.setText("Continue Game");
             }
 
-            newGameButton.setOnMouseDragEntered(event ->  GameMode.getInstance().prepareScene(stage));
 
-            settingsButton.setOnAction(new EventHandler<ActionEvent>() {
+            newGameButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    SettingsScreen.getInstance().getsSettingsScreen(settingsStage);
+
+                    File oldMementos = new File("Memento.xml");
+                    if (oldMementos.exists()){
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new LoadNewGame());
+                    invoker.execute();
+
+                    invoker.setCommands(new StartNewGame());
+                    invoker.execute();}
+                    else{
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new StartNewGame());
+                        invoker.execute();
+                    }
+
                 }
             });
-            continueButton.setOnMouseDragEntered(event -> GameMode.getInstance().prepareScene(stage));
 
-            HBox settingsBox = new HBox(settingsButton);
-            settingsBox.setAlignment(Pos.BOTTOM_RIGHT);
+            continueButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    File oldMementos = new File("Memento.xml");
+                    if (oldMementos.exists()){
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new LoadOldGame());
+                    invoker.execute();
+
+                    invoker.setCommands(new ResumeGame());
+                    invoker.execute();}
+                }
+            });
+
 
            //Transparent Label to adjust spacing ----------------------------------------------------------------------
            Label transparentLabel = new Label();
            transparentLabel.setPrefWidth(100);
            //----------------------------------------------------------------------------------------------------------
-           HBox buttonsBox = new HBox(50, settingsBox, continueButton, newGameButton, transparentLabel);
+           HBox buttonsBox = new HBox(50, continueButton, newGameButton, transparentLabel);
            buttonsBox.setAlignment(Pos.CENTER_RIGHT);
            stackPane.getChildren().add(buttonsBox);
            stackPane.setOnDragDetected(event -> stackPane.startFullDrag());
            scene = new Scene(stackPane, 1280, 720);
-
-            //Closing settings stage on click --------------------------------------------------------------------------
-            scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    settingsStage.close();
-                }
-            });
-            //--------------------------------------------------------------------------------------------------------------
        }
-     // stage.setMaxWidth(1280);stage.setMaxHeight(720);
         stage.setScene(scene);
         stage.show();
 

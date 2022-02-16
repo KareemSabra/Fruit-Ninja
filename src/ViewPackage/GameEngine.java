@@ -6,10 +6,8 @@ import LogicPackage.Commands.LoseLife;
 import LogicPackage.GameObject;
 import LogicPackage.Factories.BombsFactory.BombsFactory;
 import LogicPackage.Factories.FruitFactory.FruitFactory;
-import LogicPackage.PlayerSingleton;
 
-import ViewPackage.GameViewBackgrounds.ArcadeScreen;
-import ViewPackage.GameViewBackgrounds.ClassicScreen;
+import LogicPackage.StateDifficulties.Difficulty;
 import ViewPackage.GameViewBackgrounds.GameScreen;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -18,16 +16,40 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-
-
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameEngine {
 
-    int eventCount = 0;
+    Boolean bombAnimationDone = false;
+    Boolean fruitAnimationDone = false;
+    int numberBombsDone = 0;
+    int numberFruitsDone = 0;
+     Boolean pause = false;
+
+    private static List<GameObject> onScreenObjects = new ArrayList<>();
+    private static List<ParallelTransition> transitions = new ArrayList<>();
+
+    public GameEngine() {
+        onScreenObjects.clear();
+        transitions.clear();
+    }
+
+    public  void pause(){
+        pause=true;
+        stopFruits();
+    }
+    public static void stopFruits( ){
+        for (GameObject fruit:
+             onScreenObjects) {fruit.setSliced();
+        }
+        for (ParallelTransition transition : transitions){
+            transition.stop();
+        }
+
+    }
+
     int i;
 
     GameScreen gameScreen ;
@@ -37,21 +59,33 @@ public class GameEngine {
     }
 
     public Node getGame( ){
-        Boolean flag = false;
+        onScreenObjects.clear();
+         Boolean flag = false;
+         bombAnimationDone = false;
+         fruitAnimationDone = false;
+         numberBombsDone = 0;
+         numberFruitsDone = 0;
+
+        Difficulty difficulty = new Difficulty();
         Pane pane = new Pane();
         pane.minWidth(1280);
         pane.minHeight(500);
-        int numberFruitsPerWave = (int )(Math.random() * 4 + 1);
 
-        int numberBombsPerWave = (int) (Math.random() * 2);
+        int numberFruitsPerWave = difficulty.setDifficultyLevel().getNumberofFruitsWave();
+
+        int numberBombsPerWave = difficulty.setDifficultyLevel().getNumberofBombsWave();
+
+        if (numberBombsPerWave==0) bombAnimationDone = true;
         int bombLocation ;
         List<Integer> fruitLocationsperwave = new ArrayList<>();
 
-
             for ( i = 0; i < numberFruitsPerWave; i++) {
-
-                int temp = i;
                 GameObject fruit = new FruitFactory().getFruitType();
+                onScreenObjects.add(fruit);
+                if (pause) {
+                    stopFruits();
+                    break;
+                }
                 fruitLocationsperwave.add(fruit.getXlocation());
 
                 Button fruitLabel = new Button();
@@ -60,31 +94,53 @@ public class GameEngine {
                 fruitLabel.setLayoutX(fruitLocationsperwave.get(i));
                 fruitLabel.setLayoutY(600);
 
-                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                TranslateTransition fruitTransitionUP = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()), fruitLabel);
                 fruitTransitionUP.setByY(-fruit.getMaxHeight());
 
-                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(2000), fruitLabel);
+                TranslateTransition fruitTransitionDown = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()/1.5), fruitLabel);
                 fruitTransitionDown.setByY(fruit.getMaxHeight() + 100);
 
-                RotateTransition rotateTransition = new RotateTransition(Duration.millis(4000), fruitLabel);
+                RotateTransition rotateTransition = new RotateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()+(difficulty.setDifficultyLevel().getSpeed()/1.5)), fruitLabel);
                 rotateTransition.setByAngle(360);
 
                 SequentialTransition sequentialTransition = new SequentialTransition(fruitTransitionUP, fruitTransitionDown);
                 sequentialTransition.setCycleCount(1);
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
+                transitions.add(parallelTransition);
                 parallelTransition.play();
 
-                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(1000), fruitLabel);
+                TranslateTransition fruitFalling = new TranslateTransition(Duration.millis(difficulty.setDifficultyLevel().getSpeed()/2), fruitLabel);
 
-                sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                if(pause)
+                {
+                    stopFruits();
+                    parallelTransition.stop();
+                }
+
+                parallelTransition.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        if (!fruit.isSliced()){
+                        if(!pause) {
+                            if (!fruit.isSliced()){
                             Invoker invoker = new Invoker();
                             invoker.setCommands(new LoseLife());
-                            invoker.execute();
+                            invoker.execute();}
+                        }else
+                        {stopFruits();
+                        parallelTransition.stop();
                         }
+                        numberFruitsDone++;
+                        if (numberFruitsDone==numberFruitsPerWave) fruitAnimationDone = true;
+                        if (fruitAnimationDone&&bombAnimationDone) gameScreen.getWave();
+                    }
+                });
+                fruitFalling.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        numberFruitsDone++;
+                        if (numberFruitsDone==numberFruitsPerWave) fruitAnimationDone = true;
+                        if (fruitAnimationDone&&bombAnimationDone) gameScreen.getWave();
                     }
                 });
                 fruitLabel.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -100,7 +156,6 @@ public class GameEngine {
                         }
                     }
                 });
-
                 fruitLabel.setOnMouseDragEntered(event -> {
                     if (!fruit.isSliced()) {
                         fruit.slice();
@@ -111,8 +166,6 @@ public class GameEngine {
                         fruitFalling.play();
                     }
                 });
-
-
 
                 pane.getChildren().add(fruitLabel);
             }
@@ -135,16 +188,18 @@ public class GameEngine {
                 bombLabel.setLayoutY(600);
 
                 bombLabel.setOnMouseDragEntered(event -> {
-                    bombLabel.setBackground(bomb.getImages());
                     bombLabel.setPrefSize(230, 250);
-                    try {bomb.slice();}
+                    if (!bomb.isSliced())
+                    {
+                        try {bomb.slice();
+                        bombLabel.setBackground(bomb.getImages());}
                     catch (Exception e){
-                        System.out.println("Illegal bomb red");
+                        bombLabel.setBackground(bomb.getImages());
                         Invoker invoker = new Invoker();
                         invoker.setCommands(new EndGame());
                         invoker.execute();
                     }
-                });
+                }});
 
                 TranslateTransition bombTransitionUp = new TranslateTransition(Duration.millis(2000), bombLabel);
                 bombTransitionUp.setByY(-bomb.getMaxHeight());
@@ -157,7 +212,16 @@ public class GameEngine {
 
                 SequentialTransition sequentialTransition = new SequentialTransition(bombTransitionUp, bombTransitionDown);
                 sequentialTransition.setCycleCount(1);
-                
+
+                sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        numberBombsDone++;
+                        if (numberBombsDone==numberBombsPerWave) bombAnimationDone = true;
+                        if (bombAnimationDone && fruitAnimationDone) gameScreen.getWave();
+
+                    }
+                });
 
                 ParallelTransition parallelTransition = new ParallelTransition(rotateTransition, sequentialTransition);
                 parallelTransition.play();
@@ -165,6 +229,7 @@ public class GameEngine {
                 if (!flag)
                     pane.getChildren().add(bombLabel);
             }
+            if(pause) return null;
         return pane;
     }
 }

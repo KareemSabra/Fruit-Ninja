@@ -1,11 +1,18 @@
 package MainPackage;
 
+import LogicPackage.Mementos.CareTaker;
 import LogicPackage.Misc.ImportImage;
 import ViewPackage.Menus.WelcomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
+
 public class Main extends Application {
+
 
     public static Stage stage;
     @Override
@@ -23,8 +30,10 @@ public class Main extends Application {
         welcomeScreen.prepareScene();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+
         launch(args);
+
     }
 
 

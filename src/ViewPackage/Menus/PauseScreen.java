@@ -1,9 +1,11 @@
 package ViewPackage.Menus;
 
-import LogicPackage.Commands.HoldGame;
+import LogicPackage.Commands.ResumeGame;
+import LogicPackage.Commands.SaveGame;
 import LogicPackage.Commands.Invoker;
+import LogicPackage.Commands.StartNewGame;
 import LogicPackage.Misc.ImportImage;
-import LogicPackage.Misc.StopWatch;
+import LogicPackage.Misc.ClassicTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -22,9 +24,6 @@ public class PauseScreen {
     Stage optionsStage = new Stage();
 
 
-
-
-
     public static PauseScreen getInstance(){
         if (instance == null)
             instance = new PauseScreen();
@@ -33,11 +32,11 @@ public class PauseScreen {
     private PauseScreen() {
     }
 
-
-
-
     public void prepareScene(Stage stage)
     {
+        Invoker invoker = new Invoker();
+        invoker.setCommands(new SaveGame());
+        invoker.execute();
         if(flag) {
             flag = false;
 
@@ -47,13 +46,13 @@ public class PauseScreen {
             HBox optionsBox = new HBox();
 
             Button homeButton = new Button();
-            Button restartButton = new Button();
             Button resumeButton = new Button();
+            Button restartButton = new Button();
 
             optionsBox.setSpacing(20);
             optionsBox.setAlignment(Pos.CENTER);
 
-            optionsBox.getChildren().addAll(homeButton, restartButton, resumeButton);
+            optionsBox.getChildren().addAll(homeButton, restartButton,resumeButton);
 
             try {
                 ImageView backGroundImage = new ImageView(new ImportImage().getImage("WoodBackground.jpg"));
@@ -80,19 +79,40 @@ public class PauseScreen {
                 System.out.println("Error");
             }
 
+
+            scene = new Scene(pane2, 400, 200);
+            //Keyboard inputs ----------------------------------------------------------------------------------------------
+            //Escape go to main menu----------------------------------------------------------------------------------------
             homeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     Invoker invoker = new Invoker();
-                    invoker.setCommands(new HoldGame());
+                    invoker.setCommands(new SaveGame());
                     invoker.execute();
+                    WelcomeScreen.getInstance().prepareScene();
                     optionsStage.close();
-                    StopWatch.getInstance().resetTimer();
-
+                    ClassicTimer.getInstance().resetTimer();
+                }
+            });
+            resumeButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    optionsStage.close();
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new ResumeGame());
+                    invoker.execute();
+                }
+            });
+            restartButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    optionsStage.close();
+                    Invoker invoker = new Invoker();
+                    invoker.setCommands(new StartNewGame());
+                    invoker.execute();
                 }
             });
 
-            scene = new Scene(pane2, 400, 200);
             //Keyboard inputs ----------------------------------------------------------------------------------------------
             //Escape go to main menu----------------------------------------------------------------------------------------
             scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -100,19 +120,21 @@ public class PauseScreen {
                 public void handle(KeyEvent event) {
                     if (event.getCode() == KeyCode.ESCAPE) {
                         //TODO: Confirm going back message
-                        Invoker invoker = new Invoker();
-                        invoker.setCommands(new HoldGame());
-                        invoker.execute();
-                        StopWatch.getInstance().resetTimer();
                         optionsStage.close();
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new SaveGame());
+                        invoker.execute();
+                        ClassicTimer.getInstance().resetTimer();
+                        WelcomeScreen.getInstance().prepareScene();
                     } else if (event.getCode() == KeyCode.ENTER) {
                         optionsStage.close();
-                        StopWatch.getInstance().playTimer();
+                        Invoker invoker = new Invoker();
+                        invoker.setCommands(new ResumeGame());
+                        invoker.execute();
                     }
                 }
             });
             //--------------------------------------------------------------------------------------------------------------
-
         }
         optionsStage.setScene(scene);
         optionsStage.show();
